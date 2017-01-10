@@ -1,0 +1,1736 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="进程控制
+
+
+系统调用名称
+功能描述
+
+
+
+
+fork
+创建一个新进程
+
+
+clone
+按指定条件创建子进程
+
+
+execve
+运行可执行文件
+
+
+exit
+中止进程
+
+
+_exit
+立即中止当前进程
+
+
+getdtablesize
+进程所能打开的最大文件数
+
+
+getpgid
+获取指定进程组标识号
+
+
+setpgid
+设置指定进程组标志号
+
+
+getpgrp
+获取当前进程组标识号
+
+
+setpg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux系统调用列表">
+<meta property="og:url" content="http://shuyufang.com/2016/09/28/linux-system-call/index.html">
+<meta property="og:site_name" content="Shuyufang's Blog">
+<meta property="og:description" content="进程控制
+
+
+系统调用名称
+功能描述
+
+
+
+
+fork
+创建一个新进程
+
+
+clone
+按指定条件创建子进程
+
+
+execve
+运行可执行文件
+
+
+exit
+中止进程
+
+
+_exit
+立即中止当前进程
+
+
+getdtablesize
+进程所能打开的最大文件数
+
+
+getpgid
+获取指定进程组标识号
+
+
+setpgid
+设置指定进程组标志号
+
+
+getpgrp
+获取当前进程组标识号
+
+
+setpg">
+<meta property="og:updated_time" content="2016-09-28T09:04:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux系统调用列表">
+<meta name="twitter:description" content="进程控制
+
+
+系统调用名称
+功能描述
+
+
+
+
+fork
+创建一个新进程
+
+
+clone
+按指定条件创建子进程
+
+
+execve
+运行可执行文件
+
+
+exit
+中止进程
+
+
+_exit
+立即中止当前进程
+
+
+getdtablesize
+进程所能打开的最大文件数
+
+
+getpgid
+获取指定进程组标识号
+
+
+setpgid
+设置指定进程组标志号
+
+
+getpgrp
+获取当前进程组标识号
+
+
+setpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://shuyufang.com/2016/09/28/linux-system-call/"/>
+
+
+
+
+
+  <title> linux系统调用列表 | Shuyufang's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Shuyufang's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://shuyufang.com/2016/09/28/linux-system-call/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Shuyufang">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/shuyufang_icon.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Shuyufang's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Shuyufang's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux系统调用列表
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-09-28T17:04:00+08:00">
+                2016-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fork</td>
+<td style="text-align:left">创建一个新进程</td>
+</tr>
+<tr>
+<td style="text-align:left">clone</td>
+<td style="text-align:left">按指定条件创建子进程</td>
+</tr>
+<tr>
+<td style="text-align:left">execve</td>
+<td style="text-align:left">运行可执行文件</td>
+</tr>
+<tr>
+<td style="text-align:left">exit</td>
+<td style="text-align:left">中止进程</td>
+</tr>
+<tr>
+<td style="text-align:left">_exit</td>
+<td style="text-align:left">立即中止当前进程</td>
+</tr>
+<tr>
+<td style="text-align:left">getdtablesize</td>
+<td style="text-align:left">进程所能打开的最大文件数</td>
+</tr>
+<tr>
+<td style="text-align:left">getpgid</td>
+<td style="text-align:left">获取指定进程组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setpgid</td>
+<td style="text-align:left">设置指定进程组标志号</td>
+</tr>
+<tr>
+<td style="text-align:left">getpgrp</td>
+<td style="text-align:left">获取当前进程组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setpgrp</td>
+<td style="text-align:left">设置当前进程组标志号</td>
+</tr>
+<tr>
+<td style="text-align:left">getpid</td>
+<td style="text-align:left">获取进程标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">getppid</td>
+<td style="text-align:left">获取父进程标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">getpriority</td>
+<td style="text-align:left">获取调度优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">setpriority</td>
+<td style="text-align:left">设置调度优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">modify_ldt</td>
+<td style="text-align:left">读写进程的本地描述表</td>
+</tr>
+<tr>
+<td style="text-align:left">nanosleep</td>
+<td style="text-align:left">使进程睡眠指定的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">nice</td>
+<td style="text-align:left">改变分时进程的优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">pause</td>
+<td style="text-align:left">挂起进程，等待信号</td>
+</tr>
+<tr>
+<td style="text-align:left">personality</td>
+<td style="text-align:left">设置进程运行域</td>
+</tr>
+<tr>
+<td style="text-align:left">prctl</td>
+<td style="text-align:left">对进程进行特定操作</td>
+</tr>
+<tr>
+<td style="text-align:left">ptrace</td>
+<td style="text-align:left">进程跟踪</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_get_priority_max</td>
+<td style="text-align:left">取得静态优先级的上限</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_get_priority_min</td>
+<td style="text-align:left">取得静态优先级的下限</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_getparam</td>
+<td style="text-align:left">取得进程的调度参数</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_getscheduler</td>
+<td style="text-align:left">取得指定进程的调度策略</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_rr_get_interval</td>
+<td style="text-align:left">取得按RR算法调度的实时进程的时间片长度</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_setparam</td>
+<td style="text-align:left">设置进程的调度参数</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_setscheduler</td>
+<td style="text-align:left">设置指定进程的调度策略和参数</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_yield</td>
+<td style="text-align:left">进程主动让出处理器,并将自己等候调度队列队尾</td>
+</tr>
+<tr>
+<td style="text-align:left">vfork</td>
+<td style="text-align:left">创建一个子进程，以供执行新程序，常与execve等同时使用</td>
+</tr>
+<tr>
+<td style="text-align:left">wait</td>
+<td style="text-align:left">等待子进程终止</td>
+</tr>
+<tr>
+<td style="text-align:left">wait3</td>
+<td style="text-align:left">参见wait</td>
+</tr>
+<tr>
+<td style="text-align:left">waitpid</td>
+<td style="text-align:left">等待指定子进程终止</td>
+</tr>
+<tr>
+<td style="text-align:left">wait4</td>
+<td style="text-align:left">参见waitpid</td>
+</tr>
+<tr>
+<td style="text-align:left">capget</td>
+<td style="text-align:left">获取进程权限</td>
+</tr>
+<tr>
+<td style="text-align:left">capset</td>
+<td style="text-align:left">设置进程权限</td>
+</tr>
+<tr>
+<td style="text-align:left">getsid</td>
+<td style="text-align:left">获取会晤标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setsid</td>
+<td style="text-align:left">设置会晤标识号</td>
+</tr>
+</tbody>
+</table>
+<h2 id="文件系统控制"><a href="#文件系统控制" class="headerlink" title="文件系统控制"></a>文件系统控制</h2><h3 id="文件读写操作"><a href="#文件读写操作" class="headerlink" title="文件读写操作"></a>文件读写操作</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fcntl</td>
+<td style="text-align:left">文件控制</td>
+</tr>
+<tr>
+<td style="text-align:left">open</td>
+<td style="text-align:left">打开文件</td>
+</tr>
+<tr>
+<td style="text-align:left">creat</td>
+<td style="text-align:left">创建新文件</td>
+</tr>
+<tr>
+<td style="text-align:left">close</td>
+<td style="text-align:left">关闭文件描述字</td>
+</tr>
+<tr>
+<td style="text-align:left">read</td>
+<td style="text-align:left">读文件</td>
+</tr>
+<tr>
+<td style="text-align:left">write</td>
+<td style="text-align:left">写文件</td>
+</tr>
+<tr>
+<td style="text-align:left">readv</td>
+<td style="text-align:left">从文件读入数据到缓冲数组中</td>
+</tr>
+<tr>
+<td style="text-align:left">writev</td>
+<td style="text-align:left">将缓冲数组里的数据写入文件</td>
+</tr>
+<tr>
+<td style="text-align:left">pread</td>
+<td style="text-align:left">对文件随机读</td>
+</tr>
+<tr>
+<td style="text-align:left">pwrite</td>
+<td style="text-align:left">对文件随机写</td>
+</tr>
+<tr>
+<td style="text-align:left">lseek</td>
+<td style="text-align:left">移动文件指针</td>
+</tr>
+<tr>
+<td style="text-align:left">_llseek</td>
+<td style="text-align:left">在64位地址空间里移动文件指针</td>
+</tr>
+<tr>
+<td style="text-align:left">dup</td>
+<td style="text-align:left">复制已打开的文件描述字</td>
+</tr>
+<tr>
+<td style="text-align:left">dup2</td>
+<td style="text-align:left">按指定条件复制文件描述字</td>
+</tr>
+<tr>
+<td style="text-align:left">flock</td>
+<td style="text-align:left">文件加/解锁</td>
+</tr>
+<tr>
+<td style="text-align:left">poll</td>
+<td style="text-align:left">I/O多路转换</td>
+</tr>
+<tr>
+<td style="text-align:left">truncate</td>
+<td style="text-align:left">截断文件</td>
+</tr>
+<tr>
+<td style="text-align:left">ftruncate</td>
+<td style="text-align:left">参见truncate</td>
+</tr>
+<tr>
+<td style="text-align:left">umask</td>
+<td style="text-align:left">设置文件权限掩码</td>
+</tr>
+<tr>
+<td style="text-align:left">fsync</td>
+<td style="text-align:left">把文件在内存中的部分写回磁盘</td>
+</tr>
+</tbody>
+</table>
+<h3 id="文件系统操作"><a href="#文件系统操作" class="headerlink" title="文件系统操作"></a>文件系统操作</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">access</td>
+<td style="text-align:left">确定文件的可存取性</td>
+</tr>
+<tr>
+<td style="text-align:left">chdir</td>
+<td style="text-align:left">改变当前工作目录</td>
+</tr>
+<tr>
+<td style="text-align:left">fchdir</td>
+<td style="text-align:left">参见chdir</td>
+</tr>
+<tr>
+<td style="text-align:left">chmod</td>
+<td style="text-align:left">改变文件方式</td>
+</tr>
+<tr>
+<td style="text-align:left">fchmod</td>
+<td style="text-align:left">参见chmod</td>
+</tr>
+<tr>
+<td style="text-align:left">chown</td>
+<td style="text-align:left">改变文件的属主或用户组</td>
+</tr>
+<tr>
+<td style="text-align:left">fchown</td>
+<td style="text-align:left">参见chown</td>
+</tr>
+<tr>
+<td style="text-align:left">lchown</td>
+<td style="text-align:left">参见chown</td>
+</tr>
+<tr>
+<td style="text-align:left">chroot</td>
+<td style="text-align:left">改变根目录</td>
+</tr>
+<tr>
+<td style="text-align:left">stat</td>
+<td style="text-align:left">取文件状态信息</td>
+</tr>
+<tr>
+<td style="text-align:left">lstat</td>
+<td style="text-align:left">参见stat</td>
+</tr>
+<tr>
+<td style="text-align:left">fstat</td>
+<td style="text-align:left">参见stat</td>
+</tr>
+<tr>
+<td style="text-align:left">statfs</td>
+<td style="text-align:left">取文件系统信息</td>
+</tr>
+<tr>
+<td style="text-align:left">fstatfs</td>
+<td style="text-align:left">参见statfs</td>
+</tr>
+<tr>
+<td style="text-align:left">readdir</td>
+<td style="text-align:left">读取目录项</td>
+</tr>
+<tr>
+<td style="text-align:left">getdents</td>
+<td style="text-align:left">读取目录项</td>
+</tr>
+<tr>
+<td style="text-align:left">mkdir</td>
+<td style="text-align:left">创建目录</td>
+</tr>
+<tr>
+<td style="text-align:left">mknod</td>
+<td style="text-align:left">创建索引节点</td>
+</tr>
+<tr>
+<td style="text-align:left">rmdir</td>
+<td style="text-align:left">删除目录</td>
+</tr>
+<tr>
+<td style="text-align:left">rename</td>
+<td style="text-align:left">文件改名</td>
+</tr>
+<tr>
+<td style="text-align:left">link</td>
+<td style="text-align:left">创建链接</td>
+</tr>
+<tr>
+<td style="text-align:left">symlink</td>
+<td style="text-align:left">创建符号链接</td>
+</tr>
+<tr>
+<td style="text-align:left">unlink</td>
+<td style="text-align:left">删除链接</td>
+</tr>
+<tr>
+<td style="text-align:left">readlink</td>
+<td style="text-align:left">读符号链接的值</td>
+</tr>
+<tr>
+<td style="text-align:left">mount</td>
+<td style="text-align:left">安装文件系统</td>
+</tr>
+<tr>
+<td style="text-align:left">umount</td>
+<td style="text-align:left">卸下文件系统</td>
+</tr>
+<tr>
+<td style="text-align:left">ustat</td>
+<td style="text-align:left">取文件系统信息</td>
+</tr>
+<tr>
+<td style="text-align:left">utime</td>
+<td style="text-align:left">改变文件的访问修改时间</td>
+</tr>
+<tr>
+<td style="text-align:left">utimes</td>
+<td style="text-align:left">参见utime</td>
+</tr>
+<tr>
+<td style="text-align:left">quotactl</td>
+<td style="text-align:left">控制磁盘配额</td>
+</tr>
+</tbody>
+</table>
+<h2 id="系统控制"><a href="#系统控制" class="headerlink" title="系统控制"></a>系统控制</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ioctl</td>
+<td style="text-align:left">I/O总控制函数</td>
+</tr>
+<tr>
+<td style="text-align:left">_sysctl</td>
+<td style="text-align:left">读/写系统参数</td>
+</tr>
+<tr>
+<td style="text-align:left">acct</td>
+<td style="text-align:left">启用或禁止进程记账</td>
+</tr>
+<tr>
+<td style="text-align:left">getrlimit</td>
+<td style="text-align:left">获取系统资源上限</td>
+</tr>
+<tr>
+<td style="text-align:left">setrlimit</td>
+<td style="text-align:left">设置系统资源上限</td>
+</tr>
+<tr>
+<td style="text-align:left">getrusage</td>
+<td style="text-align:left">获取系统资源使用情况</td>
+</tr>
+<tr>
+<td style="text-align:left">uselib</td>
+<td style="text-align:left">选择要使用的二进制函数库</td>
+</tr>
+<tr>
+<td style="text-align:left">ioperm</td>
+<td style="text-align:left">设置端口I/O权限</td>
+</tr>
+<tr>
+<td style="text-align:left">iopl</td>
+<td style="text-align:left">改变进程I/O权限级别</td>
+</tr>
+<tr>
+<td style="text-align:left">outb</td>
+<td style="text-align:left">低级端口操作</td>
+</tr>
+<tr>
+<td style="text-align:left">reboot</td>
+<td style="text-align:left">重新启动</td>
+</tr>
+<tr>
+<td style="text-align:left">swapon</td>
+<td style="text-align:left">打开交换文件和设备</td>
+</tr>
+<tr>
+<td style="text-align:left">swapoff</td>
+<td style="text-align:left">关闭交换文件和设备</td>
+</tr>
+<tr>
+<td style="text-align:left">bdflush</td>
+<td style="text-align:left">控制bdflush守护进程</td>
+</tr>
+<tr>
+<td style="text-align:left">sysfs</td>
+<td style="text-align:left">取核心支持的文件系统类型</td>
+</tr>
+<tr>
+<td style="text-align:left">sysinfo</td>
+<td style="text-align:left">取得系统信息</td>
+</tr>
+<tr>
+<td style="text-align:left">adjtimex</td>
+<td style="text-align:left">调整系统时钟</td>
+</tr>
+<tr>
+<td style="text-align:left">alarm</td>
+<td style="text-align:left">设置进程的闹钟</td>
+</tr>
+<tr>
+<td style="text-align:left">getitimer</td>
+<td style="text-align:left">获取计时器值</td>
+</tr>
+<tr>
+<td style="text-align:left">setitimer</td>
+<td style="text-align:left">设置计时器值</td>
+</tr>
+<tr>
+<td style="text-align:left">gettimeofday</td>
+<td style="text-align:left">取时间和时区</td>
+</tr>
+<tr>
+<td style="text-align:left">settimeofday</td>
+<td style="text-align:left">设置时间和时区</td>
+</tr>
+<tr>
+<td style="text-align:left">stime</td>
+<td style="text-align:left">设置系统日期和时间</td>
+</tr>
+<tr>
+<td style="text-align:left">time</td>
+<td style="text-align:left">取得系统时间</td>
+</tr>
+<tr>
+<td style="text-align:left">times</td>
+<td style="text-align:left">取进程运行时间</td>
+</tr>
+<tr>
+<td style="text-align:left">uname</td>
+<td style="text-align:left">获取当前UNIX系统的名称、版本和主机等信息</td>
+</tr>
+<tr>
+<td style="text-align:left">vhangup</td>
+<td style="text-align:left">挂起当前终端</td>
+</tr>
+<tr>
+<td style="text-align:left">nfsservctl</td>
+<td style="text-align:left">对NFS守护进程进行控制</td>
+</tr>
+<tr>
+<td style="text-align:left">vm86</td>
+<td style="text-align:left">进入模拟8086模式</td>
+</tr>
+<tr>
+<td style="text-align:left">create_module</td>
+<td style="text-align:left">创建可装载的模块项</td>
+</tr>
+<tr>
+<td style="text-align:left">delete_module</td>
+<td style="text-align:left">删除可装载的模块项</td>
+</tr>
+<tr>
+<td style="text-align:left">init_module</td>
+<td style="text-align:left">初始化模块</td>
+</tr>
+<tr>
+<td style="text-align:left">query_module</td>
+<td style="text-align:left">查询模块信息</td>
+</tr>
+<tr>
+<td style="text-align:left">*get_kernel_syms</td>
+<td style="text-align:left">取得核心符号,已被query_module代替</td>
+</tr>
+</tbody>
+</table>
+<h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">brk</td>
+<td style="text-align:left">改变数据段空间的分配</td>
+</tr>
+<tr>
+<td style="text-align:left">sbrk</td>
+<td style="text-align:left">参见brk</td>
+</tr>
+<tr>
+<td style="text-align:left">mlock</td>
+<td style="text-align:left">内存页面加锁</td>
+</tr>
+<tr>
+<td style="text-align:left">munlock</td>
+<td style="text-align:left">内存页面解锁</td>
+</tr>
+<tr>
+<td style="text-align:left">mlockall</td>
+<td style="text-align:left">调用进程所有内存页面加锁</td>
+</tr>
+<tr>
+<td style="text-align:left">munlockall</td>
+<td style="text-align:left">调用进程所有内存页面解锁</td>
+</tr>
+<tr>
+<td style="text-align:left">mmap</td>
+<td style="text-align:left">映射虚拟内存页</td>
+</tr>
+<tr>
+<td style="text-align:left">munmap</td>
+<td style="text-align:left">去除内存页映射</td>
+</tr>
+<tr>
+<td style="text-align:left">mremap</td>
+<td style="text-align:left">重新映射虚拟内存地址</td>
+</tr>
+<tr>
+<td style="text-align:left">msync</td>
+<td style="text-align:left">将映射内存中的数据写回磁盘</td>
+</tr>
+<tr>
+<td style="text-align:left">mprotect</td>
+<td style="text-align:left">设置内存映像保护</td>
+</tr>
+<tr>
+<td style="text-align:left">getpagesize</td>
+<td style="text-align:left">获取页面大小</td>
+</tr>
+<tr>
+<td style="text-align:left">sync</td>
+<td style="text-align:left">将内存缓冲区数据写回硬盘</td>
+</tr>
+<tr>
+<td style="text-align:left">cacheflush</td>
+<td style="text-align:left">将指定缓冲区中的内容写回磁盘</td>
+</tr>
+</tbody>
+</table>
+<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">getdomainname</td>
+<td style="text-align:left">取域名</td>
+</tr>
+<tr>
+<td style="text-align:left">setdomainname</td>
+<td style="text-align:left">设置域名</td>
+</tr>
+<tr>
+<td style="text-align:left">gethostid</td>
+<td style="text-align:left">获取主机标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">sethostid</td>
+<td style="text-align:left">设置主机标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">gethostname</td>
+<td style="text-align:left">获取本主机名称</td>
+</tr>
+<tr>
+<td style="text-align:left">sethostname</td>
+<td style="text-align:left">设置主机名称</td>
+</tr>
+</tbody>
+</table>
+<h2 id="socket控制"><a href="#socket控制" class="headerlink" title="socket控制"></a>socket控制</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">socketcall</td>
+<td style="text-align:left">socket系统调用</td>
+</tr>
+<tr>
+<td style="text-align:left">socket</td>
+<td style="text-align:left">建立socket</td>
+</tr>
+<tr>
+<td style="text-align:left">bind</td>
+<td style="text-align:left">绑定socket到端口</td>
+</tr>
+<tr>
+<td style="text-align:left">connect</td>
+<td style="text-align:left">连接远程主机</td>
+</tr>
+<tr>
+<td style="text-align:left">accept</td>
+<td style="text-align:left">响应socket连接请求</td>
+</tr>
+<tr>
+<td style="text-align:left">send</td>
+<td style="text-align:left">通过socket发送信息</td>
+</tr>
+<tr>
+<td style="text-align:left">sendto</td>
+<td style="text-align:left">发送UDP信息</td>
+</tr>
+<tr>
+<td style="text-align:left">sendmsg</td>
+<td style="text-align:left">参见send</td>
+</tr>
+<tr>
+<td style="text-align:left">recv</td>
+<td style="text-align:left">通过socket接收信息</td>
+</tr>
+<tr>
+<td style="text-align:left">recvfrom</td>
+<td style="text-align:left">接收UDP信息</td>
+</tr>
+<tr>
+<td style="text-align:left">recvmsg</td>
+<td style="text-align:left">参见recv</td>
+</tr>
+<tr>
+<td style="text-align:left">listen</td>
+<td style="text-align:left">监听socket端口</td>
+</tr>
+<tr>
+<td style="text-align:left">select</td>
+<td style="text-align:left">对多路同步I/O进行轮询</td>
+</tr>
+<tr>
+<td style="text-align:left">shutdown</td>
+<td style="text-align:left">关闭socket上的连接</td>
+</tr>
+<tr>
+<td style="text-align:left">getsockname</td>
+<td style="text-align:left">取得本地socket名字</td>
+</tr>
+<tr>
+<td style="text-align:left">getpeername</td>
+<td style="text-align:left">获取通信对方的socket名字</td>
+</tr>
+<tr>
+<td style="text-align:left">getsockopt</td>
+<td style="text-align:left">取端口设置</td>
+</tr>
+<tr>
+<td style="text-align:left">setsockopt</td>
+<td style="text-align:left">设置端口参数</td>
+</tr>
+<tr>
+<td style="text-align:left">sendfile</td>
+<td style="text-align:left">在文件或端口间传输数据</td>
+</tr>
+<tr>
+<td style="text-align:left">socketpair</td>
+<td style="text-align:left">创建一对已联接的无名socket</td>
+</tr>
+</tbody>
+</table>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">getuid</td>
+<td style="text-align:left">获取用户标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setuid</td>
+<td style="text-align:left">设置用户标志号</td>
+</tr>
+<tr>
+<td style="text-align:left">getgid</td>
+<td style="text-align:left">获取组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setgid</td>
+<td style="text-align:left">设置组标志号</td>
+</tr>
+<tr>
+<td style="text-align:left">getegid</td>
+<td style="text-align:left">获取有效组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setegid</td>
+<td style="text-align:left">设置有效组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">geteuid</td>
+<td style="text-align:left">获取有效用户标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">seteuid</td>
+<td style="text-align:left">设置有效用户标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setregid</td>
+<td style="text-align:left">分别设置真实和有效的的组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setreuid</td>
+<td style="text-align:left">分别设置真实和有效的用户标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">getresgid</td>
+<td style="text-align:left">分别获取真实的,有效的和保存过的组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setresgid</td>
+<td style="text-align:left">分别设置真实的,有效的和保存过的组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">getresuid</td>
+<td style="text-align:left">分别获取真实的,有效的和保存过的用户标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setresuid</td>
+<td style="text-align:left">分别设置真实的,有效的和保存过的用户标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setfsgid</td>
+<td style="text-align:left">设置文件系统检查时使用的组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setfsuid</td>
+<td style="text-align:left">设置文件系统检查时使用的用户标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">getgroups</td>
+<td style="text-align:left">获取后补组标志清单</td>
+</tr>
+<tr>
+<td style="text-align:left">setgroups</td>
+<td style="text-align:left">设置后补组标志清单</td>
+</tr>
+</tbody>
+</table>
+<h2 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ipc</td>
+<td style="text-align:left">进程间通信总控制调用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">sigaction</td>
+<td style="text-align:left">设置对指定信号的处理方法</td>
+</tr>
+<tr>
+<td style="text-align:left">sigprocmask</td>
+<td style="text-align:left">根据参数对信号集中的信号执行阻塞/解除阻塞等操作</td>
+</tr>
+<tr>
+<td style="text-align:left">sigpending</td>
+<td style="text-align:left">为指定的被阻塞信号设置队列</td>
+</tr>
+<tr>
+<td style="text-align:left">sigsuspend</td>
+<td style="text-align:left">挂起进程等待特定信号</td>
+</tr>
+<tr>
+<td style="text-align:left">signal</td>
+<td style="text-align:left">参见signal</td>
+</tr>
+<tr>
+<td style="text-align:left">kill</td>
+<td style="text-align:left">向进程或进程组发信号</td>
+</tr>
+<tr>
+<td style="text-align:left">*sigblock</td>
+<td style="text-align:left">向被阻塞信号掩码中添加信号,已被sigprocmask代替</td>
+</tr>
+<tr>
+<td style="text-align:left">*siggetmask</td>
+<td style="text-align:left">取得现有阻塞信号掩码,已被sigprocmask代替</td>
+</tr>
+<tr>
+<td style="text-align:left">*sigsetmask</td>
+<td style="text-align:left">用给定信号掩码替换现有阻塞信号掩码,已被sigprocmask代替</td>
+</tr>
+<tr>
+<td style="text-align:left">*sigmask</td>
+<td style="text-align:left">将给定的信号转化为掩码,已被sigprocmask代替</td>
+</tr>
+<tr>
+<td style="text-align:left">*sigpause</td>
+<td style="text-align:left">作用同sigsuspend,已被sigsuspend代替</td>
+</tr>
+<tr>
+<td style="text-align:left">sigvec</td>
+<td style="text-align:left">为兼容BSD而设的信号处理函数,作用类似sigaction</td>
+</tr>
+<tr>
+<td style="text-align:left">ssetmask</td>
+<td style="text-align:left">ANSI C的信号处理函数,作用类似sigaction</td>
+</tr>
+</tbody>
+</table>
+<h3 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">msgctl</td>
+<td style="text-align:left">消息控制操作</td>
+</tr>
+<tr>
+<td style="text-align:left">msgget</td>
+<td style="text-align:left">获取消息队列</td>
+</tr>
+<tr>
+<td style="text-align:left">msgsnd</td>
+<td style="text-align:left">发消息</td>
+</tr>
+<tr>
+<td style="text-align:left">msgrcv</td>
+<td style="text-align:left">取消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">pipe</td>
+<td style="text-align:left">创建管道</td>
+</tr>
+</tbody>
+</table>
+<h3 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">semctl</td>
+<td style="text-align:left">信号量控制</td>
+</tr>
+<tr>
+<td style="text-align:left">semget</td>
+<td style="text-align:left">获取一组信号量</td>
+</tr>
+<tr>
+<td style="text-align:left">semop</td>
+<td style="text-align:left">信号量操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">shmctl</td>
+<td style="text-align:left">控制共享内存</td>
+</tr>
+<tr>
+<td style="text-align:left">shmget</td>
+<td style="text-align:left">获取共享内存</td>
+</tr>
+<tr>
+<td style="text-align:left">shmat</td>
+<td style="text-align:left">连接共享内存</td>
+</tr>
+<tr>
+<td style="text-align:left">shmdt</td>
+<td style="text-align:left">拆卸共享内存</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/14/skiplist/" rel="next" title="skiplist跳跃表">
+                <i class="fa fa-chevron-left"></i> skiplist跳跃表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/09/async-task-manage-module/" rel="prev" title="异步任务管理模块设计分享">
+                异步任务管理模块设计分享 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/shuyufang_icon.png"
+               alt="Shuyufang" />
+          <p class="site-author-name" itemprop="name">Shuyufang</p>
+          <p class="site-description motion-element" itemprop="description">Sieze the day.</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程控制"><span class="nav-number">1.</span> <span class="nav-text">进程控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件系统控制"><span class="nav-number">2.</span> <span class="nav-text">文件系统控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件读写操作"><span class="nav-number">2.1.</span> <span class="nav-text">文件读写操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件系统操作"><span class="nav-number">2.2.</span> <span class="nav-text">文件系统操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统控制"><span class="nav-number">3.</span> <span class="nav-text">系统控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存管理"><span class="nav-number">4.</span> <span class="nav-text">内存管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络管理"><span class="nav-number">5.</span> <span class="nav-text">网络管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#socket控制"><span class="nav-number">6.</span> <span class="nav-text">socket控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理"><span class="nav-number">7.</span> <span class="nav-text">用户管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程间通信"><span class="nav-number">8.</span> <span class="nav-text">进程间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信号"><span class="nav-number">8.1.</span> <span class="nav-text">信号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息"><span class="nav-number">8.2.</span> <span class="nav-text">消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管道"><span class="nav-number">8.3.</span> <span class="nav-text">管道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信号量"><span class="nav-number">8.4.</span> <span class="nav-text">信号量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享内存"><span class="nav-number">8.5.</span> <span class="nav-text">共享内存</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuyufang</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
