@@ -276,6 +276,142 @@
             
               
                 
+                <a class="post-title-link" href="/2017/01/28/map-reduce/" itemprop="url">
+                  MapReduce:超大机群上的简单数据处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-28T20:32:01+08:00" content="2017-01-28">
+              2017-01-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/28/map-reduce/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/28/map-reduce/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/28/map-reduce/" class="leancloud_visitors" data-flag-title="MapReduce:超大机群上的简单数据处理">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>转自<a href="http://blog.csdn.net/active1001/article/details/1675920">http://blog.csdn.net/active1001/article/details/1675920</a></p>
+<p>MapReduce是一个编程模型，和处理、产生大数据集的相关实现。用户指定一个map函数处理一个key/value对，从而产生中间的key/value对集。然后再指定一个reduce函数合并所有的具有相同中间key的中间value。下面将列举许多可以用这个模型来表示的现实世界的工作。</p>
+<p>以这种方式写的程序能自动的在大规模的普通机器上实现并行化。这个运行时系统关心这些细节：分割输入数据，在机群上的调度，机器的错误处理，管理机器之间必要的通信。这样就可以让那些没有并行分布式处理系统经验的程序员利用大量分布式系统的资源。</p>
+<p>我们的MapReduce实现运行在规模可以灵活调整的由普通机器组成的机群上，一个典型的MapReduce计算处理几千台机器上的以TB计算的数据。程序员发现这个系统非常好用：已经实现了数以百计的MapReduce程序，每天在Google的机群上都有1000多个MapReduce程序在执行。</p>
+</blockquote>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/28/map-reduce/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/01/28/everyday-picture/" itemprop="url">
                   照片集
                 </a>
@@ -1686,7 +1822,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1703,7 +1839,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
