@@ -276,6 +276,298 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/28/linux-system-call/" itemprop="url">
+                  linux系统调用列表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T17:04:00+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/28/linux-system-call/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/28/linux-system-call/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/09/28/linux-system-call/" class="leancloud_visitors" data-flag-title="linux系统调用列表">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">系统调用名称</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">fork</td>
+<td style="text-align:left">创建一个新进程</td>
+</tr>
+<tr>
+<td style="text-align:left">clone</td>
+<td style="text-align:left">按指定条件创建子进程</td>
+</tr>
+<tr>
+<td style="text-align:left">execve</td>
+<td style="text-align:left">运行可执行文件</td>
+</tr>
+<tr>
+<td style="text-align:left">exit</td>
+<td style="text-align:left">中止进程</td>
+</tr>
+<tr>
+<td style="text-align:left">_exit</td>
+<td style="text-align:left">立即中止当前进程</td>
+</tr>
+<tr>
+<td style="text-align:left">getdtablesize</td>
+<td style="text-align:left">进程所能打开的最大文件数</td>
+</tr>
+<tr>
+<td style="text-align:left">getpgid</td>
+<td style="text-align:left">获取指定进程组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setpgid</td>
+<td style="text-align:left">设置指定进程组标志号</td>
+</tr>
+<tr>
+<td style="text-align:left">getpgrp</td>
+<td style="text-align:left">获取当前进程组标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setpgrp</td>
+<td style="text-align:left">设置当前进程组标志号</td>
+</tr>
+<tr>
+<td style="text-align:left">getpid</td>
+<td style="text-align:left">获取进程标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">getppid</td>
+<td style="text-align:left">获取父进程标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">getpriority</td>
+<td style="text-align:left">获取调度优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">setpriority</td>
+<td style="text-align:left">设置调度优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">modify_ldt</td>
+<td style="text-align:left">读写进程的本地描述表</td>
+</tr>
+<tr>
+<td style="text-align:left">nanosleep</td>
+<td style="text-align:left">使进程睡眠指定的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">nice</td>
+<td style="text-align:left">改变分时进程的优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">pause</td>
+<td style="text-align:left">挂起进程，等待信号</td>
+</tr>
+<tr>
+<td style="text-align:left">personality</td>
+<td style="text-align:left">设置进程运行域</td>
+</tr>
+<tr>
+<td style="text-align:left">prctl</td>
+<td style="text-align:left">对进程进行特定操作</td>
+</tr>
+<tr>
+<td style="text-align:left">ptrace</td>
+<td style="text-align:left">进程跟踪</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_get_priority_max</td>
+<td style="text-align:left">取得静态优先级的上限</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_get_priority_min</td>
+<td style="text-align:left">取得静态优先级的下限</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_getparam</td>
+<td style="text-align:left">取得进程的调度参数</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_getscheduler</td>
+<td style="text-align:left">取得指定进程的调度策略</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_rr_get_interval</td>
+<td style="text-align:left">取得按RR算法调度的实时进程的时间片长度</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_setparam</td>
+<td style="text-align:left">设置进程的调度参数</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_setscheduler</td>
+<td style="text-align:left">设置指定进程的调度策略和参数</td>
+</tr>
+<tr>
+<td style="text-align:left">sched_yield</td>
+<td style="text-align:left">进程主动让出处理器,并将自己等候调度队列队尾</td>
+</tr>
+<tr>
+<td style="text-align:left">vfork</td>
+<td style="text-align:left">创建一个子进程，以供执行新程序，常与execve等同时使用</td>
+</tr>
+<tr>
+<td style="text-align:left">wait</td>
+<td style="text-align:left">等待子进程终止</td>
+</tr>
+<tr>
+<td style="text-align:left">wait3</td>
+<td style="text-align:left">参见wait</td>
+</tr>
+<tr>
+<td style="text-align:left">waitpid</td>
+<td style="text-align:left">等待指定子进程终止</td>
+</tr>
+<tr>
+<td style="text-align:left">wait4</td>
+<td style="text-align:left">参见waitpid</td>
+</tr>
+<tr>
+<td style="text-align:left">capget</td>
+<td style="text-align:left">获取进程权限</td>
+</tr>
+<tr>
+<td style="text-align:left">capset</td>
+<td style="text-align:left">设置进程权限</td>
+</tr>
+<tr>
+<td style="text-align:left">getsid</td>
+<td style="text-align:left">获取会晤标识号</td>
+</tr>
+<tr>
+<td style="text-align:left">setsid</td>
+<td style="text-align:left">设置会晤标识号</td>
+</tr>
+</tbody>
+</table>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/28/linux-system-call/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/14/skiplist/" itemprop="url">
                   skiplist跳跃表
                 </a>
@@ -439,7 +731,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -456,7 +748,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
