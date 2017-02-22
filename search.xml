@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[面试题整理]]></title>
       <url>%2F2017%2F02%2F22%2Finterview-questions%2F</url>
-      <content type="text"><![CDATA[编程语言C/C++PhpPythonJavaGoShellLinux系统命令监控文件操作操作系统进程与线程协程网络HTTPTCPUDPWeb服务器服务器编程模型 同步/异步 阻塞/非阻塞 select/poll/epoll Nginx 服务器模型 模块化 Apache 服务器模型 其他自研server 原理 优缺点 存储MySQL 存储引擎 聚簇索引 事务隔离级别 索引优化 TdSQL 自动分库分表 MongoDBRedis数据类型持久化Memcached分布式系统异常处理 网络超时 服务失效 分布式事务两阶段提交(2PC)三阶段提交(3PC)Paxos协议Raft协议RPC其他消息队列]]></content>
+      <content type="text"><![CDATA[编程语言技术要点C/C++PhpPythonJavaGoShell面试题目Linux系统命令技术要点监控文件操作面试题目操作系统技术要点进程与线程协程Core dump面试题目网络技术要点DNSHTTPTCPUDP面试题目Web服务器技术要点服务器编程模型 同步/异步 阻塞/非阻塞 select/poll/epoll Nginx 服务器模型 模块化 Apache 服务器模型 其他自研server 原理 优缺点 面试题目存储技术要点MySQL 存储引擎 聚簇索引 事务隔离级别 索引优化 TdSQL 自动分库分表 MongoDBRedis 数据类型 持久化 Memcached面试题目分布式系统技术要点异常处理 网络超时 服务失效 分布式事务两阶段提交/三阶段提交Paxos协议Raft协议RPC面试题目中间件技术要点消息队列连接池线程池面试题目]]></content>
     </entry>
 
     
