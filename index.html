@@ -276,6 +276,191 @@
             
               
                 
+                <a class="post-title-link" href="/2017/03/11/leetcode-450/" itemprop="url">
+                  LeetCode 450 Delete Node in a BST
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-11T23:23:53+08:00" content="2017-03-11">
+              2017-03-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/解题报告/" itemprop="url" rel="index">
+                    <span itemprop="name">解题报告</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/11/leetcode-450/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/leetcode-450/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/11/leetcode-450/" class="leancloud_visitors" data-flag-title="LeetCode 450 Delete Node in a BST">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><ul>
+<li><a href="https://leetcode.com/problems/delete-node-in-a-bst/?tab=Description" target="_blank" rel="external">Delete Node in a BST</a></li>
+</ul>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><ul>
+<li>给定一颗二叉排序树的根结点以及一个值，要求删除二叉排序树中包含该值的结点，同时返回该树的最新的根结点。一般来说，删除可以通过两个步骤来完成，一是查找该结点，二是删除该结点（如果存在的话）。时间复杂度必须是O(h)，h表示树的高度。</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
+<li><p>题目默认条件</p>
+<ul>
+<li>若非特殊说明，二叉排序树不存在两个或多个结点包含同个值的情况。</li>
+</ul>
+</li>
+<li><p>查找“待删除结点”的步骤</p>
+<ol>
+<li>从根结点开始查找，将当前结点的值与给定的值进行比较。</li>
+<li>如果当前结点的值比较大，则将当前结点的左结点设置为新的当前结点；如果当前结点的值比较小，则将当前结点的右结点设置为新的当前结点；如果值相等，则说明当前结点即为目标，结束查找过程。</li>
+<li>若当前结点为NULL，也结束查找过程。</li>
+<li>查找过程需要记录“待删除结点”的父结点，同时还要记录它是父结点的左孩子还是右孩子（下文使用“方向”来表示这个信息）。</li>
+</ol>
+</li>
+<li><p>删除“待删除结点”的步骤</p>
+<ol>
+<li>若第一步查找不到“待删除结点”，则不需要执行删除操作，返回当前的根结点即可。</li>
+<li>若找到了要“待删除结点”，则需要分以下几种情况考虑<ul>
+<li>情况1：“待删除结点”没有任何子结点<ul>
+<li>如果“待删除结点”是根结点（即它的父结点为NULL），那么释放该结点，返回NULL，结束删除过程</li>
+<li>如果“待删除结点”不是根结点，那么释放该结点，同时将它的父结点的对应方向的子结点置为NULL，结束删除过程</li>
+</ul>
+</li>
+<li>情况2：“待删除结点”只有左子结点<ul>
+<li>如果“待删除结点”是根结点（即它的父结点为NULL），那么释放该结点，返回它的左子结点，结束删除过程</li>
+<li>如果“待删除结点”不是根结点，那么释放该结点，同时将它的父结点的对应方向的子结点置为它的左结点，结束删除过程</li>
+</ul>
+</li>
+<li>情况3：待删除的结点只有右子结点（与情况2非常类似）<ul>
+<li>如果“待删除结点”是根结点（即它的父结点为NULL），那么释放该结点，返回它的右子结点，结束删除过程</li>
+<li>如果“待删除结点”不是根结点，那么释放该结点，同时将它的父结点的对应方向的子结点置为它的右结点，结束删除过程</li>
+</ul>
+</li>
+<li>情况4：“待删除结点”同时包含左右子结点<ul>
+<li>这种情况下，我们的目标是找一个最合适的结点（下文使用“待交换结点”来表示它）来取代“待删除结点”的位置。二叉排序树的特性就是每一个结点都比它左子树的所有结点大，同时比它右子树的所有结点小。因此“待交换结点”要么是左子树中值最大的结点，要么是右子树中值最小的结点。后续描述使用右子树中值最小的结点作为“待交换结点”，左子树中值最大的结点理论上满足题目要求，但我未实际测试。</li>
+<li>查找“待交换结点”的步骤<ol>
+<li>从“待删除结点”的右子结点开始，查找以它为根的子树中值最小的结点，查找过程同样需要记录当前结点的父结点及方向</li>
+<li>二叉排序树中值最小的结点必定位于最左侧，因此只要当前结点存在左子结点，则持续将左子结点置为新的当前结点即可</li>
+<li>最后一个不包含左子结点的当前结点，就是“待交换结点”</li>
+</ol>
+</li>
+<li>“待交换结点”是必定存在的，既然找到了，就可以开始删除步骤了。题目并未要求实际删除该结点，因此通过变更该结点的值也可以实现类似功能。这里要做的，只是简单地把“待交换结点”的值赋给“待删除结点”。</li>
+<li>最后要处理“待交换结点”，上文只说了它不包含左子结点，因此要考虑它是否存在右结点。如果它存在右结点，那么它的父结点的对应方向的子结点就是它的右结点，否则它的父结点的对应方向的子结点就是NULL。最后把“待交换结点”释放了即可。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    TreeNode* deleteNode(TreeNode* root, int key) &#123;</div><div class="line">        TreeNode* node2Del = root;</div><div class="line">        TreeNode* parentOfNode2Del = NULL;</div><div class="line">        int direction = 0;</div><div class="line">        // find the node 2 delete and its parent</div><div class="line">        while (node2Del) &#123;</div><div class="line">            if (node2Del-&gt;val == key) &#123;</div><div class="line">                break;</div><div class="line">            &#125; else if (node2Del-&gt;val &gt; key) &#123;</div><div class="line">                parentOfNode2Del = node2Del;</div><div class="line">                node2Del = node2Del-&gt;left;</div><div class="line">                direction = -1;</div><div class="line">            &#125; else &#123;</div><div class="line">                parentOfNode2Del = node2Del;</div><div class="line">                node2Del = node2Del-&gt;right;</div><div class="line">                direction = 1;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        // node to delete not found, do nothng and return root</div><div class="line">        if (!node2Del) &#123;</div><div class="line">            return root;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        if (!node2Del-&gt;left &amp;&amp; !node2Del-&gt;right) &#123;  // node to delete has no child</div><div class="line">            // node to delete is root</div><div class="line">            if (!parentOfNode2Del) &#123;</div><div class="line">                delete root;</div><div class="line">                return NULL;</div><div class="line">            &#125;</div><div class="line">            // node to delete is not root</div><div class="line">            delete node2Del;</div><div class="line">            if (direction &lt; 0) &#123;</div><div class="line">                parentOfNode2Del-&gt;left = NULL;</div><div class="line">            &#125; else &#123;</div><div class="line">                parentOfNode2Del-&gt;right = NULL;</div><div class="line">            &#125;</div><div class="line">        &#125; else if (node2Del-&gt;left &amp;&amp; !node2Del-&gt;right) &#123;    // node to delete has only left child</div><div class="line">            // node to delete is root</div><div class="line">            if (!parentOfNode2Del) &#123;</div><div class="line">                delete root;</div><div class="line">                return root-&gt;left;</div><div class="line">            &#125;</div><div class="line">            // node to delete is not root</div><div class="line">            if (direction &lt; 0) &#123;</div><div class="line">                parentOfNode2Del-&gt;left = node2Del-&gt;left;</div><div class="line">            &#125; else &#123;</div><div class="line">                parentOfNode2Del-&gt;right = node2Del-&gt;left;</div><div class="line">            &#125;</div><div class="line">            delete node2Del;</div><div class="line">        &#125; else if (node2Del-&gt;right &amp;&amp; !node2Del-&gt;left) &#123;    // node to delete has only right child</div><div class="line">            // node to delete is root</div><div class="line">            if (!parentOfNode2Del) &#123;</div><div class="line">                delete root;</div><div class="line">                return root-&gt;right;</div><div class="line">            &#125;</div><div class="line">            // node to delete is not root</div><div class="line">            if (direction &lt; 0) &#123;</div><div class="line">                parentOfNode2Del-&gt;left = node2Del-&gt;right;</div><div class="line">            &#125; else &#123;</div><div class="line">                parentOfNode2Del-&gt;right = node2Del-&gt;right;</div><div class="line">            &#125;</div><div class="line">            delete node2Del;</div><div class="line">        &#125; else &#123;    // node to delete has both left and right child</div><div class="line">            // find the least value of right sub tree</div><div class="line">            TreeNode* node2Switch = node2Del-&gt;right;</div><div class="line">            TreeNode* parentOfNode2Switch = node2Del;</div><div class="line">            int directionSwitch = 1;</div><div class="line">            while (node2Switch-&gt;left) &#123;</div><div class="line">                parentOfNode2Switch = node2Switch;</div><div class="line">                node2Switch = node2Switch-&gt;left;</div><div class="line">                directionSwitch = -1;</div><div class="line">            &#125;</div><div class="line">            // switch value</div><div class="line">            node2Del-&gt;val = node2Switch-&gt;val;</div><div class="line">            if (directionSwitch &lt; 0) &#123;</div><div class="line">                parentOfNode2Switch-&gt;left = node2Switch-&gt;right;</div><div class="line">            &#125; else &#123;</div><div class="line">                parentOfNode2Switch-&gt;right = node2Switch-&gt;right;</div><div class="line">            &#125;</div><div class="line">            delete node2Switch;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return root;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/03/07/tomato-working-method/" itemprop="url">
                   《番茄工作法图解》读后感&实践经历
                 </a>
@@ -1460,149 +1645,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/11/php-lightweight-framework/" itemprop="url">
-                  PHP轻量框架分享
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-11T19:05:00+08:00" content="2016-10-11">
-              2016-10-11
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/11/php-lightweight-framework/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/php-lightweight-framework/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/10/11/php-lightweight-framework/" class="leancloud_visitors" data-flag-title="PHP轻量框架分享">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="背景说明"><a href="#背景说明" class="headerlink" title="背景说明"></a>背景说明</h2><ul>
-<li>近期需要将之前功能较复杂的后台服务模块拆成小模块，该模块采用了前人开发的基于MVC的php自研框架，框架本身集成了较多功能，包括接口参数统一校验、异构数据库接口抽象封装等</li>
-<li>由于历史悠久且缺乏文档说明，随着需求与版本迭代，代码结构变得比较混乱，维护成本随之增加</li>
-<li>由于框架本身的设计限制，无法支持新版本PHP（如5.6）的部分特性，引入一些新的概念与技术变得困难</li>
-<li>新模块功能相对比较简单，不需要集成较多特性</li>
-</ul>
-<h2 id="框架介绍"><a href="#框架介绍" class="headerlink" title="框架介绍"></a>框架介绍</h2><h3 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h3><ul>
-<li>协议可定制（推荐json）</li>
-<li>引入ORM，不需要自己封装DB基础操作</li>
-<li>配置文件使用YAML格式，可读性较高</li>
-<li>适合搭建后台简单服务</li>
-<li>方便与常见web server集成（推荐nginx）</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/11/php-lightweight-framework/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1648,7 +1690,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1656,7 +1698,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1665,7 +1707,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
