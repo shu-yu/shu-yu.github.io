@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Php,框架," />
+  <meta name="keywords" content="LeetCode,二叉树,最近公共祖先,LCA,236," />
 
 
 
@@ -84,30 +84,43 @@
 
 
 
-<meta name="description" content="背景说明
-近期需要将之前功能较复杂的后台服务模块拆成小模块，该模块采用了前人开发的基于MVC的php自研框架，框架本身集成了较多功能，包括接口参数统一校验、异构数据库接口抽象封装等
-由于历史悠久且缺乏文档说明，随着需求与版本迭代，代码结构变得比较混乱，维护成本随之增加
-由于框架本身的设计限制，无法支持新版本PHP（如5.6）的部分特性，引入一些新的概念与技术变得困难
-新模块功能相对比较简单，不需要">
+<meta name="description" content="题目链接
+Lowest Common Ancestor of a Binary Tree
+
+题目描述
+给定一颗二叉树，查找两个结点的最近公共祖先。最近公共祖先的定义：二叉树里面同时拥有两个给定后代结点的高度最低的结点，一个结点可以作为它自己的祖先结点。
+
+解题思路
+一开始的思路
+
+只要根结点不为NULL，那么它肯定是任意两个结点的公共祖先。从根结点出发到达两个给定结点，可以得到两条路径（类似链表）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHP轻量框架分享">
-<meta property="og:url" content="http://shuyufang.com/2016/10/11/php-lightweight-framework/index.html">
+<meta property="og:title" content="LeetCode 236 [Lowest Common Ancestor of a Binary Tree]">
+<meta property="og:url" content="http://shuyufang.com/2017/03/13/leetcode-236/index.html">
 <meta property="og:site_name" content="Shuyufang's Blog">
-<meta property="og:description" content="背景说明
-近期需要将之前功能较复杂的后台服务模块拆成小模块，该模块采用了前人开发的基于MVC的php自研框架，框架本身集成了较多功能，包括接口参数统一校验、异构数据库接口抽象封装等
-由于历史悠久且缺乏文档说明，随着需求与版本迭代，代码结构变得比较混乱，维护成本随之增加
-由于框架本身的设计限制，无法支持新版本PHP（如5.6）的部分特性，引入一些新的概念与技术变得困难
-新模块功能相对比较简单，不需要">
-<meta property="og:image" content="http://o8r2o6nwu.bkt.clouddn.com/%E6%A1%86%E6%9E%B6%E5%86%85%E9%83%A8%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E5%9B%BE.png">
-<meta property="og:updated_time" content="2016-10-11T11:05:00.000Z">
+<meta property="og:description" content="题目链接
+Lowest Common Ancestor of a Binary Tree
+
+题目描述
+给定一颗二叉树，查找两个结点的最近公共祖先。最近公共祖先的定义：二叉树里面同时拥有两个给定后代结点的高度最低的结点，一个结点可以作为它自己的祖先结点。
+
+解题思路
+一开始的思路
+
+只要根结点不为NULL，那么它肯定是任意两个结点的公共祖先。从根结点出发到达两个给定结点，可以得到两条路径（类似链表）">
+<meta property="og:updated_time" content="2017-03-13T16:36:29.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHP轻量框架分享">
-<meta name="twitter:description" content="背景说明
-近期需要将之前功能较复杂的后台服务模块拆成小模块，该模块采用了前人开发的基于MVC的php自研框架，框架本身集成了较多功能，包括接口参数统一校验、异构数据库接口抽象封装等
-由于历史悠久且缺乏文档说明，随着需求与版本迭代，代码结构变得比较混乱，维护成本随之增加
-由于框架本身的设计限制，无法支持新版本PHP（如5.6）的部分特性，引入一些新的概念与技术变得困难
-新模块功能相对比较简单，不需要">
-<meta name="twitter:image" content="http://o8r2o6nwu.bkt.clouddn.com/%E6%A1%86%E6%9E%B6%E5%86%85%E9%83%A8%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E5%9B%BE.png">
+<meta name="twitter:title" content="LeetCode 236 [Lowest Common Ancestor of a Binary Tree]">
+<meta name="twitter:description" content="题目链接
+Lowest Common Ancestor of a Binary Tree
+
+题目描述
+给定一颗二叉树，查找两个结点的最近公共祖先。最近公共祖先的定义：二叉树里面同时拥有两个给定后代结点的高度最低的结点，一个结点可以作为它自己的祖先结点。
+
+解题思路
+一开始的思路
+
+只要根结点不为NULL，那么它肯定是任意两个结点的公共祖先。从根结点出发到达两个给定结点，可以得到两条路径（类似链表）">
 
 
 
@@ -125,7 +138,7 @@
   };
 </script>
 
-  <title> PHP轻量框架分享 | Shuyufang's Blog </title>
+  <title> LeetCode 236 [Lowest Common Ancestor of a Binary Tree] | Shuyufang's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +301,7 @@
             
             
               
-                PHP轻量框架分享
+                LeetCode 236 [Lowest Common Ancestor of a Binary Tree]
               
             
           </h1>
@@ -300,8 +313,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-11T19:05:00+08:00" content="2016-10-11">
-              2016-10-11
+            <time itemprop="dateCreated" datetime="2017-03-13T23:58:13+08:00" content="2017-03-13">
+              2017-03-13
             </time>
           </span>
 
@@ -314,8 +327,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
+                  <a href="/categories/解题报告/" itemprop="url" rel="index">
+                    <span itemprop="name">解题报告</span>
                   </a>
                 </span>
 
@@ -330,8 +343,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/11/php-lightweight-framework/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/11/php-lightweight-framework/" itemprop="commentsCount"></span>
+                <a href="/2017/03/13/leetcode-236/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/13/leetcode-236/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,7 +354,7 @@
 
           
           
-             <span id="/2016/10/11/php-lightweight-framework/" class="leancloud_visitors" data-flag-title="PHP轻量框架分享">
+             <span id="/2017/03/13/leetcode-236/" class="leancloud_visitors" data-flag-title="LeetCode 236 [Lowest Common Ancestor of a Binary Tree]">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,40 +376,44 @@
       
 
       
-        <h2 id="背景说明"><a href="#背景说明" class="headerlink" title="背景说明"></a>背景说明</h2><ul>
-<li>近期需要将之前功能较复杂的后台服务模块拆成小模块，该模块采用了前人开发的基于MVC的php自研框架，框架本身集成了较多功能，包括接口参数统一校验、异构数据库接口抽象封装等</li>
-<li>由于历史悠久且缺乏文档说明，随着需求与版本迭代，代码结构变得比较混乱，维护成本随之增加</li>
-<li>由于框架本身的设计限制，无法支持新版本PHP（如5.6）的部分特性，引入一些新的概念与技术变得困难</li>
-<li>新模块功能相对比较简单，不需要集成较多特性</li>
+        <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><ul>
+<li><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/#/description" target="_blank" rel="external">Lowest Common Ancestor of a Binary Tree</a></li>
 </ul>
-<h2 id="框架介绍"><a href="#框架介绍" class="headerlink" title="框架介绍"></a>框架介绍</h2><h3 id="主要特性"><a href="#主要特性" class="headerlink" title="主要特性"></a>主要特性</h3><ul>
-<li>协议可定制（推荐json）</li>
-<li>引入ORM，不需要自己封装DB基础操作</li>
-<li>配置文件使用YAML格式，可读性较高</li>
-<li>适合搭建后台简单服务</li>
-<li>方便与常见web server集成（推荐nginx）</li>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><ul>
+<li>给定一颗二叉树，查找两个结点的最近公共祖先。最近公共祖先的定义：二叉树里面同时拥有两个给定后代结点的高度最低的结点，一个结点可以作为它自己的祖先结点。</li>
 </ul>
-<a id="more"></a>
-<h3 id="框架结构"><a href="#框架结构" class="headerlink" title="框架结构"></a>框架结构</h3><p><img src="http://o8r2o6nwu.bkt.clouddn.com/%E6%A1%86%E6%9E%B6%E5%86%85%E9%83%A8%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB%E5%9B%BE.png" alt="调用内部调用关系图"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">common                          # 公共目录</div><div class="line">    |- Constants.php            # 常量</div><div class="line">    |- Errors.php               # 错误码与错误信息</div><div class="line">    |- ...</div><div class="line">configs                         # 配置目录</div><div class="line">    |- db.yaml                  # 数据库配置</div><div class="line">    |- log.yaml                 # 日志配置</div><div class="line">    |- ...</div><div class="line">models                          # 模型目录</div><div class="line">    |- ...</div><div class="line">services                        # 服务目录</div><div class="line">    |- ...</div><div class="line">controllers                     # 控制器目录</div><div class="line">    |- ...</div><div class="line">libraries                       # 库目录</div><div class="line">    |- Configuration.php        # 配置解析类</div><div class="line">    |- HttpRequest.php          # HTTP处理类</div><div class="line">    |- DbConnection.php         # DB处理类</div><div class="line">    |- Log.php                  # 日志处理类</div><div class="line">    |- ...</div><div class="line">logs                            # 日志目录</div><div class="line">    |- ...</div><div class="line">scripts                         # 离线脚本目录</div><div class="line">    |- ...</div><div class="line">tests                           # 测试目录</div><div class="line">    |- controllers              # 控制器测试目录</div><div class="line">        |- ...</div><div class="line">    |- services                 # 服务测试目录</div><div class="line">        |- ...</div><div class="line">    |- models                   # 模型测试目录</div><div class="line">        |- ...</div><div class="line">    |- ...</div><div class="line">vendor                          # 包管理目录</div><div class="line">    |- ...</div><div class="line">composer.lock                   # composer锁文件</div><div class="line">composer.json                   # composer配置文件</div><div class="line">phpunit.xml                     # PHP单元测试配置文件</div><div class="line">index.php                       # 请求入口类</div></pre></td></tr></table></figure></p>
-<h3 id="目录与文件说明"><a href="#目录与文件说明" class="headerlink" title="目录与文件说明"></a>目录与文件说明</h3><ul>
-<li>index.php:    请求入口文件，负责解析请求包，选择合适接口处理请求，组装返回包</li>
-<li>common:       存放项目公共文件，如常量、错误码与错误信息等</li>
-<li>configs:      存放项目配置文件，如数据库配置、日志配置、业务配置等</li>
-<li>models:       每个数据表对应一个文件，每个文件封装了对应数据表的ORM操作（依赖illuminate/database包）</li>
-<li>services:     每一类服务对应一个文件，每个文件封装了针对一个或多个ORM的操作，需要在这一层处理事务</li>
-<li>controllers:  存放接口文件，每个文件对应一个外部调用接口，需要在这一层做好接口参数校验</li>
-<li>libraries:    存放项目库文件，如日志操作、数据库操作、配置解析等</li>
-<li>scriptes:     存放所有离线脚本</li>
-<li>tests:        存放所有测试类</li>
-<li>phpunit.xml:  单元测试配置文件，用于执行tests目录下的测试类</li>
-<li>logs:         存放所有日志文件</li>
-<li>vendor:       存放所有项目依赖的包</li>
-<li>composer.json:    包管理配置文件</li>
-<li>composer.lock:    包管理操作锁</li>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
+<li><p>一开始的思路</p>
+<ul>
+<li>只要根结点不为NULL，那么它肯定是任意两个结点的公共祖先。从根结点出发到达两个给定结点，可以得到两条路径（类似链表），这两条路径的起始结点都是根结点，沿着路径逐个对比，它们最后一个公共结点就是待查找的最近公共祖先。实际处理的时候，不需要以链表的方式生成一条路径，我的想法是使用包含bool元素的vector记录每次向左还是向右走，这样也可以表示路径信息。</li>
+<li>这种方法的问题在于需要使用额外的存储来记录路径信息，在计算资源足够的情况下，这种方式可以得到结果，但本题的一个测试用例包含约10000个结点，测试时直接报”Runtime Error”，因此这种思路不能作为本题的正确解法。</li>
 </ul>
-<h3 id="示例项目"><a href="#示例项目" class="headerlink" title="示例项目"></a>示例项目</h3><ul>
-<li><a href="https://github.com/shu-yu/php-lightweight-framework-demo" target="_blank" rel="external">商品库存管理模块</a></li>
+</li>
+<li><p>参考别人的思路</p>
+<ul>
+<li>在<a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/#/solutions" target="_blank" rel="external">Solutions</a>里看到别人发表的非常简洁的递归解法，只有4行，真的非常精妙，并且不需要额外的变量存储空间。</li>
+<li>这种解法的思路如下：<ol>
+<li>把根结点作为当前结点，查找以当前结点为根的树。查找结果可以分为四种：<ol>
+<li>两个给定结点都在当前的树里</li>
+<li>只有第一个结点在当前的树里</li>
+<li>只有第二个结点在当前的树里</li>
+<li>两个给定结点都不在当前的树里</li>
+</ol>
+</li>
+<li>如果当前结点为NULL，则表示查找结果为上述第四种，返回NULL；如果当前结点是给定的第一个结点，则表示查找结果为上述第二种，返回当前结点；如果当前结点是给定的第二个结点，则表示查找结果为上述第三种，返回当前结点；如果前面几种情况都不满足，那么就需要查找它的左右子树了，左右子树的查找规则跟本步骤一模一样，查找结果同样可以分为四种：<ol>
+<li>在左子树中找到了一个给定结点，左子树查找结果不为NULL；在右子树中也找到了一个给定结点，右子树查找结果不为NULL。这种情况说明最近公共祖先就是当前结点（左右子树的父结点），返回当前结点</li>
+<li>在左子树中找到了一个或两个给定结点，左子树查找结果不为NULL；在右子树中没有找到给定结点，右子树查找结果为NULL。这种情况说明最近公共祖先必然在当前结点上方，返回左子树查找结果</li>
+<li>在右子树中找到了一个或两个给定结点，右子树查找结果不为NULL；在左子树中没有找到给定结点，左子树查找结果为NULL。这种情况说明最近公共祖先必然在当前结点上方，返回右子树查找结果</li>
+<li>在左右子树中都没有找到给定结点，查找结果都为NULL。这种情况说明当前的树不包含任何指定结点，返回NULL</li>
+</ol>
+</li>
+<li>上一步骤的四种查找结果中，第2和第3种都需要返回子树的查找结果，而不是返回当前结点的处理结果，否则会导致最终找到的都是根结点</li>
+</ol>
+</li>
 </ul>
+</li>
+</ul>
+<h2 id="C-代码"><a href="#C-代码" class="headerlink" title="C++代码"></a>C++代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * struct TreeNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     TreeNode *left;</div><div class="line"> *     TreeNode *right;</div><div class="line"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">public:</div><div class="line">    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) &#123;</div><div class="line">        if (!root || root == p || root == q) return root;</div><div class="line">        TreeNode* left = lowestCommonAncestor(root-&gt;left, p, q);</div><div class="line">        TreeNode* right = lowestCommonAncestor(root-&gt;right, p, q);</div><div class="line">        return left &amp;&amp; right ? root : left ? left : right ? right : NULL;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -418,9 +435,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Php/" rel="tag">#Php</a>
+            <a href="/tags/LeetCode/" rel="tag">#LeetCode</a>
           
-            <a href="/tags/框架/" rel="tag">#框架</a>
+            <a href="/tags/二叉树/" rel="tag">#二叉树</a>
+          
+            <a href="/tags/最近公共祖先/" rel="tag">#最近公共祖先</a>
+          
+            <a href="/tags/LCA/" rel="tag">#LCA</a>
+          
+            <a href="/tags/236/" rel="tag">#236</a>
           
         </div>
       
@@ -429,17 +452,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/09/async-task-manage-module/" rel="next" title="异步任务管理模块设计分享">
-                <i class="fa fa-chevron-left"></i> 异步任务管理模块设计分享
+              <a href="/2017/03/11/leetcode-450/" rel="next" title="LeetCode 450 [Delete Node in a BST]">
+                <i class="fa fa-chevron-left"></i> LeetCode 450 [Delete Node in a BST]
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/31/redis-data-structure-sds/" rel="prev" title="redis变长字符串(simple dynamic strings)学习笔记">
-                redis变长字符串(simple dynamic strings)学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,8 +484,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/11/php-lightweight-framework/"
-           data-title="PHP轻量框架分享" data-url="http://shuyufang.com/2016/10/11/php-lightweight-framework/">
+      <div class="ds-thread" data-thread-key="2017/03/13/leetcode-236/"
+           data-title="LeetCode 236 [Lowest Common Ancestor of a Binary Tree]" data-url="http://shuyufang.com/2017/03/13/leetcode-236/">
       </div>
     
   </div>
@@ -557,7 +576,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景说明"><span class="nav-number">1.</span> <span class="nav-text">背景说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架介绍"><span class="nav-number">2.</span> <span class="nav-text">框架介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主要特性"><span class="nav-number">2.1.</span> <span class="nav-text">主要特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#框架结构"><span class="nav-number">2.2.</span> <span class="nav-text">框架结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录与文件说明"><span class="nav-number">2.3.</span> <span class="nav-text">目录与文件说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例项目"><span class="nav-number">2.4.</span> <span class="nav-text">示例项目</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-代码"><span class="nav-number">4.</span> <span class="nav-text">C++代码</span></a></li></ol></div>
             
           </div>
         </section>
