@@ -87,7 +87,7 @@
 <meta name="description" content="Sieze the day.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Shuyufang's Blog">
-<meta property="og:url" content="http://shuyufang.com/tags/linux/index.html">
+<meta property="og:url" content="http://shuyufang.com/tags/Linux/index.html">
 <meta property="og:site_name" content="Shuyufang's Blog">
 <meta property="og:description" content="Sieze the day.">
 <meta name="twitter:card" content="summary">
@@ -104,13 +104,13 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: undefined,
       author: '博主'
     }
   };
 </script>
 
-  <title> 标签: linux | Shuyufang's Blog </title>
+  <title> 标签: Linux | Shuyufang's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -255,7 +255,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        linux
+        Linux
         <small>标签</small>
       </h2>
     </div>
@@ -268,9 +268,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2017/04/22/linux-IO-select-poll-epoll/" itemprop="url">
+            <a class="post-title-link" href="/2017/05/05/the-art-of-command-line/" itemprop="url">
               
-                <span itemprop="name">Linux IO模式及 select、poll、epoll详解（转）</span>
+                <span itemprop="name">命令行的艺术（转）</span>
               
             </a>
         
@@ -278,9 +278,37 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-22T21:27:35+08:00"
-              content="2017-04-22" >
-          04-22
+              datetime="2017-05-05T23:19:16+08:00"
+              content="2017-05-05" >
+          05-05
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/09/28/linux-system-call/" itemprop="url">
+              
+                <span itemprop="name">linux系统调用列表</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-09-28T17:04:00+08:00"
+              content="2016-09-28" >
+          09-28
         </time>
       </div>
 
@@ -475,28 +503,9 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"shuyufang"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
 
 
+  
 
 
 
@@ -711,37 +720,6 @@
                 $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
               },
               error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
-</script>
-
-
-</body>
-</html>
-tion(newcounter, error) {
                 console.log('Failed to create');
               }
             });
