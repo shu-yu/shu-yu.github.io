@@ -84,59 +84,61 @@
 
 
 
-<meta name="description" content="The Art of Command Line
+<meta name="description" content="命令行的艺术
 
+前言
+基础
+日常使用
+文件及数据处理
+系统调试
+单行脚本
+冷门但有用
+仅限 OS X 系统
+仅限 Windows 系统
+更多资源
+免责声明
 
-Meta
-Basics
-Everyday use
-Processing files and data
-System debugging
-One-liners
-Obscure but useful
-OS X only
-Windows only
-More resources
-Disclaimer">
+1curl -s &amp;apos;https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md&amp;apos; | egrep -o &amp;apos;`\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="命令行的艺术（转）">
 <meta property="og:url" content="http://shuyufang.com/2017/05/05/the-art-of-command-line/index.html">
 <meta property="og:site_name" content="Shuyufang's Blog">
-<meta property="og:description" content="The Art of Command Line
+<meta property="og:description" content="命令行的艺术
 
+前言
+基础
+日常使用
+文件及数据处理
+系统调试
+单行脚本
+冷门但有用
+仅限 OS X 系统
+仅限 Windows 系统
+更多资源
+免责声明
 
-Meta
-Basics
-Everyday use
-Processing files and data
-System debugging
-One-liners
-Obscure but useful
-OS X only
-Windows only
-More resources
-Disclaimer">
-<meta property="og:image" content="https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg">
+1curl -s &amp;apos;https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md&amp;apos; | egrep -o &amp;apos;`\">
 <meta property="og:image" content="https://badges.gitter.im/Join%20Chat.svg">
 <meta property="og:image" content="https://i.creativecommons.org/l/by-sa/4.0/88x31.png">
-<meta property="og:updated_time" content="2017-05-05T15:51:09.000Z">
+<meta property="og:updated_time" content="2017-05-11T04:03:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="命令行的艺术（转）">
-<meta name="twitter:description" content="The Art of Command Line
+<meta name="twitter:description" content="命令行的艺术
 
+前言
+基础
+日常使用
+文件及数据处理
+系统调试
+单行脚本
+冷门但有用
+仅限 OS X 系统
+仅限 Windows 系统
+更多资源
+免责声明
 
-Meta
-Basics
-Everyday use
-Processing files and data
-System debugging
-One-liners
-Obscure but useful
-OS X only
-Windows only
-More resources
-Disclaimer">
-<meta name="twitter:image" content="https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg">
+1curl -s &amp;apos;https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md&amp;apos; | egrep -o &amp;apos;`\">
+<meta name="twitter:image" content="https://badges.gitter.im/Join%20Chat.svg">
 
 
 
@@ -385,503 +387,499 @@ Disclaimer">
       
 
       
-        <h1 id="The-Art-of-Command-Line"><a href="#The-Art-of-Command-Line" class="headerlink" title="The Art of Command Line"></a>The Art of Command Line</h1><p><a href="https://airtable.com/shrzMhx00YiIVAWJg" target="_blank" rel="external"><img src="https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg" alt="Ask a Question"></a></p>
-<p><a href="https://gitter.im/jlevy/the-art-of-command-line?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge" target="_blank" rel="external"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/jlevy/the-art-of-command-line"></a></p>
+        <h1 id="命令行的艺术"><a href="#命令行的艺术" class="headerlink" title="命令行的艺术"></a>命令行的艺术</h1><p><a href="https://gitter.im/jlevy/the-art-of-command-line?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge" target="_blank" rel="external"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/jlevy/the-art-of-command-line"></a></p>
 <ul>
-<li><a href="#meta">Meta</a></li>
-<li><a href="#basics">Basics</a></li>
-<li><a href="#everyday-use">Everyday use</a></li>
-<li><a href="#processing-files-and-data">Processing files and data</a></li>
-<li><a href="#system-debugging">System debugging</a></li>
-<li><a href="#one-liners">One-liners</a></li>
-<li><a href="#obscure-but-useful">Obscure but useful</a></li>
-<li><a href="#os-x-only">OS X only</a></li>
-<li><a href="#windows-only">Windows only</a></li>
-<li><a href="#more-resources">More resources</a></li>
-<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#前言">前言</a></li>
+<li><a href="#基础">基础</a></li>
+<li><a href="#日常使用">日常使用</a></li>
+<li><a href="#文件及数据处理">文件及数据处理</a></li>
+<li><a href="#系统调试">系统调试</a></li>
+<li><a href="#单行脚本">单行脚本</a></li>
+<li><a href="#冷门但有用">冷门但有用</a></li>
+<li><a href="#仅限-os-x-系统">仅限 OS X 系统</a></li>
+<li><a href="#仅限-windows-系统">仅限 Windows 系统</a></li>
+<li><a href="#更多资源">更多资源</a></li>
+<li><a href="#免责声明">免责声明</a></li>
 </ul>
-<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -s &apos;https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md&apos; | egrep -o &apos;`\w+`&apos; | tr -d &apos;`&apos; | cowsay -W50</div></pre></td></tr></table></figure>
-<p>Fluency on the command line is a skill often neglected or considered arcane, but it improves your flexibility and productivity as an engineer in both obvious and subtle ways. This is a selection of notes and tips on using the command-line that we’ve found useful when working on Linux. Some tips are elementary, and some are fairly specific, sophisticated, or obscure. This page is not long, but if you can use and recall all the items here, you know a lot.</p>
-<p>This work is the result of <a href="AUTHORS.md">many authors and translators</a>.<br>Some of this<br><a href="http://www.quora.com/What-are-some-lesser-known-but-useful-Unix-commands" target="_blank" rel="external">originally</a><br><a href="http://www.quora.com/What-are-the-most-useful-Swiss-army-knife-one-liners-on-Unix" target="_blank" rel="external">appeared</a><br>on <a href="http://www.quora.com/What-are-some-time-saving-tips-that-every-Linux-user-should-know" target="_blank" rel="external">Quora</a>,<br>but it has since moved to GitHub, where people more talented than the original author have made numerous improvements.<br><a href="https://airtable.com/shrzMhx00YiIVAWJg" target="_blank" rel="external"><strong>Please submit a question</strong></a> if you have a question related to the command line. <a href="/CONTRIBUTING.md"><strong>Please contribute</strong></a> if you see an error or something that could be better!</p>
-<h2 id="Meta"><a href="#Meta" class="headerlink" title="Meta"></a>Meta</h2><p>Scope:</p>
+<p>熟练使用命令行是一种常常被忽视，或被认为难以掌握的技能，但实际上，它会提高你作为工程师的灵活性以及生产力。本文是一份我在 Linux 上工作时，发现的一些命令行使用技巧的摘要。有些技巧非常基础，而另一些则相当复杂，甚至晦涩难懂。这篇文章并不长，但当你能够熟练掌握这里列出的所有技巧时，你就学会了很多关于命令行的东西了。</p>
+<p>这篇文章是<a href="AUTHORS.md">许多作者和译者</a>共同的成果。<br>这里的部分内容<br><a href="http://www.quora.com/What-are-some-lesser-known-but-useful-Unix-commands" target="_blank" rel="external">首次</a><br><a href="http://www.quora.com/What-are-the-most-useful-Swiss-army-knife-one-liners-on-Unix" target="_blank" rel="external">出现</a><br>于 <a href="http://www.quora.com/What-are-some-time-saving-tips-that-every-Linux-user-should-know" target="_blank" rel="external">Quora</a>，<br>但已经迁移到了 Github，并由众多高手做出了许多改进。<br>如果你在本文中发现了错误或者存在可以改善的地方，请<a href="/CONTRIBUTING.md"><strong>贡献你的一份力量</strong></a>。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>涵盖范围：</p>
 <ul>
-<li>This guide is both for beginners and the experienced. The goals are <em>breadth</em> (everything important), <em>specificity</em> (give concrete examples of the most common case), and <em>brevity</em> (avoid things that aren’t essential or digressions you can easily look up elsewhere). Every tip is essential in some situation or significantly saves time over alternatives.</li>
-<li>This is written for Linux, with the exception of the “<a href="#os-x-only">OS X only</a>“ and “<a href="#windows-only">Windows only</a>“ sections. Many of the other items apply or can be installed on other Unices or OS X (or even Cygwin).</li>
-<li>The focus is on interactive Bash, though many tips apply to other shells and to general Bash scripting.</li>
-<li>It includes both “standard” Unix commands as well as ones that require special package installs – so long as they are important enough to merit inclusion.</li>
+<li>这篇文章不仅能帮助刚接触命令行的新手，而且对具有经验的人也大有裨益。本文致力于做到<em>覆盖面广</em>（涉及所有重要的内容），<em>具体</em>（给出具体的最常用的例子），以及<em>简洁</em>（避免冗余的内容，或是可以在其他地方轻松查到的细枝末节）。在特定应用场景下，本文的内容属于基本功或者能帮助您节约大量的时间。</li>
+<li>本文主要为 Linux 所写，但在<a href="#仅限-os-x-系统">仅限 OS X 系统</a>章节和<a href="#仅限-windows-系统">仅限 Windows 系统</a>章节中也包含有对应操作系统的内容。除去这两个章节外，其它的内容大部分均可在其他类 Unix 系统或 OS X，甚至 Cygwin 中得到应用。</li>
+<li>本文主要关注于交互式 Bash，但也有很多技巧可以应用于其他 shell 和 Bash 脚本当中。</li>
+<li>除去“标准的”Unix 命令，本文还包括了一些依赖于特定软件包的命令（前提是它们具有足够的价值）。</li>
 </ul>
-<p>Notes:</p>
+<p>注意事项：</p>
 <ul>
-<li>To keep this to one page, content is implicitly included by reference. You’re smart enough to look up more detail elsewhere once you know the idea or command to Google. Use <code>apt-get</code>, <code>yum</code>, <code>dnf</code>, <code>pacman</code>, <code>pip</code> or <code>brew</code> (as appropriate) to install new programs.</li>
-<li>Use <a href="http://explainshell.com/" target="_blank" rel="external">Explainshell</a> to get a helpful breakdown of what commands, options, pipes etc. do.</li>
+<li>为了能在一页内展示尽量多的东西，一些具体的信息可以在引用的页面中找到。我们相信机智的你知道如何使用 Google 或者其他搜索引擎来查阅到更多的详细信息。文中部分命令需要您使用 <code>apt-get</code>，<code>yum</code>，<code>dnf</code>，<code>pacman</code>，<br><code>pip</code> 或 <code>brew</code>（以及其它合适的包管理器）来安装依赖的程序。</li>
+<li>遇到问题的话，请尝试使用 <a href="http://explainshell.com/" target="_blank" rel="external">Explainshell</a> 去获取相关命令、参数、管道等内容的解释。</li>
 </ul>
-<h2 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h2><ul>
-<li><p>Learn basic Bash. Actually, type <code>man bash</code> and at least skim the whole thing; it’s pretty easy to follow and not that long. Alternate shells can be nice, but Bash is powerful and always available (learning <em>only</em> zsh, fish, etc., while tempting on your own laptop, restricts you in many situations, such as using existing servers).</p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><p>学习 Bash 的基础知识。具体地，在命令行中输入 <code>man bash</code> 并至少全文浏览一遍; 它理解起来很简单并且不冗长。其他的 shell 可能很好用，但 Bash 的功能已经足够强大并且到几乎总是可用的（ 如果你<em>只</em>学习 zsh，fish 或其他的 shell 的话，在你自己的设备上会显得很方便，但过度依赖这些功能会给您带来不便，例如当你需要在服务器上工作时）。</p>
 </li>
-<li><p>Learn at least one text-based editor well. Ideally Vim (<code>vi</code>), as there’s really no competition for random editing in a terminal (even if you use Emacs, a big IDE, or a modern hipster editor most of the time).</p>
+<li><p>熟悉至少一个基于文本的编辑器。通常而言 Vim （<code>vi</code>） 会是你最好的选择，毕竟在终端中编辑文本时 Vim 是最好用的工具（甚至大部分情况下 Vim 要比 Emacs、大型 IDE 或是炫酷的编辑器更好用）。</p>
 </li>
-<li><p>Know how to read documentation with <code>man</code> (for the inquisitive, <code>man man</code> lists the section numbers, e.g. 1 is “regular” commands, 5 is files/conventions, and 8 are for administration). Find man pages with <code>apropos</code>. Know that some commands are not executables, but Bash builtins, and that you can get help on them with <code>help</code> and <code>help -d</code>. You can find out whether a command is an executable, shell builtin or an alias by using <code>type command</code>.</p>
+<li><p>学会如何使用 <code>man</code> 命令去阅读文档。学会使用 <code>apropos</code> 去查找文档。知道有些命令并不对应可执行文件，而是在 Bash 内置好的，此时可以使用 <code>help</code> 和 <code>help -d</code> 命令获取帮助信息。你可以用 <code>type 命令</code> 来判断这个命令到底是可执行文件、shell 内置命令还是别名。</p>
 </li>
-<li><p>Learn about redirection of output and input using <code>&gt;</code> and <code>&lt;</code> and pipes using <code>|</code>. Know <code>&gt;</code> overwrites the output file and <code>&gt;&gt;</code> appends. Learn about stdout and stderr.</p>
+<li><p>学会使用 <code>&gt;</code> 和 <code>&lt;</code> 来重定向输出和输入，学会使用 <code>|</code> 来重定向管道。明白 <code>&gt;</code> 会覆盖了输出文件而 <code>&gt;&gt;</code> 是在文件末添加。了解标准输出 stdout 和标准错误 stderr。</p>
 </li>
-<li><p>Learn about file glob expansion with <code>*</code> (and perhaps <code>?</code> and <code>[</code>…<code>]</code>) and quoting and the difference between double <code>&quot;</code> and single <code>&#39;</code> quotes. (See more on variable expansion below.)</p>
+<li><p>学会使用通配符 <code>*</code> （或许再算上 <code>?</code> 和 <code>[</code>…<code>]</code>） 和引用以及引用中 <code>&#39;</code> 和 <code>&quot;</code> 的区别（后文中有一些具体的例子）。</p>
 </li>
-<li><p>Be familiar with Bash job management: <code>&amp;</code>, <strong>ctrl-z</strong>, <strong>ctrl-c</strong>, <code>jobs</code>, <code>fg</code>, <code>bg</code>, <code>kill</code>, etc.</p>
+<li><p>熟悉 Bash 中的任务管理工具：<code>&amp;</code>，<strong>ctrl-z</strong>，<strong>ctrl-c</strong>，<code>jobs</code>，<code>fg</code>，<code>bg</code>，<code>kill</code> 等。</p>
 </li>
-<li><p>Know <code>ssh</code>, and the basics of passwordless authentication, via <code>ssh-agent</code>, <code>ssh-add</code>, etc.</p>
+<li><p>学会使用 <code>ssh</code> 进行远程命令行登录，最好知道如何使用 <code>ssh-agent</code>，<code>ssh-add</code> 等命令来实现基础的无密码认证登录。</p>
 </li>
-<li><p>Basic file management: <code>ls</code> and <code>ls -l</code> (in particular, learn what every column in <code>ls -l</code> means), <code>less</code>, <code>head</code>, <code>tail</code> and <code>tail -f</code> (or even better, <code>less +F</code>), <code>ln</code> and <code>ln -s</code> (learn the differences and advantages of hard versus soft links), <code>chown</code>, <code>chmod</code>, <code>du</code> (for a quick summary of disk usage: <code>du -hs *</code>). For filesystem management, <code>df</code>, <code>mount</code>, <code>fdisk</code>, <code>mkfs</code>, <code>lsblk</code>. Learn what an inode is (<code>ls -i</code> or <code>df -i</code>).</p>
+<li><p>学会基本的文件管理工具：<code>ls</code> 和 <code>ls -l</code> （了解 <code>ls -l</code> 中每一列代表的意义），<code>less</code>，<code>head</code>，<code>tail</code> 和 <code>tail -f</code> （甚至 <code>less +F</code>），<code>ln</code> 和 <code>ln -s</code> （了解硬链接与软链接的区别），<code>chown</code>，<code>chmod</code>，<code>du</code> （硬盘使用情况概述：<code>du -hs *</code>）。 关于文件系统的管理，学习 <code>df</code>，<code>mount</code>，<code>fdisk</code>，<code>mkfs</code>，<code>lsblk</code>。知道 inode 是什么（与 <code>ls -i</code> 和 <code>df -i</code> 等命令相关）。</p>
 </li>
-<li><p>Basic network management: <code>ip</code> or <code>ifconfig</code>, <code>dig</code>, <code>traceroute</code>, <code>route</code>.</p>
+<li><p>学习基本的网络管理工具：<code>ip</code> 或 <code>ifconfig</code>，<code>dig</code>。</p>
 </li>
-<li><p>Learn and use a version control management system, such as <code>git</code>.</p>
+<li><p>学习并使用一种版本控制管理系统，例如 <code>git</code>。</p>
 </li>
-<li><p>Know regular expressions well, and the various flags to <code>grep</code>/<code>egrep</code>. The <code>-i</code>, <code>-o</code>, <code>-v</code>, <code>-A</code>, <code>-B</code>, and <code>-C</code> options are worth knowing.</p>
+<li><p>熟悉正则表达式，学会使用 <code>grep</code>／<code>egrep</code>，它们的参数中 <code>-i</code>，<code>-o</code>，<code>-v</code>，<code>-A</code>，<code>-B</code> 和 <code>-C</code> 这些是很常用并值得认真学习的。</p>
 </li>
-<li><p>Learn to use <code>apt-get</code>, <code>yum</code>, <code>dnf</code> or <code>pacman</code> (depending on distro) to find and install packages. And make sure you have <code>pip</code> to install Python-based command-line tools (a few below are easiest to install via <code>pip</code>).</p>
-</li>
-</ul>
-<h2 id="Everyday-use"><a href="#Everyday-use" class="headerlink" title="Everyday use"></a>Everyday use</h2><ul>
-<li><p>In Bash, use <strong>Tab</strong> to complete arguments or list all available commands and <strong>ctrl-r</strong> to search through command history (after pressing, type to search, press <strong>ctrl-r</strong> repeatedly to cycle through more matches, press <strong>Enter</strong> to execute the found command, or hit the right arrow to put the result in the current line to allow editing).</p>
-</li>
-<li><p>In Bash, use <strong>ctrl-w</strong> to delete the last word, and <strong>ctrl-u</strong> to delete the content from current cursor back to the start of the line. Use <strong>alt-b</strong> and <strong>alt-f</strong> to move by word, <strong>ctrl-a</strong> to move cursor to beginning of line,  <strong>ctrl-e</strong> to move cursor to end of line, <strong>ctrl-k</strong> to kill to the end of the line, <strong>ctrl-l</strong> to clear the screen. See <code>man readline</code> for all the default keybindings in Bash. There are a lot. For example <strong>alt-.</strong> cycles through previous arguments, and <strong>alt-*</strong> expands a glob.</p>
+<li><p>学会使用 <code>apt-get</code>，<code>yum</code>，<code>dnf</code> 或 <code>pacman</code> （具体使用哪个取决于你使用的 Linux 发行版）来查找和安装软件包。并确保你的环境中有 <code>pip</code> 来安装基于 Python 的命令行工具 （接下来提到的部分程序使用 <code>pip</code> 来安装会很方便）。</p>
 </li>
 </ul>
-<ul>
-<li><p>Alternatively, if you love vi-style key-bindings, use <code>set -o vi</code> (and <code>set -o emacs</code> to put it back).</p>
+<h2 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a>日常使用</h2><ul>
+<li><p>在 Bash 中，可以通过按 <strong>Tab</strong> 键实现自动补全参数，使用 <strong>ctrl-r</strong> 搜索命令行历史记录（按下按键之后，输入关键字便可以搜索，重复按下 <strong>ctrl-r</strong> 会向后查找匹配项，按下 <strong>Enter</strong> 键会执行当前匹配的命令，而按下右方向键会将匹配项放入当前行中，不会直接执行，以便做出修改）。</p>
 </li>
-<li><p>For editing long commands, after setting your editor (for example <code>export EDITOR=vim</code>), <strong>ctrl-x</strong> <strong>ctrl-e</strong> will open the current command in an editor for multi-line editing. Or in vi style, <strong>escape-v</strong>.</p>
+<li><p>在 Bash 中，可以按下 <strong>ctrl-w</strong> 删除你键入的最后一个单词，<strong>ctrl-u</strong> 可以删除行内光标所在位置之前的内容，<strong>alt-b</strong> 和 <strong>alt-f</strong> 可以以单词为单位移动光标，<strong>ctrl-a</strong> 可以将光标移至行首，<strong>ctrl-e</strong> 可以将光标移至行尾，<strong>ctrl-k</strong> 可以删除光标至行尾的所有内容，<strong>ctrl-l</strong> 可以清屏。键入 <code>man readline</code> 可以查看 Bash 中的默认快捷键。内容有很多，例如 <strong>alt-.</strong> 循环地移向前一个参数，而 <strong>alt-*</strong> 可以展开通配符。</p>
 </li>
-<li><p>To see recent commands, use <code>history</code>. Follow with <code>!n</code> (where <code>n</code> is the command number) to execute again. There are also many abbreviations you can use, the most useful probably being <code>!$</code> for last argument and <code>!!</code> for last command (see “HISTORY EXPANSION” in the man page). However, these are often easily replaced with <strong>ctrl-r</strong> and <strong>alt-.</strong>.</p>
+<li><p>你喜欢的话，可以执行 <code>set -o vi</code> 来使用 vi 风格的快捷键，而执行 <code>set -o emacs</code> 可以把它改回来。</p>
 </li>
-<li><p>Go to your home directory with <code>cd</code>. Access files relative to your home directory with the <code>~</code> prefix (e.g. <code>~/.bashrc</code>). In <code>sh</code> scripts refer to the home directory as <code>$HOME</code>.</p>
+<li><p>为了便于编辑长命令，在设置你的默认编辑器后（例如 <code>export EDITOR=vim</code>），<strong>ctrl-x</strong> <strong>ctrl-e</strong> 会打开一个编辑器来编辑当前输入的命令。在 vi 风格下快捷键则是 <strong>escape-v</strong>。</p>
 </li>
-<li><p>To go back to the previous working directory: <code>cd -</code>.</p>
+<li><p>键入 <code>history</code> 查看命令行历史记录，再用 <code>!n</code>（<code>n</code> 是命令编号）就可以再次执行。其中有许多缩写，最有用的大概就是 <code>!$</code>， 它用于指代上次键入的参数，而 <code>!!</code> 可以指代上次键入的命令了（参考 man 页面中的“HISTORY EXPANSION”）。不过这些功能，你也可以通过快捷键 <strong>ctrl-r</strong> 和 <strong>alt-.</strong> 来实现。</p>
 </li>
-<li><p>If you are halfway through typing a command but change your mind, hit <strong>alt-#</strong> to add a <code>#</code> at the beginning and enter it as a comment (or use <strong>ctrl-a</strong>, <strong>#</strong>, <strong>enter</strong>). You can then return to it later via command history.</p>
+<li><p><code>cd</code> 命令可以切换工作路径，输入 <code>cd ~</code> 可以进入 home 目录。要访问你的 home 目录中的文件，可以使用前缀 <code>~</code>（例如 <code>~/.bashrc</code>）。在 <code>sh</code> 脚本里则用环境变量 <code>$HOME</code> 指代 home 目录的路径。</p>
 </li>
-<li><p>Use <code>xargs</code> (or <code>parallel</code>). It’s very powerful. Note you can control how many items execute per line (<code>-L</code>) as well as parallelism (<code>-P</code>). If you’re not sure if it’ll do the right thing, use <code>xargs echo</code> first. Also, <code>-I{}</code> is handy. Examples:</p>
+<li><p>回到前一个工作路径：<code>cd -</code>。</p>
+</li>
+<li><p>如果你输入命令的时候中途改了主意，按下 <strong>alt-#</strong> 在行首添加 <code>#</code> 把它当做注释再按下回车执行（或者依次按下 <strong>ctrl-a</strong>， <strong>#</strong>， <strong>enter</strong>）。这样做的话，之后借助命令行历史记录，你可以很方便恢复你刚才输入到一半的命令。</p>
+</li>
+<li><p>使用 <code>xargs</code> （ 或 <code>parallel</code>）。他们非常给力。注意到你可以控制每行参数个数（<code>-L</code>）和最大并行数（<code>-P</code>）。如果你不确定它们是否会按你想的那样工作，先使用 <code>xargs echo</code> 查看一下。此外，使用 <code>-I{}</code> 会很方便。例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">find . -name <span class="string">'*.py'</span> | xargs grep some_function</div><div class="line">cat hosts | xargs -I&#123;&#125; ssh root@&#123;&#125; hostname</div></pre></td></tr></table></figure>
 </li>
-<li><p><code>pstree -p</code> is a helpful display of the process tree.</p>
+<li><p><code>pstree -p</code> 以一种优雅的方式展示进程树。</p>
 </li>
-<li><p>Use <code>pgrep</code> and <code>pkill</code> to find or signal processes by name (<code>-f</code> is helpful).</p>
+<li><p>使用 <code>pgrep</code> 和 <code>pkill</code> 根据名字查找进程或发送信号（<code>-f</code> 参数通常有用）。</p>
 </li>
-<li><p>Know the various signals you can send processes. For example, to suspend a process, use <code>kill -STOP [pid]</code>. For the full list, see <code>man 7 signal</code></p>
+<li><p>了解你可以发往进程的信号的种类。比如，使用 <code>kill -STOP [pid]</code> 停止一个进程。使用 <code>man 7 signal</code> 查看详细列表。</p>
 </li>
-<li><p>Use <code>nohup</code> or <code>disown</code> if you want a background process to keep running forever.</p>
+<li><p>使用 <code>nohup</code> 或 <code>disown</code> 使一个后台进程持续运行。</p>
 </li>
-<li><p>Check what processes are listening via <code>netstat -lntp</code> or <code>ss -plat</code> (for TCP; add <code>-u</code> for UDP).</p>
+<li><p>使用 <code>netstat -lntp</code> 或 <code>ss -plat</code> 检查哪些进程在监听端口（默认是检查 TCP 端口; 添加参数 <code>-u</code> 则检查 UDP 端口）。</p>
 </li>
-<li><p>See also <code>lsof</code> and <code>fuser</code> for open sockets and files.</p>
+<li><p><code>lsof</code> 来查看开启的套接字和文件。</p>
 </li>
-<li><p>See <code>uptime</code> or <code>w</code> to know how long the system has been running.</p>
+<li><p>使用 <code>uptime</code> 或 <code>w</code> 来查看系统已经运行多长时间。</p>
 </li>
-<li><p>Use <code>alias</code> to create shortcuts for commonly used commands. For example, <code>alias ll=&#39;ls -latr&#39;</code> creates a new alias <code>ll</code>.</p>
+<li><p>使用 <code>alias</code> 来创建常用命令的快捷形式。例如：<code>alias ll=&#39;ls -latr&#39;</code> 创建了一个新的命令别名 <code>ll</code>。</p>
 </li>
-<li><p>Save aliases, shell settings, and functions you commonly use in <code>~/.bashrc</code>, and <a href="http://superuser.com/a/183980/7106" target="_blank" rel="external">arrange for login shells to source it</a>. This will make your setup available in all your shell sessions.</p>
+<li><p>可以把别名、shell 选项和常用函数保存在 <code>~/.bashrc</code>，具体看下这篇<a href="http://superuser.com/a/183980/7106" target="_blank" rel="external">文章</a>。这样做的话你就可以在所有 shell 会话中使用你的设定。</p>
 </li>
-<li><p>Put the settings of environment variables as well as commands that should be executed when you login in <code>~/.bash_profile</code>. Separate configuration will be needed for shells you launch from graphical environment logins and <code>cron</code> jobs.</p>
+<li><p>把环境变量的设定以及登陆时要执行的命令保存在 <code>~/.bash_profile</code>。而对于从图形界面启动的 shell 和 <code>cron</code> 启动的 shell，则需要单独配置文件。</p>
 </li>
-<li><p>Synchronize your configuration files (e.g. <code>.bashrc</code> and <code>.bash_profile</code>) among various computers with Git.</p>
+<li><p>要想在几台电脑中同步你的配置文件（例如 <code>.bashrc</code> 和 <code>.bash_profile</code>），可以借助 Git。</p>
 </li>
-<li><p>Understand that care is needed when variables and filenames include whitespace. Surround your Bash variables with quotes, e.g. <code>&quot;$FOO&quot;</code>. Prefer the <code>-0</code> or <code>-print0</code> options to enable null characters to delimit filenames, e.g. <code>locate -0 pattern | xargs -0 ls -al</code> or <code>find / -print0 -type d | xargs -0 ls -al</code>. To iterate on filenames containing whitespace in a for loop, set your IFS to be a newline only using <code>IFS=$&#39;\n&#39;</code>.</p>
+<li><p>当变量和文件名中包含空格的时候要格外小心。Bash 变量要用引号括起来，比如 <code>&quot;$FOO&quot;</code>。尽量使用 <code>-0</code> 或 <code>-print0</code> 选项以便用 NULL 来分隔文件名，例如 <code>locate -0 pattern | xargs -0 ls -al</code> 或 <code>find / -print0 -type d | xargs -0 ls -al</code>。如果 for 循环中循环访问的文件名含有空字符（空格、tab 等字符），只需用 <code>IFS=$&#39;\n&#39;</code> 把内部字段分隔符设为换行符。</p>
 </li>
-<li><p>In Bash scripts, use <code>set -x</code> (or the variant <code>set -v</code>, which logs raw input, including unexpanded variables and comments) for debugging output. Use strict modes unless you have a good reason not to: Use <code>set -e</code> to abort on errors (nonzero exit code). Use <code>set -u</code> to detect unset variable usages. Consider <code>set -o pipefail</code> too, to on errors within pipes, too (though read up on it more if you do, as this topic is a bit subtle). For more involved scripts, also use <code>trap</code> on EXIT or ERR. A useful habit is to start a script like this, which will make it detect and abort on common errors and print a message:</p>
+<li><p>在 Bash 脚本中，使用 <code>set -x</code> 去调试输出（或者使用它的变体 <code>set -v</code>，它会记录原始输入，包括多余的参数和注释）。尽可能地使用严格模式：使用 <code>set -e</code> 令脚本在发生错误时退出而不是继续运行；使用 <code>set -u</code> 来检查是否使用了未赋值的变量；试试 <code>set -o pipefail</code>，它可以监测管道中的错误。当牵扯到很多脚本时，使用 <code>trap</code> 来检测 ERR 和 EXIT。一个好的习惯是在脚本文件开头这样写，这会使它能够检测一些错误，并在错误发生时中断程序并输出信息：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">set</span> -euo pipefail</div><div class="line"><span class="built_in">trap</span> <span class="string">"echo 'error: Script failed: see failed command above'"</span> ERR</div></pre></td></tr></table></figure>
 </li>
-<li><p>In Bash scripts, subshells (written with parentheses) are convenient ways to group commands. A common example is to temporarily move to a different working directory, e.g.</p>
+<li><p>在 Bash 脚本中，子 shell（使用括号 <code>(...)</code>）是一种组织参数的便捷方式。一个常见的例子是临时地移动工作路径，代码如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># do something in current dir</span></div><div class="line">(<span class="built_in">cd</span> /some/other/dir &amp;&amp; other-command)</div><div class="line"><span class="comment"># continue in original dir</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>In Bash, note there are lots of kinds of variable expansion. Checking a variable exists: <code>${name:?error message}</code>. For example, if a Bash script requires a single argument, just write <code>input_file=${1:?usage: $0 input_file}</code>. Using a default value if a variable is empty: <code>${name:-default}</code>. If you want to have an additional (optional) parameter added to the previous example, you can use something like <code>output_file=${2:-logfile}</code>. If <code>$2</code> is omitted and thus empty, <code>output_file</code> will be set to <code>logfile</code>. Arithmetic expansion: <code>i=$(( (i + 1) % 5 ))</code>. Sequences: <code>{1..10}</code>. Trimming of strings: <code>${var%suffix}</code> and <code>${var#prefix}</code>. For example if <code>var=foo.pdf</code>, then <code>echo ${var%.pdf}.txt</code> prints <code>foo.txt</code>.</p>
+<li><p>在 Bash 中，变量有许多的扩展方式。<code>${name:?error message}</code> 用于检查变量是否存在。此外，当 Bash 脚本只需要一个参数时，可以使用这样的代码 <code>input_file=${1:?usage: $0 input_file}</code>。在变量为空时使用默认值：<code>${name:-default}</code>。如果你要在之前的例子中再加一个（可选的）参数，可以使用类似这样的代码 <code>output_file=${2:-logfile}</code>，如果省略了 $2，它的值就为空，于是 <code>output_file</code> 就会被设为 <code>logfile</code>。数学表达式：<code>i=$(( (i + 1) % 5 ))</code>。序列：<code>{1..10}</code>。截断字符串：<code>${var%suffix}</code> 和 <code>${var#prefix}</code>。例如，假设 <code>var=foo.pdf</code>，那么 <code>echo ${var%.pdf}.txt</code> 将输出 <code>foo.txt</code>。</p>
 </li>
-<li><p>Brace expansion using <code>{</code>…<code>}</code> can reduce having to re-type similar text and automate combinations of items.  This is helpful in examples like <code>mv foo.{txt,pdf} some-dir</code> (which moves both files), <code>cp somefile{,.bak}</code> (which expands to <code>cp somefile somefile.bak</code>) or <code>mkdir -p test-{a,b,c}/subtest-{1,2,3}</code> (which expands all possible combinations and creates a directory tree).</p>
+<li><p>使用括号扩展（<code>{</code>…<code>}</code>）来减少输入相似文本，并自动化文本组合。这在某些情况下会很有用，例如 <code>mv foo.{txt,pdf} some-dir</code>（同时移动两个文件），<code>cp somefile{,.bak}</code>（会被扩展成 <code>cp somefile somefile.bak</code>）或者 <code>mkdir -p test-{a,b,c}/subtest-{1,2,3}</code>（会被扩展成所有可能的组合，并创建一个目录树）。</p>
 </li>
-<li><p>The output of a command can be treated like a file via <code>&lt;(some command)</code>. For example, compare local <code>/etc/hosts</code> with a remote one:</p>
+<li><p>通过使用 <code>&lt;(some command)</code> 可以将输出视为文件。例如，对比本地文件 <code>/etc/hosts</code> 和一个远程文件：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">diff /etc/hosts &lt;(ssh somehost cat /etc/hosts)</div></pre></td></tr></table></figure>
 </li>
-<li><p>When writing scripts you may want to put all of your code in curly braces. If the closing brace is missing, your script will be prevented from executing due to a syntax error. This makes sense when your script is going to be downloaded from the web, since it prevents partially downloaded scripts from executing:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="comment"># Your code here</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>编写脚本时，你可能会想要把代码都放在大括号里。缺少右括号的话，代码就会因为语法错误而无法执行。如果你的脚本是要放在网上分享供他人使用的，这样的写法就体现出它的好处了，因为这样可以防止下载不完全代码被执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">      <span class="comment"># 在这里写代码</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
-<li><p>Know about “here documents” in Bash, as in <code>cat &lt;&lt;EOF ...</code>.</p>
+<li><p>了解 Bash 中的“here documents”，例如 <code>cat &lt;&lt;EOF ...</code>。</p>
 </li>
-<li><p>In Bash, redirect both standard output and standard error via: <code>some-command &gt;logfile 2&gt;&amp;1</code> or <code>some-command &amp;&gt;logfile</code>. Often, to ensure a command does not leave an open file handle to standard input, tying it to the terminal you are in, it is also good practice to add <code>&lt;/dev/null</code>.</p>
+<li><p>在 Bash 中，同时重定向标准输出和标准错误：<code>some-command &gt;logfile 2&gt;&amp;1</code> 或者 <code>some-command &amp;&gt;logfile</code>。通常，为了保证命令不会在标准输入里残留一个未关闭的文件句柄捆绑在你当前所在的终端上，在命令后添加 <code>&lt;/dev/null</code> 是一个好习惯。</p>
 </li>
-<li><p>Use <code>man ascii</code> for a good ASCII table, with hex and decimal values. For general encoding info, <code>man unicode</code>, <code>man utf-8</code>, and <code>man latin1</code> are helpful.</p>
+<li><p>使用 <code>man ascii</code> 查看具有十六进制和十进制值的ASCII表。<code>man unicode</code>，<code>man utf-8</code>，以及 <code>man latin1</code> 有助于你去了解通用的编码信息。</p>
 </li>
-<li><p>Use <code>screen</code> or <a href="https://tmux.github.io/" target="_blank" rel="external"><code>tmux</code></a> to multiplex the screen, especially useful on remote ssh sessions and to detach and re-attach to a session. <code>byobu</code> can enhance screen or tmux providing more information and easier management. A more minimal alternative for session persistence only is <a href="https://github.com/bogner/dtach" target="_blank" rel="external"><code>dtach</code></a>.</p>
+<li><p>使用 <code>screen</code> 或 <a href="https://tmux.github.io/" target="_blank" rel="external"><code>tmux</code></a> 来使用多份屏幕，当你在使用 ssh 时（保存 session 信息）将尤为有用。而 <code>byobu</code> 可以为它们提供更多的信息和易用的管理工具。另一个轻量级的 session 持久化解决方案是 <a href="https://github.com/bogner/dtach" target="_blank" rel="external"><code>dtach</code></a>。</p>
 </li>
-<li><p>In ssh, knowing how to port tunnel with <code>-L</code> or <code>-D</code> (and occasionally <code>-R</code>) is useful, e.g. to access web sites from a remote server.</p>
+<li><p>ssh 中，了解如何使用 <code>-L</code> 或 <code>-D</code>（偶尔需要用 <code>-R</code>）开启隧道是非常有用的，比如当你需要从一台远程服务器上访问 web 页面。</p>
 </li>
-<li><p>It can be useful to make a few optimizations to your ssh configuration; for example, this <code>~/.ssh/config</code> contains settings to avoid dropped connections in certain network environments, uses compression (which is helpful with scp over low-bandwidth connections), and multiplex channels to the same server with a local control file:</p>
+<li><p>对 ssh 设置做一些小优化可能是很有用的，例如这个 <code>~/.ssh/config</code> 文件包含了防止特定网络环境下连接断开、压缩数据、多通道等选项：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">TCPKeepAlive=yes</div><div class="line">ServerAliveInterval=15</div><div class="line">ServerAliveCountMax=6</div><div class="line">Compression=yes</div><div class="line">ControlMaster auto</div><div class="line">ControlPath /tmp/%r@%h:%p</div><div class="line">ControlPersist yes</div></pre></td></tr></table></figure>
 </li>
-<li><p>A few other options relevant to ssh are security sensitive and should be enabled with care, e.g. per subnet or host or in trusted networks: <code>StrictHostKeyChecking=no</code>, <code>ForwardAgent=yes</code></p>
+<li><p>一些其他的关于 ssh 的选项是与安全相关的，应当小心翼翼的使用。例如你应当只能在可信任的网络中启用 <code>StrictHostKeyChecking=no</code>，<code>ForwardAgent=yes</code>。</p>
 </li>
-<li><p>Consider <a href="https://mosh.mit.edu/" target="_blank" rel="external"><code>mosh</code></a> an alternative to ssh that uses UDP, avoiding dropped connections and adding convenience on the road (requires server-side setup).</p>
+<li><p>考虑使用 <a href="https://mosh.mit.edu/" target="_blank" rel="external"><code>mosh</code></a> 作为 ssh 的替代品，它使用 UDP 协议。它可以避免连接被中断并且对带宽需求更小，但它需要在服务端做相应的配置。</p>
 </li>
-<li><p>To get the permissions on a file in octal form, which is useful for system configuration but not available in <code>ls</code> and easy to bungle, use something like</p>
+<li><p>获取八进制形式的文件访问权限（修改系统设置时通常需要，但 <code>ls</code> 的功能不那么好用并且通常会搞砸），可以使用类似如下的代码：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">stat</span> -c <span class="string">'%A %a %n'</span> /etc/timezone</div></pre></td></tr></table></figure>
 </li>
-<li><p>For interactive selection of values from the output of another command, use <a href="https://github.com/mooz/percol" target="_blank" rel="external"><code>percol</code></a> or <a href="https://github.com/junegunn/fzf" target="_blank" rel="external"><code>fzf</code></a>.</p>
+<li><p>使用 <a href="https://github.com/mooz/percol" target="_blank" rel="external"><code>percol</code></a> 或者 <a href="https://github.com/junegunn/fzf" target="_blank" rel="external"><code>fzf</code></a> 可以交互式地从另一个命令输出中选取值。</p>
 </li>
-<li><p>For interaction with files based on the output of another command (like <code>git</code>), use <code>fpp</code> (<a href="https://github.com/facebook/PathPicker" target="_blank" rel="external">PathPicker</a>).</p>
+<li><p>使用 <code>fpp</code>（<a href="https://github.com/facebook/PathPicker" target="_blank" rel="external">PathPicker</a>）可以与基于另一个命令(例如 <code>git</code>）输出的文件交互。</p>
 </li>
-<li><p>For a simple web server for all files in the current directory (and subdirs), available to anyone on your network, use:<br><code>python -m SimpleHTTPServer 7777</code> (for port 7777 and Python 2) and <code>python -m http.server 7777</code> (for port 7777 and Python 3).</p>
+<li><p>将 web 服务器上当前目录下所有的文件（以及子目录）暴露给你所处网络的所有用户，使用：<br><code>python -m SimpleHTTPServer 7777</code> （使用端口 7777 和 Python 2）或<code>python -m http.server 7777</code> （使用端口 7777 和 Python 3）。</p>
 </li>
-<li><p>For running a command as another user, use <code>sudo</code>. Defaults to running as root; use <code>-u</code> to specify another user. Use <code>-i</code> to login as that user (you will be asked for <em>your</em> password).</p>
+<li><p>以其他用户的身份执行命令，使用 <code>sudo</code>。默认以 root 用户的身份执行；使用 <code>-u</code> 来指定其他用户。使用 <code>-i</code> 来以该用户登录（需要输入<em>你自己的</em>密码）。</p>
 </li>
-<li><p>For switching the shell to another user, use <code>su username</code> or <code>su - username</code>. The latter with “-“ gets an environment as if another user just logged in. Omitting the username defaults to root. You will be asked for the password <em>of the user you are switching to</em>.</p>
+<li><p>将 shell 切换为其他用户，使用 <code>su username</code> 或者 <code>sudo - username</code>。加入 <code>-</code> 会使得切换后的环境与使用该用户登录后的环境相同。省略用户名则默认为 root。切换到哪个用户，就需要输入<em>哪个用户的</em>密码。</p>
 </li>
-<li><p>Know about the <a href="https://wiki.debian.org/CommonErrorMessages/ArgumentListTooLong" target="_blank" rel="external">128K limit</a> on command lines. This “Argument list too long” error is common when wildcard matching large numbers of files. (When this happens alternatives like <code>find</code> and <code>xargs</code> may help.)</p>
+<li><p>了解命令行的 <a href="https://wiki.debian.org/CommonErrorMessages/ArgumentListTooLong" target="_blank" rel="external">128K 限制</a>。使用通配符匹配大量文件名时，常会遇到“Argument list too long”的错误信息。（这种情况下换用 <code>find</code> 或 <code>xargs</code> 通常可以解决。）</p>
 </li>
-<li><p>For a basic calculator (and of course access to Python in general), use the <code>python</code> interpreter. For example,</p>
+<li><p>当你需要一个基本的计算器时，可以使用 <code>python</code> 解释器（当然你要用 python 的时候也是这样）。例如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; 2+3</div><div class="line">5</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="Processing-files-and-data"><a href="#Processing-files-and-data" class="headerlink" title="Processing files and data"></a>Processing files and data</h2><ul>
-<li><p>To locate a file by name in the current directory, <code>find . -iname &#39;*something*&#39;</code> (or similar). To find a file anywhere by name, use <code>locate something</code> (but bear in mind <code>updatedb</code> may not have indexed recently created files).</p>
+<h2 id="文件及数据处理"><a href="#文件及数据处理" class="headerlink" title="文件及数据处理"></a>文件及数据处理</h2><ul>
+<li><p>在当前目录下通过文件名查找一个文件，使用类似于这样的命令：<code>find . -iname &#39;*something*&#39;</code>。在所有路径下通过文件名查找文件，使用 <code>locate something</code> （但注意到 <code>updatedb</code> 可能没有对最近新建的文件建立索引，所以你可能无法定位到这些未被索引的文件）。</p>
 </li>
-<li><p>For general searching through source or data files (more advanced than <code>grep -r</code>), use <a href="https://github.com/ggreer/the_silver_searcher" target="_blank" rel="external"><code>ag</code></a>.</p>
+<li><p>使用 <a href="https://github.com/ggreer/the_silver_searcher" target="_blank" rel="external"><code>ag</code></a> 在源代码或数据文件里检索（<code>grep -r</code> 同样可以做到，但相比之下 <code>ag</code> 更加先进）。</p>
 </li>
-<li><p>To convert HTML to text: <code>lynx -dump -stdin</code></p>
+<li><p>将 HTML 转为文本：<code>lynx -dump -stdin</code>。</p>
 </li>
-<li><p>For Markdown, HTML, and all kinds of document conversion, try <a href="http://pandoc.org/" target="_blank" rel="external"><code>pandoc</code></a>.</p>
+<li><p>Markdown，HTML，以及所有文档格式之间的转换，试试 <a href="http://pandoc.org/" target="_blank" rel="external"><code>pandoc</code></a>。</p>
 </li>
-<li><p>If you must handle XML, <code>xmlstarlet</code> is old but good.</p>
+<li><p>当你要处理棘手的 XML 时候，<code>xmlstarlet</code> 算是上古时代流传下来的神器。</p>
 </li>
-<li><p>For JSON, use <a href="http://stedolan.github.io/jq/" target="_blank" rel="external"><code>jq</code></a>.</p>
+<li><p>使用 <a href="http://stedolan.github.io/jq/" target="_blank" rel="external"><code>jq</code></a> 处理 JSON。</p>
 </li>
-<li><p>For YAML, use <a href="https://github.com/0k/shyaml" target="_blank" rel="external"><code>shyaml</code></a>.</p>
+<li><p>使用 <a href="https://github.com/0k/shyaml" target="_blank" rel="external"><code>shyaml</code></a> 处理 YAML。</p>
 </li>
-<li><p>For Excel or CSV files, <a href="https://github.com/onyxfish/csvkit" target="_blank" rel="external">csvkit</a> provides <code>in2csv</code>, <code>csvcut</code>, <code>csvjoin</code>, <code>csvgrep</code>, etc.</p>
+<li><p>要处理 Excel 或 CSV 文件的话，<a href="https://github.com/onyxfish/csvkit" target="_blank" rel="external">csvkit</a> 提供了 <code>in2csv</code>，<code>csvcut</code>，<code>csvjoin</code>，<code>csvgrep</code> 等方便易用的工具。</p>
 </li>
-<li><p>For Amazon S3, <a href="https://github.com/s3tools/s3cmd" target="_blank" rel="external"><code>s3cmd</code></a> is convenient and <a href="https://github.com/bloomreach/s4cmd" target="_blank" rel="external"><code>s4cmd</code></a> is faster. Amazon’s <a href="https://github.com/aws/aws-cli" target="_blank" rel="external"><code>aws</code></a> and the improved <a href="https://github.com/donnemartin/saws" target="_blank" rel="external"><code>saws</code></a> are essential for other AWS-related tasks.</p>
+<li><p>当你要处理 Amazon S3 相关的工作的时候，<a href="https://github.com/s3tools/s3cmd" target="_blank" rel="external"><code>s3cmd</code></a> 是一个很方便的工具而 <a href="https://github.com/bloomreach/s4cmd" target="_blank" rel="external"><code>s4cmd</code></a> 的效率更高。Amazon 官方提供的 <a href="https://github.com/aws/aws-cli" target="_blank" rel="external"><code>aws</code></a> 以及  <a href="https://github.com/donnemartin/saws" target="_blank" rel="external"><code>saws</code></a> 是其他 AWS 相关工作的基础，值得学习。</p>
 </li>
-<li><p>Know about <code>sort</code> and <code>uniq</code>, including uniq’s <code>-u</code> and <code>-d</code> options – see one-liners below. See also <code>comm</code>.</p>
+<li><p>了解如何使用 <code>sort</code> 和 <code>uniq</code>，包括 uniq 的 <code>-u</code> 参数和 <code>-d</code> 参数，具体内容在后文单行脚本节中。另外可以了解一下 <code>comm</code>。</p>
 </li>
-<li><p>Know about <code>cut</code>, <code>paste</code>, and <code>join</code> to manipulate text files. Many people use <code>cut</code> but forget about <code>join</code>.</p>
+<li><p>了解如何使用 <code>cut</code>，<code>paste</code> 和 <code>join</code> 来更改文件。很多人都会使用 <code>cut</code>，但遗忘了 <code>join</code>。</p>
 </li>
-<li><p>Know about <code>wc</code> to count newlines (<code>-l</code>), characters (<code>-m</code>), words (<code>-w</code>) and bytes (<code>-c</code>).</p>
+<li><p>了解如何运用 <code>wc</code> 去计算新行数（<code>-l</code>），字符数（<code>-m</code>），单词数（<code>-w</code>）以及字节数（<code>-c</code>）。</p>
 </li>
-<li><p>Know about <code>tee</code> to copy from stdin to a file and also to stdout, as in <code>ls -al | tee file.txt</code>.</p>
+<li><p>了解如何使用 <code>tee</code> 将标准输入复制到文件甚至标准输出，例如 <code>ls -al | tee file.txt</code>。</p>
 </li>
-<li><p>For more complex calculations, including grouping, reversing fields, and statistical calculations, consider <a href="https://www.gnu.org/software/datamash/" target="_blank" rel="external"><code>datamash</code></a>.</p>
+<li><p>要进行一些复杂的计算，比如分组、逆序和一些其他的统计分析，可以考虑使用 <a href="https://www.gnu.org/software/datamash/" target="_blank" rel="external"><code>datamash</code></a>。</p>
 </li>
-<li><p>Know that locale affects a lot of command line tools in subtle ways, including sorting order (collation) and performance. Most Linux installations will set <code>LANG</code> or other locale variables to a local setting like US English. But be aware sorting will change if you change locale. And know i18n routines can make sort or other commands run <em>many times</em> slower. In some situations (such as the set operations or uniqueness operations below) you can safely ignore slow i18n routines entirely and use traditional byte-based sort order, using <code>export LC_ALL=C</code>.</p>
+<li><p>注意到语言设置（中文或英文等）对许多命令行工具有一些微妙的影响，比如排序的顺序和性能。大多数 Linux 的安装过程会将 <code>LANG</code> 或其他有关的变量设置为符合本地的设置。要意识到当你改变语言设置时，排序的结果可能会改变。明白国际化可能会使 sort 或其他命令运行效率下降<em>许多倍</em>。某些情况下（例如集合运算）你可以放心的使用 <code>export LC_ALL=C</code> 来忽略掉国际化并按照字节来判断顺序。</p>
 </li>
-<li><p>You can set a specific command’s environment by prefixing its invocation with the environment variable settings, as in <code>TZ=Pacific/Fiji date</code>.</p>
+<li><p>你可以单独指定某一条命令的环境，只需在调用时把环境变量设定放在命令的前面，例如 <code>TZ=Pacific/Fiji date</code> 可以获取斐济的时间。</p>
 </li>
-<li><p>Know basic <code>awk</code> and <code>sed</code> for simple data munging. For example, summing all numbers in the third column of a text file: <code>awk &#39;{ x += $3 } END { print x }&#39;</code>. This is probably 3X faster and 3X shorter than equivalent Python.</p>
+<li><p>了解如何使用 <code>awk</code> 和 <code>sed</code> 来进行简单的数据处理。例如，将文本文件中第三列的所有数字求和：<code>awk &#39;{ x += $3 } END { print x }&#39;</code>。这可能比同等功能的 Python 代码快三倍且代码量少三倍。</p>
 </li>
-<li><p>To replace all occurrences of a string in place, in one or more files:</p>
+<li><p>替换一个或多个文件中出现的字符串：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">perl -pi.bak <span class="_">-e</span> <span class="string">'s/old-string/new-string/g'</span> my-files-*.txt</div></pre></td></tr></table></figure>
 </li>
-<li><p>To rename multiple files and/or search and replace within files, try <a href="https://github.com/jlevy/repren" target="_blank" rel="external"><code>repren</code></a>. (In some cases the <code>rename</code> command also allows multiple renames, but be careful as its functionality is not the same on all Linux distributions.)</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Full rename of filenames, directories, and contents foo -&gt; bar:</span></div><div class="line">repren --full --preserve-case --from foo --to bar .</div><div class="line"><span class="comment"># Recover backup files whatever.bak -&gt; whatever:</span></div><div class="line">repren --renames --from <span class="string">'(.*)\.bak'</span> --to <span class="string">'\1'</span> *.bak</div><div class="line"><span class="comment"># Same as above, using rename, if available:</span></div><div class="line">rename <span class="string">'s/\.bak$//'</span> *.bak</div></pre></td></tr></table></figure>
+<li><p>使用 <a href="https://github.com/jlevy/repren" target="_blank" rel="external"><code>repren</code></a> 来批量重命名文件，或是在多个文件中搜索替换内容。（有些时候 <code>rename</code> 命令也可以批量重命名，但要注意，它在不同 Linux 发行版中的功能并不完全一样。）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 将文件、目录和内容全部重命名 foo -&gt; bar:</span></div><div class="line">repren --full --preserve-case --from foo --to bar .</div><div class="line"><span class="comment"># 还原所有备份文件 whatever.bak -&gt; whatever:</span></div><div class="line">repren --renames --from <span class="string">'(.*)\.bak'</span> --to <span class="string">'\1'</span> *.bak</div><div class="line"><span class="comment"># 用 rename 实现上述功能（若可用）:</span></div><div class="line">rename <span class="string">'s/\.bak$//'</span> *.bak</div></pre></td></tr></table></figure>
 </li>
-<li><p>As the man page says, <code>rsync</code> really is a fast and extraordinarily versatile file copying tool. It’s known for synchronizing between machines but is equally useful locally. When security restrictions allow, using <code>rsync</code> instead of <code>scp</code> allows recovery of a transfer without restarting from scratch. It also is among the <a href="https://web.archive.org/web/20130929001850/http://linuxnote.net/jianingy/en/linux/a-fast-way-to-remove-huge-number-of-files.html" target="_blank" rel="external">fastest ways</a> to delete large numbers of files:</p>
+<li><p>根据 man 页面的描述，<code>rsync</code> 是一个快速且非常灵活的文件复制工具。它闻名于设备之间的文件同步，但其实它在本地情况下也同样有用。在安全设置允许下，用 <code>rsync</code> 代替 <code>scp</code> 可以实现文件续传，而不用重新从头开始。它同时也是删除大量文件的<a href="https://web.archive.org/web/20130929001850/http://linuxnote.net/jianingy/en/linux/a-fast-way-to-remove-huge-number-of-files.html" target="_blank" rel="external">最快方法</a>之一：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir empty &amp;&amp; rsync -r --delete empty/ some-dir &amp;&amp; rmdir some-dir</div></pre></td></tr></table></figure>
 </li>
-<li><p>Use <code>shuf</code> to shuffle or select random lines from a file.</p>
+<li><p>使用 <code>shuf</code> 可以以行为单位来打乱文件的内容或从一个文件中随机选取多行。</p>
 </li>
-<li><p>Know <code>sort</code>‘s options. For numbers, use <code>-n</code>, or <code>-h</code> for handling human-readable numbers (e.g. from <code>du -h</code>). Know how keys work (<code>-t</code> and <code>-k</code>). In particular, watch out that you need to write <code>-k1,1</code> to sort by only the first field; <code>-k1</code> means sort according to the whole line. Stable sort (<code>sort -s</code>) can be useful. For example, to sort first by field 2, then secondarily by field 1, you can use <code>sort -k1,1 | sort -s -k2,2</code>.</p>
+<li><p>了解 <code>sort</code> 的参数。显示数字时，使用 <code>-n</code> 或者 <code>-h</code> 来显示更易读的数（例如 <code>du -h</code> 的输出）。明白排序时关键字的工作原理（<code>-t</code> 和 <code>-k</code>）。例如，注意到你需要 <code>-k1，1</code> 来仅按第一个域来排序，而 <code>-k1</code> 意味着按整行排序。稳定排序（<code>sort -s</code>）在某些情况下很有用。例如，以第二个域为主关键字，第一个域为次关键字进行排序，你可以使用 <code>sort -k1，1 | sort -s -k2，2</code>。</p>
 </li>
-<li><p>If you ever need to write a tab literal in a command line in Bash (e.g. for the -t argument to sort), press <strong>ctrl-v</strong> <strong>[Tab]</strong> or write <code>$&#39;\t&#39;</code> (the latter is better as you can copy/paste it).</p>
+<li><p>如果你想在 Bash 命令行中写 tab 制表符，按下 <strong>ctrl-v</strong> <strong>[Tab]</strong> 或键入 <code>$&#39;\t&#39;</code> （后者可能更好，因为你可以复制粘贴它）。</p>
 </li>
-<li><p>The standard tools for patching source code are <code>diff</code> and <code>patch</code>. See also <code>diffstat</code> for summary statistics of a diff and <code>sdiff</code> for a side-by-side diff. Note <code>diff -r</code> works for entire directories. Use <code>diff -r tree1 tree2 | diffstat</code> for a summary of changes. Use <code>vimdiff</code> to compare and edit files.</p>
+<li><p>标准的源代码对比及合并工具是 <code>diff</code> 和 <code>patch</code>。使用 <code>diffstat</code> 查看变更总览数据。注意到 <code>diff -r</code> 对整个文件夹有效。使用 <code>diff -r tree1 tree2 | diffstat</code> 查看变更的统计数据。<code>vimdiff</code> 用于比对并编辑文件。</p>
 </li>
-<li><p>For binary files, use <code>hd</code>, <code>hexdump</code> or <code>xxd</code> for simple hex dumps and <code>bvi</code>, <code>hexedit</code> or <code>biew</code> for binary editing.</p>
+<li><p>对于二进制文件，使用 <code>hd</code>，<code>hexdump</code> 或者 <code>xxd</code> 使其以十六进制显示，使用 <code>bvi</code>，<code>hexedit</code> 或者 <code>biew</code> 来进行二进制编辑。</p>
 </li>
-<li><p>Also for binary files, <code>strings</code> (plus <code>grep</code>, etc.) lets you find bits of text.</p>
+<li><p>同样对于二进制文件，<code>strings</code>（包括 <code>grep</code> 等工具）可以帮助在二进制文件中查找特定比特。</p>
 </li>
-<li><p>For binary diffs (delta compression), use <code>xdelta3</code>.</p>
+<li><p>制作二进制差分文件（Delta 压缩），使用 <code>xdelta3</code>。</p>
 </li>
-<li><p>To convert text encodings, try <code>iconv</code>. Or <code>uconv</code> for more advanced use; it supports some advanced Unicode things. For example, this command lowercases and removes all accents (by expanding and dropping them):</p>
+<li><p>使用 <code>iconv</code> 更改文本编码。需要更高级的功能，可以使用 <code>uconv</code>，它支持一些高级的 Unicode 功能。例如，这条命令移除了所有重音符号：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">uconv <span class="_">-f</span> utf-8 -t utf-8 -x <span class="string">'::Any-Lower; ::Any-NFD; [:Nonspacing Mark:] &gt;; ::Any-NFC; '</span> &lt; input.txt &gt; output.txt</div></pre></td></tr></table></figure>
 </li>
-<li><p>To split files into pieces, see <code>split</code> (to split by size) and <code>csplit</code> (to split by a pattern).</p>
+<li><p>拆分文件可以使用 <code>split</code>（按大小拆分）和 <code>csplit</code>（按模式拆分）。</p>
 </li>
-<li><p>To manipulate date and time expressions, use <code>dateadd</code>, <code>datediff</code>, <code>strptime</code> etc. from <a href="http://www.fresse.org/dateutils/" target="_blank" rel="external"><code>dateutils</code></a>.</p>
+<li><p>操作日期和时间表达式，可以用 <a href="http://www.fresse.org/dateutils/" target="_blank" rel="external"><code>dateutils</code></a> 中的 <code>dateadd</code>、<code>datediff</code>、<code>strptime</code> 等工具。</p>
 </li>
-<li><p>Use <code>zless</code>, <code>zmore</code>, <code>zcat</code>, and <code>zgrep</code> to operate on compressed files.</p>
+<li><p>使用 <code>zless</code>、<code>zmore</code>、<code>zcat</code> 和 <code>zgrep</code> 对压缩过的文件进行操作。</p>
 </li>
-<li><p>File attributes are settable via <code>chattr</code> and offer a lower-level alternative to file permissions. For example, to protect against accidental file deletion the immutable flag:  <code>sudo chattr +i /critical/directory/or/file</code></p>
+<li><p>文件属性可以通过 <code>chattr</code> 进行设置，它比文件权限更加底层。例如，为了保护文件不被意外删除，可以使用不可修改标记：<code>sudo chattr +i /critical/directory/or/file</code></p>
 </li>
-<li><p>Use <code>getfacl</code> and <code>setfacl</code> to save and restore file permissions. For example:</p>
+<li><p>使用 <code>getfacl</code> 和 <code>setfacl</code> 以保存和恢复文件权限。例如：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">getfacl -R /some/path &gt; permissions.txt</div><div class="line">setfacl --restore=permissions.txt</div></pre></td></tr></table></figure>
 </li>
-<li><p>To create empty files quickly, use <code>truncate</code> (creates <a href="https://en.wikipedia.org/wiki/Sparse_file" target="_blank" rel="external">sparse file</a>), <code>fallocate</code> (ext4, xfs, btrfs and ocfs2 filesystems), <code>xfs_mkfile</code> (almost any filesystems, comes in xfsprogs package), <code>mkfile</code> (for Unix-like systems like Solaris, Mac OS).</p>
+<li><p>为了高效地创建空文件，请使用 <code>truncate</code>（创建<a href="https://zh.wikipedia.org/wiki/稀疏文件" target="_blank" rel="external">稀疏文件</a>），<code>fallocate</code>（用于 ext4，xfs，btrf 和 ocfs2 文件系统），<code>xfs_mkfile</code>（适用于几乎所有的文件系统，包含在 xfsprogs 包中），<code>mkfile</code>（用于类 Unix 操作系统，比如 Solaris 和 Mac OS）。</p>
 </li>
 </ul>
-<h2 id="System-debugging"><a href="#System-debugging" class="headerlink" title="System debugging"></a>System debugging</h2><ul>
-<li><p>For web debugging, <code>curl</code> and <code>curl -I</code> are handy, or their <code>wget</code> equivalents, or the more modern <a href="https://github.com/jkbrzt/httpie" target="_blank" rel="external"><code>httpie</code></a>.</p>
+<h2 id="系统调试"><a href="#系统调试" class="headerlink" title="系统调试"></a>系统调试</h2><ul>
+<li><p><code>curl</code> 和 <code>curl -I</code> 可以被轻松地应用于 web 调试中，它们的好兄弟 <code>wget</code> 也是如此，或者也可以试试更潮的 <a href="https://github.com/jkbrzt/httpie" target="_blank" rel="external"><code>httpie</code></a>。</p>
 </li>
-<li><p>To know current cpu/disk status, the classic tools are <code>top</code> (or the better <code>htop</code>), <code>iostat</code>, and <code>iotop</code>. Use <code>iostat -mxz 15</code> for basic CPU and detailed per-partition disk stats and performance insight.</p>
+<li><p>获取 CPU 和硬盘的使用状态，通常使用使用 <code>top</code>（<code>htop</code> 更佳），<code>iostat</code> 和 <code>iotop</code>。而 <code>iostat -mxz 15</code> 可以让你获悉 CPU 和每个硬盘分区的基本信息和性能表现。</p>
 </li>
-<li><p>For network connection details, use <code>netstat</code> and <code>ss</code>.</p>
+<li><p>使用 <code>netstat</code> 和 <code>ss</code> 查看网络连接的细节。</p>
 </li>
-<li><p>For a quick overview of what’s happening on a system, <code>dstat</code> is especially useful. For broadest overview with details, use <a href="https://github.com/nicolargo/glances" target="_blank" rel="external"><code>glances</code></a>.</p>
+<li><p><code>dstat</code> 在你想要对系统的现状有一个粗略的认识时是非常有用的。然而若要对系统有一个深度的总体认识，使用 <a href="https://github.com/nicolargo/glances" target="_blank" rel="external"><code>glances</code></a>，它会在一个终端窗口中向你提供一些系统级的数据。</p>
 </li>
-<li><p>To know memory status, run and understand the output of <code>free</code> and <code>vmstat</code>. In particular, be aware the “cached” value is memory held by the Linux kernel as file cache, so effectively counts toward the “free” value.</p>
+<li><p>若要了解内存状态，运行并理解 <code>free</code> 和 <code>vmstat</code> 的输出。值得留意的是“cached”的值，它指的是 Linux 内核用来作为文件缓存的内存大小，而与空闲内存无关。</p>
 </li>
-<li><p>Java system debugging is a different kettle of fish, but a simple trick on Oracle’s and some other JVMs is that you can run <code>kill -3 &lt;pid&gt;</code> and a full stack trace and heap summary (including generational garbage collection details, which can be highly informative) will be dumped to stderr/logs. The JDK’s <code>jps</code>, <code>jstat</code>, <code>jstack</code>, <code>jmap</code> are useful. <a href="https://github.com/aragozin/jvm-tools" target="_blank" rel="external">SJK tools</a> are more advanced.</p>
+<li><p>Java 系统调试则是一件截然不同的事，一个可以用于 Oracle 的 JVM 或其他 JVM 上的调试的技巧是你可以运行 <code>kill -3 &lt;pid&gt;</code> 同时一个完整的栈轨迹和堆概述（包括 GC 的细节）会被保存到标准错误或是日志文件。JDK 中的 <code>jps</code>，<code>jstat</code>，<code>jstack</code>，<code>jmap</code> 很有用。<a href="https://github.com/aragozin/jvm-tools" target="_blank" rel="external">SJK tools</a> 更高级。</p>
 </li>
-<li><p>Use <a href="http://www.bitwizard.nl/mtr/" target="_blank" rel="external"><code>mtr</code></a> as a better traceroute, to identify network issues.</p>
+<li><p>使用 <a href="http://www.bitwizard.nl/mtr/" target="_blank" rel="external"><code>mtr</code></a> 去跟踪路由，用于确定网络问题。</p>
 </li>
-<li><p>For looking at why a disk is full, <a href="https://dev.yorhel.nl/ncdu" target="_blank" rel="external"><code>ncdu</code></a> saves time over the usual commands like <code>du -sh *</code>.</p>
+<li><p>用 <a href="https://dev.yorhel.nl/ncdu" target="_blank" rel="external"><code>ncdu</code></a> 来查看磁盘使用情况，它比寻常的命令，如 <code>du -sh *</code>，更节省时间。</p>
 </li>
-<li><p>To find which socket or process is using bandwidth, try <a href="http://www.ex-parrot.com/~pdw/iftop/" target="_blank" rel="external"><code>iftop</code></a> or <a href="https://github.com/raboof/nethogs" target="_blank" rel="external"><code>nethogs</code></a>.</p>
+<li><p>查找正在使用带宽的套接字连接或进程，使用 <a href="http://www.ex-parrot.com/~pdw/iftop/" target="_blank" rel="external"><code>iftop</code></a> 或 <a href="https://github.com/raboof/nethogs" target="_blank" rel="external"><code>nethogs</code></a>。</p>
 </li>
-<li><p>The <code>ab</code> tool (comes with Apache) is helpful for quick-and-dirty checking of web server performance. For more complex load testing, try <code>siege</code>.</p>
+<li><p><code>ab</code> 工具（Apache 中自带）可以简单粗暴地检查 web 服务器的性能。对于更复杂的负载测试，使用 <code>siege</code>。</p>
 </li>
-<li><p>For more serious network debugging, <a href="https://wireshark.org/" target="_blank" rel="external"><code>wireshark</code></a>, <a href="https://www.wireshark.org/docs/wsug_html_chunked/AppToolstshark.html" target="_blank" rel="external"><code>tshark</code></a>, or <a href="http://ngrep.sourceforge.net/" target="_blank" rel="external"><code>ngrep</code></a>.</p>
+<li><p><a href="https://wireshark.org/" target="_blank" rel="external"><code>wireshark</code></a>，<a href="https://www.wireshark.org/docs/wsug_html_chunked/AppToolstshark.html" target="_blank" rel="external"><code>tshark</code></a> 和 <a href="http://ngrep.sourceforge.net/" target="_blank" rel="external"><code>ngrep</code></a> 可用于复杂的网络调试。</p>
 </li>
-<li><p>Know about <code>strace</code> and <code>ltrace</code>. These can be helpful if a program is failing, hanging, or crashing, and you don’t know why, or if you want to get a general idea of performance. Note the profiling option (<code>-c</code>), and the ability to attach to a running process (<code>-p</code>). Use trace child option (<code>-f</code>) to avoid missing important calls.</p>
+<li><p>了解 <code>strace</code> 和 <code>ltrace</code>。这俩工具在你的程序运行失败、挂起甚至崩溃，而你却不知道为什么或你想对性能有个总体的认识的时候是非常有用的。注意 profile 参数（<code>-c</code>）和附加到一个运行的进程参数 （<code>-p</code>）。</p>
 </li>
-<li><p>Know about <code>ldd</code> to check shared libraries etc.</p>
+<li><p>了解使用 <code>ldd</code> 来检查共享库。</p>
 </li>
-<li><p>Know how to connect to a running process with <code>gdb</code> and get its stack traces.</p>
+<li><p>了解如何运用 <code>gdb</code> 连接到一个运行着的进程并获取它的堆栈轨迹。</p>
 </li>
-<li><p>Use <code>/proc</code>. It’s amazingly helpful sometimes when debugging live problems. Examples: <code>/proc/cpuinfo</code>, <code>/proc/meminfo</code>, <code>/proc/cmdline</code>, <code>/proc/xxx/cwd</code>, <code>/proc/xxx/exe</code>, <code>/proc/xxx/fd/</code>, <code>/proc/xxx/smaps</code> (where <code>xxx</code> is the process id or pid).</p>
+<li><p>学会使用 <code>/proc</code>。它在调试正在出现的问题的时候有时会效果惊人。比如：<code>/proc/cpuinfo</code>，<code>/proc/meminfo</code>，<code>/proc/cmdline</code>，<code>/proc/xxx/cwd</code>，<code>/proc/xxx/exe</code>，<code>/proc/xxx/fd/</code>，<code>/proc/xxx/smaps</code>（这里的 <code>xxx</code> 表示进程的 id 或 pid）。</p>
 </li>
-<li><p>When debugging why something went wrong in the past, <a href="http://sebastien.godard.pagesperso-orange.fr/" target="_blank" rel="external"><code>sar</code></a> can be very helpful. It shows historic statistics on CPU, memory, network, etc.</p>
+<li><p>当调试一些之前出现的问题的时候，<a href="http://sebastien.godard.pagesperso-orange.fr/" target="_blank" rel="external"><code>sar</code></a> 非常有用。它展示了 cpu、内存以及网络等的历史数据。</p>
 </li>
-<li><p>For deeper systems and performance analyses, look at <code>stap</code> (<a href="https://sourceware.org/systemtap/wiki" target="_blank" rel="external">SystemTap</a>), <a href="https://en.wikipedia.org/wiki/Perf_%28Linux%29" target="_blank" rel="external"><code>perf</code></a>, and <a href="https://github.com/draios/sysdig" target="_blank" rel="external"><code>sysdig</code></a>.</p>
+<li><p>关于更深层次的系统分析以及性能分析，看看 <code>stap</code>（<a href="https://sourceware.org/systemtap/wiki" target="_blank" rel="external">SystemTap</a>），<a href="https://en.wikipedia.org/wiki/Perf_(Linux" target="_blank" rel="external"><code>perf</code></a>)，以及<a href="https://github.com/draios/sysdig" target="_blank" rel="external"><code>sysdig</code></a>。</p>
 </li>
-<li><p>Check what OS you’re on with <code>uname</code> or <code>uname -a</code> (general Unix/kernel info) or <code>lsb_release -a</code> (Linux distro info).</p>
+<li><p>查看你当前使用的系统，使用 <code>uname</code>，<code>uname -a</code>（Unix／kernel 信息）或者 <code>lsb_release -a</code>（Linux 发行版信息）。</p>
 </li>
-<li><p>Use <code>dmesg</code> whenever something’s acting really funny (it could be hardware or driver issues).</p>
+<li><p>无论什么东西工作得很欢乐（可能是硬件或驱动问题）时可以试试 <code>dmesg</code>。</p>
 </li>
-<li><p>If you delete a file and it doesn’t free up expected disk space as reported by <code>du</code>, check whether the file is in use by a process:<br><code>lsof | grep deleted | grep &quot;filename-of-my-big-file&quot;</code></p>
+<li><p>如果你删除了一个文件，但通过 <code>du</code> 发现没有释放预期的磁盘空间，请检查文件是否被进程占用：<br><code>lsof | grep deleted | grep &quot;filename-of-my-big-file&quot;</code></p>
 </li>
 </ul>
-<h2 id="One-liners"><a href="#One-liners" class="headerlink" title="One-liners"></a>One-liners</h2><p>A few examples of piecing together commands:</p>
+<h2 id="单行脚本"><a href="#单行脚本" class="headerlink" title="单行脚本"></a>单行脚本</h2><p>一些命令组合的例子：</p>
 <ul>
-<li><p>It is remarkably helpful sometimes that you can do set intersection, union, and difference of text files via <code>sort</code>/<code>uniq</code>. Suppose <code>a</code> and <code>b</code> are text files that are already uniqued. This is fast, and works on files of arbitrary size, up to many gigabytes. (Sort is not limited by memory, though you may need to use the <code>-T</code> option if <code>/tmp</code> is on a small root partition.) See also the note about <code>LC_ALL</code> above and <code>sort</code>‘s <code>-u</code> option (left out for clarity below).</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat a b | sort | uniq &gt; c   <span class="comment"># c is a union b</span></div><div class="line">cat a b | sort | uniq <span class="_">-d</span> &gt; c   <span class="comment"># c is a intersect b</span></div><div class="line">cat a b b | sort | uniq -u &gt; c   <span class="comment"># c is set difference a - b</span></div></pre></td></tr></table></figure>
+<li><p>当你需要对文本文件做集合交、并、差运算时，<code>sort</code> 和 <code>uniq</code> 会是你的好帮手。具体例子请参照代码后面的，此处假设 <code>a</code> 与 <code>b</code> 是两内容不同的文件。这种方式效率很高，并且在小文件和上 G 的文件上都能运用（注意尽管在 <code>/tmp</code> 在一个小的根分区上时你可能需要 <code>-T</code> 参数，但是实际上 <code>sort</code> 并不被内存大小约束），参阅前文中关于 <code>LC_ALL</code> 和 <code>sort</code> 的 <code>-u</code> 参数的部分。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat a b | sort | uniq &gt; c   <span class="comment"># c 是 a 并 b</span></div><div class="line">cat a b | sort | uniq <span class="_">-d</span> &gt; c   <span class="comment"># c 是 a 交 b</span></div><div class="line">cat a b b | sort | uniq -u &gt; c   <span class="comment"># c 是 a - b</span></div></pre></td></tr></table></figure>
 </li>
-<li><p>Use <code>grep . *</code> to quickly examine the contents of all files in a directory (so each line is paired with the filename), or <code>head -100 *</code> (so each file has a heading). This can be useful for directories filled with config settings like those in <code>/sys</code>, <code>/proc</code>, <code>/etc</code>.</p>
+<li><p>使用 <code>grep . *</code>（每行都会附上文件名）或者 <code>head -100 *</code>（每个文件有一个标题）来阅读检查目录下所有文件的内容。这在检查一个充满配置文件的目录（如 <code>/sys</code>、<code>/proc</code>、<code>/etc</code>）时特别好用。</p>
 </li>
 </ul>
 <ul>
-<li><p>Summing all numbers in the third column of a text file (this is probably 3X faster and 3X less code than equivalent Python):</p>
+<li><p>计算文本文件第三列中所有数的和（可能比同等作用的 Python 代码快三倍且代码量少三倍）：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">awk <span class="string">'&#123; x += $3 &#125; END &#123; print x &#125;'</span> myfile</div></pre></td></tr></table></figure>
 </li>
-<li><p>To see sizes/dates on a tree of files, this is like a recursive <code>ls -l</code> but is easier to read than <code>ls -lR</code>:</p>
+<li><p>如果你想在文件树上查看大小/日期，这可能看起来像递归版的 <code>ls -l</code> 但比 <code>ls -lR</code> 更易于理解：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -type f -ls</div></pre></td></tr></table></figure>
 </li>
-<li><p>Say you have a text file, like a web server log, and a certain value that appears on some lines, such as an <code>acct_id</code> parameter that is present in the URL. If you want a tally of how many requests for each <code>acct_id</code>:</p>
+<li><p>假设你有一个类似于 web 服务器日志文件的文本文件，并且一个确定的值只会出现在某些行上，假设一个 <code>acct_id</code> 参数在 URI 中。如果你想计算出每个 <code>acct_id</code> 值有多少次请求，使用如下代码：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat access.log | egrep -o <span class="string">'acct_id=[0-9]+'</span> | cut <span class="_">-d</span>= <span class="_">-f</span>2 | sort | uniq -c | sort -rn</div></pre></td></tr></table></figure>
 </li>
-<li><p>To continuously monitor changes, use <code>watch</code>, e.g. check changes to files in a directory with <code>watch -d -n 2 &#39;ls -rtlh | tail&#39;</code> or to network settings while troubleshooting your wifi settings with <code>watch -d -n 2 ifconfig</code>.</p>
+<li><p>要持续监测文件改动，可以使用 <code>watch</code>，例如检查某个文件夹中文件的改变，可以用 <code>watch -d -n 2 &#39;ls -rtlh | tail&#39;</code>；或者在排查 WiFi 设置故障时要监测网络设置的更改，可以用 <code>watch -d -n 2 ifconfig</code>。</p>
 </li>
-<li><p>Run this function to get a random tip from this document (parses Markdown and extracts an item):</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">taocl</span></span>() &#123;</div><div class="line">  curl <span class="_">-s</span> https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md |</div><div class="line">    pandoc <span class="_">-f</span> markdown -t html |</div><div class="line">    xmlstarlet fo --html --dropdtd |</div><div class="line">    xmlstarlet sel -t -v <span class="string">"(html/body/ul/li[count(p)&gt;0])[<span class="variable">$RANDOM</span> mod last()+1]"</span> |</div><div class="line">    xmlstarlet unesc | fmt -80</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li><p>运行这个函数从这篇文档中随机获取一条技巧（解析 Markdown 文件并抽取项目）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">taocl</span></span>() &#123;</div><div class="line">  curl <span class="_">-s</span> https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README-zh.md|</div><div class="line">    pandoc <span class="_">-f</span> markdown -t html |</div><div class="line">    iconv <span class="_">-f</span> <span class="string">'utf-8'</span> -t <span class="string">'unicode'</span> |</div><div class="line">    xmlstarlet fo --html --dropdtd |</div><div class="line">    xmlstarlet sel -t -v <span class="string">"(html/body/ul/li[count(p)&gt;0])[<span class="variable">$RANDOM</span> mod last()+1]"</span> |</div><div class="line">    xmlstarlet unesc | fmt -80</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="Obscure-but-useful"><a href="#Obscure-but-useful" class="headerlink" title="Obscure but useful"></a>Obscure but useful</h2><ul>
-<li><p><code>expr</code>: perform arithmetic or boolean operations or evaluate regular expressions</p>
+<h2 id="冷门但有用"><a href="#冷门但有用" class="headerlink" title="冷门但有用"></a>冷门但有用</h2><ul>
+<li><p><code>expr</code>：计算表达式或正则匹配</p>
 </li>
-<li><p><code>m4</code>: simple macro processor</p>
+<li><p><code>m4</code>：简单的宏处理器</p>
 </li>
-<li><p><code>yes</code>: print a string a lot</p>
+<li><p><code>yes</code>：多次打印字符串</p>
 </li>
-<li><p><code>cal</code>: nice calendar</p>
+<li><p><code>cal</code>：漂亮的日历</p>
 </li>
-<li><p><code>env</code>: run a command (useful in scripts)</p>
+<li><p><code>env</code>：执行一个命令（脚本文件中很有用）</p>
 </li>
-<li><p><code>printenv</code>: print out environment variables (useful in debugging and scripts)</p>
+<li><p><code>printenv</code>：打印环境变量（调试时或在写脚本文件时很有用）</p>
 </li>
-<li><p><code>look</code>: find English words (or lines in a file) beginning with a string</p>
+<li><p><code>look</code>：查找以特定字符串开头的单词或行</p>
 </li>
-<li><p><code>cut</code>, <code>paste</code> and <code>join</code>: data manipulation</p>
+<li><p><code>cut</code>，<code>paste</code> 和 <code>join</code>：数据修改</p>
 </li>
-<li><p><code>fmt</code>: format text paragraphs</p>
+<li><p><code>fmt</code>：格式化文本段落</p>
 </li>
-<li><p><code>pr</code>: format text into pages/columns</p>
+<li><p><code>pr</code>：将文本格式化成页／列形式</p>
 </li>
-<li><p><code>fold</code>: wrap lines of text</p>
+<li><p><code>fold</code>：包裹文本中的几行</p>
 </li>
-<li><p><code>column</code>: format text fields into aligned, fixed-width columns or tables</p>
+<li><p><code>column</code>：将文本格式化成多个对齐、定宽的列或表格</p>
 </li>
-<li><p><code>expand</code> and <code>unexpand</code>: convert between tabs and spaces</p>
+<li><p><code>expand</code> 和 <code>unexpand</code>：制表符与空格之间转换</p>
 </li>
-<li><p><code>nl</code>: add line numbers</p>
+<li><p><code>nl</code>：添加行号</p>
 </li>
-<li><p><code>seq</code>: print numbers</p>
+<li><p><code>seq</code>：打印数字</p>
 </li>
-<li><p><code>bc</code>: calculator</p>
+<li><p><code>bc</code>：计算器</p>
 </li>
-<li><p><code>factor</code>: factor integers</p>
+<li><p><code>factor</code>：分解因数</p>
 </li>
-<li><p><a href="https://gnupg.org/" target="_blank" rel="external"><code>gpg</code></a>: encrypt and sign files</p>
+<li><p><a href="https://gnupg.org/" target="_blank" rel="external"><code>gpg</code></a>：加密并签名文件</p>
 </li>
-<li><p><code>toe</code>: table of terminfo entries</p>
+<li><p><code>toe</code>：terminfo 入口列表</p>
 </li>
-<li><p><code>nc</code>: network debugging and data transfer</p>
+<li><p><code>nc</code>：网络调试及数据传输</p>
 </li>
-<li><p><code>socat</code>: socket relay and tcp port forwarder (similar to <code>netcat</code>)</p>
+<li><p><code>socat</code>：套接字代理，与 <code>netcat</code> 类似</p>
 </li>
-<li><p><a href="https://github.com/mattthias/slurm" target="_blank" rel="external"><code>slurm</code></a>: network traffic visualization</p>
+<li><p><a href="https://github.com/mattthias/slurm" target="_blank" rel="external"><code>slurm</code></a>：网络流量可视化</p>
 </li>
-<li><p><code>dd</code>: moving data between files or devices</p>
+<li><p><code>dd</code>：文件或设备间传输数据</p>
 </li>
-<li><p><code>file</code>: identify type of a file</p>
+<li><p><code>file</code>：确定文件类型</p>
 </li>
-<li><p><code>tree</code>: display directories and subdirectories as a nesting tree; like <code>ls</code> but recursive</p>
+<li><p><code>tree</code>：以树的形式显示路径和文件，类似于递归的 <code>ls</code></p>
 </li>
-<li><p><code>stat</code>: file info</p>
+<li><p><code>stat</code>：文件信息</p>
 </li>
-<li><p><code>time</code>: execute and time a command</p>
+<li><p><code>time</code>：执行命令，并计算执行时间</p>
 </li>
-<li><p><code>timeout</code>: execute a command for specified amount of time and stop the process when the specified amount of time completes.</p>
+<li><p><code>timeout</code>：在指定时长范围内执行命令，并在规定时间结束后停止进程</p>
 </li>
-<li><p><code>lockfile</code>: create semaphore file that can only be removed by <code>rm -f</code></p>
+<li><p><code>lockfile</code>：使文件只能通过 <code>rm -f</code> 移除</p>
 </li>
-<li><p><code>logrotate</code>: rotate, compress and mail logs.</p>
+<li><p><code>logrotate</code>： 切换、压缩以及发送日志文件</p>
 </li>
-<li><p><code>watch</code>: run a command repeatedly, showing results and/or highlighting changes</p>
+<li><p><code>watch</code>：重复运行同一个命令，展示结果并／或高亮有更改的部分</p>
 </li>
-<li><p><code>tac</code>: print files in reverse</p>
+<li><p><code>tac</code>：反向输出文件</p>
 </li>
-<li><p><code>shuf</code>: random selection of lines from a file</p>
+<li><p><code>shuf</code>：文件中随机选取几行</p>
 </li>
-<li><p><code>comm</code>: compare sorted files line by line</p>
+<li><p><code>comm</code>：一行一行的比较排序过的文件</p>
 </li>
-<li><p><code>pv</code>: monitor the progress of data through a pipe</p>
+<li><p><code>pv</code>：监视通过管道的数据</p>
 </li>
-<li><p><code>strings</code>: extract text from binary files</p>
+<li><p><code>strings</code>：从二进制文件中抽取文本</p>
 </li>
-<li><p><code>tr</code>: character translation or manipulation</p>
+<li><p><code>tr</code>：转换字母</p>
 </li>
-<li><p><code>iconv</code> or <code>uconv</code>: conversion for text encodings</p>
+<li><p><code>iconv</code> 或 <code>uconv</code>：文本编码转换</p>
 </li>
-<li><p><code>split</code> and <code>csplit</code>: splitting files</p>
+<li><p><code>split</code> 和 <code>csplit</code>：分割文件</p>
 </li>
-<li><p><code>sponge</code>: read all input before writing it, useful for reading from then writing to the same file, e.g., <code>grep -v something some-file | sponge some-file</code></p>
+<li><p><code>sponge</code>：在写入前读取所有输入，在读取文件后再向同一文件写入时比较有用，例如 <code>grep -v something some-file | sponge some-file</code></p>
 </li>
-<li><p><code>units</code>: unit conversions and calculations; converts furlongs per fortnight to twips per blink (see also <code>/usr/share/units/definitions.units</code>)</p>
+<li><p><code>units</code>：将一种计量单位转换为另一种等效的计量单位（参阅 <code>/usr/share/units/definitions.units</code>）</p>
 </li>
-<li><p><code>apg</code>: generates random passwords</p>
+<li><p><code>apg</code>：随机生成密码</p>
 </li>
-<li><p><code>xz</code>: high-ratio file compression</p>
+<li><p><code>xz</code>：高比例的文件压缩</p>
 </li>
-<li><p><code>ldd</code>: dynamic library info</p>
+<li><p><code>ldd</code>：动态库信息</p>
 </li>
-<li><p><code>nm</code>: symbols from object files</p>
+<li><p><code>nm</code>：提取 obj 文件中的符号</p>
 </li>
-<li><p><code>ab</code>: benchmarking web servers</p>
+<li><p><code>ab</code>：web 服务器性能分析</p>
 </li>
-<li><p><code>strace</code>: system call debugging</p>
+<li><p><code>strace</code>：调试系统调用</p>
 </li>
-<li><p><a href="http://www.bitwizard.nl/mtr/" target="_blank" rel="external"><code>mtr</code></a>: better traceroute for network debugging</p>
+<li><p><a href="http://www.bitwizard.nl/mtr/" target="_blank" rel="external"><code>mtr</code></a>：更好的网络调试跟踪工具</p>
 </li>
-<li><p><code>cssh</code>: visual concurrent shell</p>
+<li><p><code>cssh</code>：可视化的并发 shell</p>
 </li>
-<li><p><code>rsync</code>: sync files and folders over SSH or in local file system</p>
+<li><p><code>rsync</code>：通过 ssh 或本地文件系统同步文件和文件夹</p>
 </li>
-<li><p><a href="https://wireshark.org/" target="_blank" rel="external"><code>wireshark</code></a> and <a href="https://www.wireshark.org/docs/wsug_html_chunked/AppToolstshark.html" target="_blank" rel="external"><code>tshark</code></a>: packet capture and network debugging</p>
+<li><p><a href="https://wireshark.org/" target="_blank" rel="external"><code>wireshark</code></a> 和 <a href="https://www.wireshark.org/docs/wsug_html_chunked/AppToolstshark.html" target="_blank" rel="external"><code>tshark</code></a>：抓包和网络调试工具</p>
 </li>
-<li><p><a href="http://ngrep.sourceforge.net/" target="_blank" rel="external"><code>ngrep</code></a>: grep for the network layer</p>
+<li><p><a href="http://ngrep.sourceforge.net/" target="_blank" rel="external"><code>ngrep</code></a>：网络层的 grep</p>
 </li>
-<li><p><code>host</code> and <code>dig</code>: DNS lookups</p>
+<li><p><code>host</code> 和 <code>dig</code>：DNS 查找</p>
 </li>
-<li><p><code>lsof</code>: process file descriptor and socket info</p>
+<li><p><code>lsof</code>：列出当前系统打开文件的工具以及查看端口信息</p>
 </li>
-<li><p><code>dstat</code>: useful system stats</p>
+<li><p><code>dstat</code>：系统状态查看</p>
 </li>
-<li><p><a href="https://github.com/nicolargo/glances" target="_blank" rel="external"><code>glances</code></a>: high level, multi-subsystem overview</p>
+<li><p><a href="https://github.com/nicolargo/glances" target="_blank" rel="external"><code>glances</code></a>：高层次的多子系统总览</p>
 </li>
-<li><p><code>iostat</code>: Disk usage stats</p>
+<li><p><code>iostat</code>：硬盘使用状态</p>
 </li>
-<li><p><code>mpstat</code>: CPU usage stats</p>
+<li><p><code>mpstat</code>： CPU 使用状态</p>
 </li>
-<li><p><code>vmstat</code>: Memory usage stats</p>
+<li><p><code>vmstat</code>： 内存使用状态</p>
 </li>
-<li><p><code>htop</code>: improved version of top</p>
+<li><p><code>htop</code>：top 的加强版</p>
 </li>
-<li><p><code>last</code>: login history</p>
+<li><p><code>last</code>：登入记录</p>
 </li>
-<li><p><code>w</code>: who’s logged on</p>
+<li><p><code>w</code>：查看处于登录状态的用户</p>
 </li>
-<li><p><code>id</code>: user/group identity info</p>
+<li><p><code>id</code>：用户/组 ID 信息</p>
 </li>
-<li><p><a href="http://sebastien.godard.pagesperso-orange.fr/" target="_blank" rel="external"><code>sar</code></a>: historic system stats</p>
+<li><p><a href="http://sebastien.godard.pagesperso-orange.fr/" target="_blank" rel="external"><code>sar</code></a>：系统历史数据</p>
 </li>
-<li><p><a href="http://www.ex-parrot.com/~pdw/iftop/" target="_blank" rel="external"><code>iftop</code></a> or <a href="https://github.com/raboof/nethogs" target="_blank" rel="external"><code>nethogs</code></a>: network utilization by socket or process</p>
+<li><p><a href="http://www.ex-parrot.com/~pdw/iftop/" target="_blank" rel="external"><code>iftop</code></a> 或 <a href="https://github.com/raboof/nethogs" target="_blank" rel="external"><code>nethogs</code></a>：套接字及进程的网络利用情况</p>
 </li>
-<li><p><code>ss</code>: socket statistics</p>
+<li><p><code>ss</code>：套接字数据</p>
 </li>
-<li><p><code>dmesg</code>: boot and system error messages</p>
+<li><p><code>dmesg</code>：引导及系统错误信息</p>
 </li>
-<li><p><code>sysctl</code>: view and configure Linux kernel parameters at run time</p>
+<li><p><code>sysctl</code>： 在内核运行时动态地查看和修改内核的运行参数</p>
 </li>
-<li><p><code>hdparm</code>: SATA/ATA disk manipulation/performance</p>
+<li><p><code>hdparm</code>：SATA/ATA 磁盘更改及性能分析</p>
 </li>
-<li><p><code>lsblk</code>: list block devices: a tree view of your disks and disk partitions</p>
+<li><p><code>lsblk</code>：列出块设备信息：以树形展示你的磁盘以及磁盘分区信息</p>
 </li>
-<li><p><code>lshw</code>, <code>lscpu</code>, <code>lspci</code>, <code>lsusb</code>, <code>dmidecode</code>: hardware information, including CPU, BIOS, RAID, graphics, devices, etc.</p>
+<li><p><code>lshw</code>，<code>lscpu</code>，<code>lspci</code>，<code>lsusb</code> 和 <code>dmidecode</code>：查看硬件信息，包括 CPU、BIOS、RAID、显卡、USB设备等</p>
 </li>
-<li><p><code>lsmod</code> and <code>modinfo</code>: List and show details of kernel modules.</p>
+<li><p><code>lsmod</code> 和 <code>modinfo</code>：列出内核模块，并显示其细节</p>
 </li>
-<li><p><code>fortune</code>, <code>ddate</code>, and <code>sl</code>: um, well, it depends on whether you consider steam locomotives and Zippy quotations “useful”</p>
+<li><p><code>fortune</code>，<code>ddate</code> 和 <code>sl</code>：额，这主要取决于你是否认为蒸汽火车和莫名其妙的名人名言是否“有用”</p>
 </li>
 </ul>
-<h2 id="OS-X-only"><a href="#OS-X-only" class="headerlink" title="OS X only"></a>OS X only</h2><p>These are items relevant <em>only</em> on OS X.</p>
+<h2 id="仅限-OS-X-系统"><a href="#仅限-OS-X-系统" class="headerlink" title="仅限 OS X 系统"></a>仅限 OS X 系统</h2><p>以下是<em>仅限于</em> OS X 系统的技巧。</p>
 <ul>
-<li><p>Package management with <code>brew</code> (Homebrew) and/or <code>port</code> (MacPorts). These can be used to install on OS X many of the above commands.</p>
+<li><p>用 <code>brew</code> （Homebrew）或者 <code>port</code> （MacPorts）进行包管理。这些可以用来在 OS X 系统上安装以上的大多数命令。</p>
 </li>
-<li><p>Copy output of any command to a desktop app with <code>pbcopy</code> and paste input from one with <code>pbpaste</code>.</p>
+<li><p>用 <code>pbcopy</code> 复制任何命令的输出到桌面应用，用 <code>pbpaste</code> 粘贴输入。</p>
 </li>
-<li><p>To enable the Option key in OS X Terminal as an alt key (such as used in the commands above like <strong>alt-b</strong>, <strong>alt-f</strong>, etc.), open Preferences -&gt; Profiles -&gt; Keyboard and select “Use Option as Meta key”.</p>
+<li><p>若要在 OS X 终端中将 Option 键视为 alt 键（例如在上面介绍的 <strong>alt-b</strong>、<strong>alt-f</strong> 等命令中用到），打开 偏好设置 -&gt; 描述文件 -&gt; 键盘 并勾选“使用 Option 键作为 Meta 键”。</p>
 </li>
-<li><p>To open a file with a desktop app, use <code>open</code> or <code>open -a /Applications/Whatever.app</code>.</p>
+<li><p>用 <code>open</code> 或者 <code>open -a /Applications/Whatever.app</code> 使用桌面应用打开文件。</p>
 </li>
-<li><p>Spotlight: Search files with <code>mdfind</code> and list metadata (such as photo EXIF info) with <code>mdls</code>.</p>
+<li><p>Spotlight：用 <code>mdfind</code> 搜索文件，用 <code>mdls</code> 列出元数据（例如照片的 EXIF 信息）。</p>
 </li>
-<li><p>Be aware OS X is based on BSD Unix, and many commands (for example <code>ps</code>, <code>ls</code>, <code>tail</code>, <code>awk</code>, <code>sed</code>) have many subtle variations from Linux, which is largely influenced by System V-style Unix and GNU tools. You can often tell the difference by noting a man page has the heading “BSD General Commands Manual.” In some cases GNU versions can be installed, too (such as <code>gawk</code> and <code>gsed</code> for GNU awk and sed). If writing cross-platform Bash scripts, avoid such commands (for example, consider Python or <code>perl</code>) or test carefully.</p>
+<li><p>注意 OS X 系统是基于 BSD UNIX 的，许多命令（例如 <code>ps</code>，<code>ls</code>，<code>tail</code>，<code>awk</code>，<code>sed</code>）都和 Linux 中有微妙的不同（ Linux 很大程度上受到了 System V-style Unix 和 GNU 工具影响）。你可以通过标题为 “BSD General Commands Manual” 的 man 页面发现这些不同。在有些情况下 GNU 版本的命令也可能被安装（例如 <code>gawk</code> 和 <code>gsed</code> 对应 GNU 中的 awk 和 sed ）。如果要写跨平台的 Bash 脚本，避免使用这些命令（例如，考虑 Python 或者 <code>perl</code> ）或者经过仔细的测试。</p>
 </li>
-<li><p>To get OS X release information, use <code>sw_vers</code>.</p>
+<li><p>用 <code>sw_vers</code> 获取 OS X 的版本信息。</p>
 </li>
 </ul>
-<h2 id="Windows-only"><a href="#Windows-only" class="headerlink" title="Windows only"></a>Windows only</h2><p>These items are relevant <em>only</em> on Windows.</p>
+<h2 id="仅限-Windows-系统"><a href="#仅限-Windows-系统" class="headerlink" title="仅限 Windows 系统"></a>仅限 Windows 系统</h2><p>以下是<em>仅限于</em> Windows 系统的技巧。</p>
 <ul>
-<li><p>On Windows 10, you can use <a href="https://msdn.microsoft.com/commandline/wsl/about" target="_blank" rel="external">Bash on Ubuntu on Windows</a>, which provides a familiar Bash environment with Unix command line utilities. On the plus side, this allows Linux programs to run on Windows. On the other hand this does not support the running of Windows programs from the Bash prompt.</p>
+<li><p>在 Windows 10 上，你可以使用 <a href="https://msdn.microsoft.com/commandline/wsl/about" target="_blank" rel="external">Bash on Ubuntu on Windows</a>，它提供了一个熟悉的 Bash 环境，包含了不少 Unix 命令行工具。好处是它允许 Linux 上编写的程序能够在 Windows 上运行，而另一方面，Windows 上编写的程序却无法在 Bash 命令行中运行。</p>
 </li>
-<li><p>Access the power of the Unix shell under Microsoft Windows by installing <a href="https://cygwin.com/" target="_blank" rel="external">Cygwin</a>. Most of the things described in this document will work out of the box.</p>
+<li><p>可以安装 <a href="https://cygwin.com/" target="_blank" rel="external">Cygwin</a> 允许你在 Microsoft Windows 中体验 Unix shell 的威力。这样的话，本文中介绍的大多数内容都将适用。</p>
 </li>
-<li><p>Install additional Unix programs with the Cygwin’s package manager.</p>
+<li><p>通过 Cygwin 的包管理器来安装额外的 Unix 程序。</p>
 </li>
-<li><p>Use <code>mintty</code> as your command-line window.</p>
+<li><p>使用 <code>mintty</code> 作为你的命令行窗口。</p>
 </li>
-<li><p>Access the Windows clipboard through <code>/dev/clipboard</code>.</p>
+<li><p>要访问 Windows 剪贴板，可以通过 <code>/dev/clipboard</code>。</p>
 </li>
-<li><p>Run <code>cygstart</code> to open an arbitrary file through its registered application.</p>
+<li><p>运行 <code>cygstart</code> 以通过默认程序打开一个文件。</p>
 </li>
-<li><p>Access the Windows registry with <code>regtool</code>.</p>
+<li><p>要访问 Windows 注册表，可以使用 <code>regtool</code>。</p>
 </li>
-<li><p>Note that a <code>C:\</code> Windows drive path becomes <code>/cygdrive/c</code> under Cygwin, and that Cygwin’s <code>/</code> appears under <code>C:\cygwin</code> on Windows. Convert between Cygwin and Windows-style file paths with <code>cygpath</code>. This is most useful in scripts that invoke Windows programs.</p>
+<li><p>注意 Windows 驱动器路径 <code>C:\</code> 在 Cygwin 中用 <code>/cygdrive/c</code> 代表，而 Cygwin 的 <code>/</code> 代表 Windows 中的 <code>C:\cygwin</code>。要转换 Cygwin 和 Windows 风格的路径可以用 <code>cygpath</code>。这在需要调用 Windows 程序的脚本里很有用。</p>
 </li>
-<li><p>You can perform and script most Windows system administration tasks from the command line by learning and using <code>wmic</code>.</p>
+<li><p>学会使用 <code>wmic</code>，你就可以从命令行执行大多数 Windows 系统管理任务，并编成脚本。</p>
 </li>
-<li><p>Another option to get Unix look and feel under Windows is <a href="https://github.com/dthree/cash" target="_blank" rel="external">Cash</a>. Note that only very few Unix commands and command-line options are available in this environment.</p>
+<li><p>要在 Windows 下获得 Unix 的界面和体验，另一个办法是使用 <a href="https://github.com/dthree/cash" target="_blank" rel="external">Cash</a>。需要注意的是，这个环境支持的 Unix 命令和命令行参数非常少。</p>
 </li>
-<li><p>An alternative option to get GNU developer tools (such as GCC) on Windows is <a href="http://www.mingw.org/" target="_blank" rel="external">MinGW</a> and its <a href="http://www.mingw.org/wiki/msys" target="_blank" rel="external">MSYS</a> package, which provides utilities such as bash, gawk, make and grep. MSYS doesn’t have all the features compared to Cygwin. MinGW is particularly useful for creating native Windows ports of Unix tools.</p>
+<li><p>要在 Windows 上获取 GNU 开发者工具（比如 GCC）的另一个办法是使用 <a href="http://www.mingw.org/" target="_blank" rel="external">MinGW</a> 以及它的 <a href="http://www.mingw.org/wiki/msys" target="_blank" rel="external">MSYS</a> 软件包，该软件包提供了 bash、gawk、make、grep 等工具。然而 MSYS 提供的功能没有 Cygwin 完善。MinGW 在创建 Unix 工具的 Windows 原生移植方面非常有用。</p>
 </li>
 </ul>
-<h2 id="More-resources"><a href="#More-resources" class="headerlink" title="More resources"></a>More resources</h2><ul>
-<li><a href="https://github.com/alebcay/awesome-shell" target="_blank" rel="external">awesome-shell</a>: A curated list of shell tools and resources.</li>
-<li><a href="https://github.com/herrbischoff/awesome-osx-command-line" target="_blank" rel="external">awesome-osx-command-line</a>: A more in-depth guide for the OS X command line.</li>
-<li><a href="http://redsymbol.net/articles/unofficial-bash-strict-mode/" target="_blank" rel="external">Strict mode</a> for writing better shell scripts.</li>
-<li><a href="https://github.com/koalaman/shellcheck" target="_blank" rel="external">shellcheck</a>: A shell script static analysis tool. Essentially, lint for bash/sh/zsh.</li>
-<li><a href="http://www.dwheeler.com/essays/filenames-in-shell.html" target="_blank" rel="external">Filenames and Pathnames in Shell</a>: The sadly complex minutiae on how to handle filenames correctly in shell scripts.</li>
-<li><a href="http://datascienceatthecommandline.com/#tools" target="_blank" rel="external">Data Science at the Command Line</a>: More commands and tools helpful for doing data science, from the book of the same name</li>
+<h2 id="更多资源"><a href="#更多资源" class="headerlink" title="更多资源"></a>更多资源</h2><ul>
+<li><a href="https://github.com/alebcay/awesome-shell" target="_blank" rel="external">awesome-shell</a>：一份精心组织的命令行工具及资源的列表。</li>
+<li><a href="https://github.com/herrbischoff/awesome-osx-command-line" target="_blank" rel="external">awesome-osx-command-line</a>：一份针对 OS X 命令行的更深入的指南。</li>
+<li><a href="http://redsymbol.net/articles/unofficial-bash-strict-mode/" target="_blank" rel="external">Strict mode</a>：为了编写更好的脚本文件。</li>
+<li><a href="https://github.com/koalaman/shellcheck" target="_blank" rel="external">shellcheck</a>：一个静态 shell 脚本分析工具，本质上是 bash／sh／zsh 的 lint。</li>
+<li><a href="http://www.dwheeler.com/essays/filenames-in-shell.html" target="_blank" rel="external">Filenames and Pathnames in Shell</a>：有关如何在 shell 脚本里正确处理文件名的细枝末节。</li>
+<li><a href="http://datascienceatthecommandline.com/#tools" target="_blank" rel="external">Data Science at the Command Line</a>：用于数据科学的一些命令和工具，摘自同名书籍。</li>
 </ul>
-<h2 id="Disclaimer"><a href="#Disclaimer" class="headerlink" title="Disclaimer"></a>Disclaimer</h2><p>With the exception of very small tasks, code is written so others can read it. With power comes responsibility. The fact you <em>can</em> do something in Bash doesn’t necessarily mean you should! ;)</p>
-<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="external"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons License"></a></p>
-<p>This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="external">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<h2 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h2><p>除去特别小的工作，你编写的代码应当方便他人阅读。能力往往伴随着责任，你 <em>有能力</em> 在 Bash 中玩一些奇技淫巧并不意味着你应该去做！;)</p>
+<h2 id="授权条款"><a href="#授权条款" class="headerlink" title="授权条款"></a>授权条款</h2><p><a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="external"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons License"></a></p>
+<p>本文使用授权协议 <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="external">Creative Commons Attribution-ShareAlike 4.0 International License</a>。</p>
 
       
     </div>
@@ -1036,7 +1034,7 @@ Disclaimer">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Art-of-Command-Line"><span class="nav-number">1.</span> <span class="nav-text">The Art of Command Line</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Meta"><span class="nav-number">1.1.</span> <span class="nav-text">Meta</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basics"><span class="nav-number">1.2.</span> <span class="nav-text">Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Everyday-use"><span class="nav-number">1.3.</span> <span class="nav-text">Everyday use</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Processing-files-and-data"><span class="nav-number">1.4.</span> <span class="nav-text">Processing files and data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-debugging"><span class="nav-number">1.5.</span> <span class="nav-text">System debugging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-liners"><span class="nav-number">1.6.</span> <span class="nav-text">One-liners</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Obscure-but-useful"><span class="nav-number">1.7.</span> <span class="nav-text">Obscure but useful</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OS-X-only"><span class="nav-number">1.8.</span> <span class="nav-text">OS X only</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows-only"><span class="nav-number">1.9.</span> <span class="nav-text">Windows only</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-resources"><span class="nav-number">1.10.</span> <span class="nav-text">More resources</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Disclaimer"><span class="nav-number">1.11.</span> <span class="nav-text">Disclaimer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">1.12.</span> <span class="nav-text">License</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行的艺术"><span class="nav-number">1.</span> <span class="nav-text">命令行的艺术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">1.2.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日常使用"><span class="nav-number">1.3.</span> <span class="nav-text">日常使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件及数据处理"><span class="nav-number">1.4.</span> <span class="nav-text">文件及数据处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统调试"><span class="nav-number">1.5.</span> <span class="nav-text">系统调试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单行脚本"><span class="nav-number">1.6.</span> <span class="nav-text">单行脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冷门但有用"><span class="nav-number">1.7.</span> <span class="nav-text">冷门但有用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仅限-OS-X-系统"><span class="nav-number">1.8.</span> <span class="nav-text">仅限 OS X 系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仅限-Windows-系统"><span class="nav-number">1.9.</span> <span class="nav-text">仅限 Windows 系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多资源"><span class="nav-number">1.10.</span> <span class="nav-text">更多资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#免责声明"><span class="nav-number">1.11.</span> <span class="nav-text">免责声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#授权条款"><span class="nav-number">1.12.</span> <span class="nav-text">授权条款</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
