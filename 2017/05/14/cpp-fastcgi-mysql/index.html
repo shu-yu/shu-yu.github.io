@@ -85,27 +85,18 @@
 
 
 <meta name="description" content="背景介绍
-公司内部自研的WebServer支持fastcgi模式，对于C++语言，需要将代码编译为动态库。当WebServer启动的时候，会根据配置文件，启动指定数量的fastcgi进程，将对应的动态库加载到内存。对于后续的http请求，由WebServer指定空闲的fastcgi进行处理。
-
-MySQL相关问题频繁创建与销毁MySQL连接
-虽然fastcgi是常驻内存的，但每次fastcgi处理">
+公司内部自研的WebServer支持fastcgi模式，对于C++语言，需要将代码编译为动态库。当WebServer启动的时候，会根据配置文件，启动指定数量的fastcgi进程，将对应的动态库加载到内存。对于后续的http请求，由WebServer指定空闲的fastcgi进行处理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ fastcgi模式下MySQL问题汇总">
 <meta property="og:url" content="http://shuyufang.com/2017/05/14/cpp-fastcgi-mysql/index.html">
 <meta property="og:site_name" content="Shuyufang's Blog">
 <meta property="og:description" content="背景介绍
-公司内部自研的WebServer支持fastcgi模式，对于C++语言，需要将代码编译为动态库。当WebServer启动的时候，会根据配置文件，启动指定数量的fastcgi进程，将对应的动态库加载到内存。对于后续的http请求，由WebServer指定空闲的fastcgi进行处理。
-
-MySQL相关问题频繁创建与销毁MySQL连接
-虽然fastcgi是常驻内存的，但每次fastcgi处理">
-<meta property="og:updated_time" content="2017-05-18T14:42:56.000Z">
+公司内部自研的WebServer支持fastcgi模式，对于C++语言，需要将代码编译为动态库。当WebServer启动的时候，会根据配置文件，启动指定数量的fastcgi进程，将对应的动态库加载到内存。对于后续的http请求，由WebServer指定空闲的fastcgi进行处理。">
+<meta property="og:updated_time" content="2017-05-18T14:45:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ fastcgi模式下MySQL问题汇总">
 <meta name="twitter:description" content="背景介绍
-公司内部自研的WebServer支持fastcgi模式，对于C++语言，需要将代码编译为动态库。当WebServer启动的时候，会根据配置文件，启动指定数量的fastcgi进程，将对应的动态库加载到内存。对于后续的http请求，由WebServer指定空闲的fastcgi进行处理。
-
-MySQL相关问题频繁创建与销毁MySQL连接
-虽然fastcgi是常驻内存的，但每次fastcgi处理">
+公司内部自研的WebServer支持fastcgi模式，对于C++语言，需要将代码编译为动态库。当WebServer启动的时候，会根据配置文件，启动指定数量的fastcgi进程，将对应的动态库加载到内存。对于后续的http请求，由WebServer指定空闲的fastcgi进行处理。">
 
 
 
@@ -357,6 +348,7 @@ MySQL相关问题频繁创建与销毁MySQL连接
         <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><ul>
 <li>公司内部自研的WebServer支持fastcgi模式，对于C++语言，需要将代码编译为动态库。当WebServer启动的时候，会根据配置文件，启动指定数量的fastcgi进程，将对应的动态库加载到内存。对于后续的http请求，由WebServer指定空闲的fastcgi进行处理。</li>
 </ul>
+<a id="more"></a>
 <h2 id="MySQL相关问题"><a href="#MySQL相关问题" class="headerlink" title="MySQL相关问题"></a>MySQL相关问题</h2><h3 id="频繁创建与销毁MySQL连接"><a href="#频繁创建与销毁MySQL连接" class="headerlink" title="频繁创建与销毁MySQL连接"></a>频繁创建与销毁MySQL连接</h3><ul>
 <li>虽然fastcgi是常驻内存的，但每次fastcgi处理请求的时候，如果涉及MySQL处理，需要实时创建MySQL连接，处理完之后再将其销毁。这种方式虽然能正常处理请求，但是频繁地创建和销毁连接，不仅耗时，而且对数据库也会产生不小的压力。既然fastcgi是常驻内存的，那么可以采用单例模式来保存该连接，每次处理请求的时候，如果没有现成的连接，则创建新的连接并存储到单例中，如果已经有现成的连接，那么直接复用即可。</li>
 </ul>
