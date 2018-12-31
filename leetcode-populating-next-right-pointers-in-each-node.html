@@ -243,7 +243,7 @@ public:
         <a class="read-next-story " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-unique-binary-search-trees-ii">
             <section class="post">
                 <h2>LeetCode 95 [Unique Binary Search Trees II]</h2>
-                <p>## 题目链接 - [https://leetcode.com/problems/unique-binary-search-trees-ii/](https://leetcode.com/problems/unique-binary-search-trees-ii/) ## 题目描述 - 给定一个整数，要求返回所有由值为1-n的结点组成的二叉排序树。 ## 解题思路 1. 首先需要考虑n的取值，若取值不大于0，则不会形成任何二叉树。 2. 对于n>0的情况，可以用分治的思想来处理，每个结点轮流作为根结点，那么它的左子树就是由所有比该结点的值小的其他结点构成的，它的右子树就是由所有比该结点大的值构成的。 3....</p>
+                
             </section>
         </a>
     
@@ -253,7 +253,7 @@ public:
         <a class="read-next-story prev " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-populating-next-right-pointers-in-each-node-ii">
             <section class="post">
                 <h2>LeetCode 117 [Populating Next Right Pointers in Each Node II]</h2>
-                <p>题目链接 https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/ 题目描述 给定一颗二叉树，要求将每个结点的next指针指向它右侧的结点，若它右侧没有结点，则指向NULL，处理过程只能使用常量复杂度的空间。 解题思路 本题与题目116不一样的地方在于给定的二叉树是普通的，除了二叉树的基本特征之外，没有其他可以利用的特点。 若不限制使用的空间的复杂度，我们就可以通过遍历，把每一层最近一次被访问的结点记录下来，每次访问到同一层的下一个结点，就把记录的同层的结点的next指针指向当前结点，再把当前结点作为本层最近一次被访问的结点记录下来，这样遍历完之后next指针也就构建完毕了。 对于限制空间复杂度的条件，我们只能通过时间换空间的方式来解决。解决的方式是每一次遍历，目标仅针对特定某一层的结点，具体步骤如下： 假如根结点深度为0，叶结点最深的深度为h，在进行每一轮遍历之前，将辅助记录本层上一次访问的结点的指针置为NULL。 进行一轮遍历时，从根结点开始，若当前结点的深度与本次遍历的目标层的深度一致，则对应更新next指针与辅助指针，对于深度超过目标的结点不需要遍历。 每一轮遍历结束之后，若辅助指针不为NULL，说明需要继续下一轮遍历. 经过h轮遍历之后，next指针即构建完毕。 假设二叉树高度为h，则处理过程对树遍历了h轮，设 0 &lt;...</p>
+                
             </section>
         </a>
     
