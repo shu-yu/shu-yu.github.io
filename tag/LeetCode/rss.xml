@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>shuyufang.com/</title>
+   
+   <link>http://localhost:4000</link>
+   <description>ShuyuFang's Blog</description>
+   <language>en-uk</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>LeetCode 95 [Unique Binary Search Trees II]</title>
+	  <link>//leetcode-unique-binary-search-trees-ii</link>
+	  <author></author>
+	  <pubDate>2017-04-01T00:00:00+08:00</pubDate>
+	  <guid>//leetcode-unique-binary-search-trees-ii</guid>
+	  <description><![CDATA[
+	     <h2 id="题目链接">题目链接</h2>
+<ul>
+  <li><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/">https://leetcode.com/problems/unique-binary-search-trees-ii/</a></li>
+</ul>
+
+<h2 id="题目描述">题目描述</h2>
+<ul>
+  <li>给定一个整数，要求返回所有由值为1-n的结点组成的二叉排序树。</li>
+</ul>
+
+<h2 id="解题思路">解题思路</h2>
+<ol>
+  <li>首先需要考虑n的取值，若取值不大于0，则不会形成任何二叉树。</li>
+  <li>对于n&gt;0的情况，可以用分治的思想来处理，每个结点轮流作为根结点，那么它的左子树就是由所有比该结点的值小的其他结点构成的，它的右子树就是由所有比该结点大的值构成的。</li>
+  <li>对于左子树与右子树，又可以轮流以某个结点作为根结点，一直到无法再分为止。</li>
+  <li>由于左子树可能有a种形式，右子树也可能有b种形式，所以以某个结点为根的树的集合其实需要对左右子树的情况进行一一匹配，最终可以得出a*b种形式。</li>
+  <li>需要特别注意一种情况，子树为空或者仅有一个结点，这两种情况实质都包含了一种形式，需要同等考虑。</li>
+  <li>每次以某个结点为根进行计算，平均时间复杂度为O(log n)，对n个结点进行计算，时间复杂度即为O(n * log n)。</li>
+</ol>
+
+<h2 id="c代码">C++代码</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector&lt;TreeNode*&gt; generateTrees(int n) {
+        vector&lt;TreeNode*&gt; result;
+        if (n &lt; 1) {
+            return result;
+        }
+        return generateTreesOfRange(1, n);
+    }
+    vector&lt;TreeNode*&gt; generateTreesOfRange(int beg, int end) {
+        vector&lt;TreeNode*&gt; result;
+        if (beg &gt; end) {
+            result.push_back(NULL);
+            return result;
+        }
+        for (int i = beg; i &lt;= end; ++i) {
+            vector&lt;TreeNode*&gt; leftTrees = generateTreesOfRange(beg, i - 1);
+            vector&lt;TreeNode*&gt; rightTrees = generateTreesOfRange(i + 1, end);
+            for (int j = 0; j &lt; leftTrees.size(); ++j) {
+                for (int k = 0; k &lt; rightTrees.size(); ++k) {
+                    TreeNode* root = new TreeNode(i);
+                    root-&gt;left = leftTrees[j];
+                    root-&gt;right = rightTrees[k];
+                    result.push_back(root);
+                }
+            }
+        }
+        return result;
+    }
+};
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>LeetCode 116 [Populating Next Right Pointers in Each Node]</title>
+	  <link>//leetcode-populating-next-right-pointers-in-each-node</link>
+	  <author></author>
+	  <pubDate>2017-04-01T00:00:00+08:00</pubDate>
+	  <guid>//leetcode-populating-next-right-pointers-in-each-node</guid>
+	  <description><![CDATA[
+	     <h2 id="题目链接">题目链接</h2>
+<ul>
+  <li><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node/">https://leetcode.com/problems/populating-next-right-pointers-in-each-node/</a></li>
+</ul>
+
+<h2 id="题目描述">题目描述</h2>
+<ul>
+  <li>给定一颗完美二叉树，要求将每个结点的next指针指向它右侧的结点，若它右侧没有结点，则指向NULL，处理过程只能使用常量复杂度的空间。</li>
+</ul>
+
+<h2 id="解题思路">解题思路</h2>
+<ol>
+  <li>对于任意两个在完美二叉树上左右相邻的结点，它们必定满足以下两个规则之一：
+    <ol>
+      <li>它们有同一个父结点，即任意一个结点的左右子结点必然是相邻的。</li>
+      <li>两个结点的父结点相邻，并且位于左侧的结点是它的父结点的右子结点，位于右侧的结点是它的父结点的左子结点。</li>
+    </ol>
+  </li>
+  <li>既然确定了左右相邻的结点的特征，那么只需要从根结点开始遍历树的所有结点并对应处理即可，处理过程如下：
+    <ol>
+      <li>对于每个结点，若左子结点存在，那么右子结点也必然存在，则将左子结点的next指针指向右子结点。</li>
+      <li>对于每个结点，若它的左子结点也存在右子结点，那么它的右子结点也存在左子结点，则将它的左子结点的右子结点的next指针，指向它的右子结点的左子结点。</li>
+    </ol>
+  </li>
+  <li>处理过程中，每个结点都被遍历了一次，因此时间复杂度是O(n)。</li>
+</ol>
+
+<h2 id="c代码">C++代码</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void connect(TreeLinkNode *root) {
+        if (!root) return;
+        if (root-&gt;next &amp;&amp; root-&gt;right) root-&gt;right-&gt;next = root-&gt;next-&gt;left;
+        if (root-&gt;left) {
+            root-&gt;left-&gt;next = root-&gt;right;
+            connect(root-&gt;left);
+            connect(root-&gt;right);
+        }
+    }
+};
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>LeetCode 117 [Populating Next Right Pointers in Each Node II]</title>
+	  <link>//leetcode-populating-next-right-pointers-in-each-node-ii</link>
+	  <author></author>
+	  <pubDate>2017-04-01T00:00:00+08:00</pubDate>
+	  <guid>//leetcode-populating-next-right-pointers-in-each-node-ii</guid>
+	  <description><![CDATA[
+	     <h2 id="题目链接">题目链接</h2>
+<ul>
+  <li><a href="https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/">https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/</a></li>
+</ul>
+
+<h2 id="题目描述">题目描述</h2>
+<ul>
+  <li>给定一颗二叉树，要求将每个结点的next指针指向它右侧的结点，若它右侧没有结点，则指向NULL，处理过程只能使用常量复杂度的空间。</li>
+</ul>
+
+<h2 id="解题思路">解题思路</h2>
+<ol>
+  <li>本题与题目116不一样的地方在于给定的二叉树是普通的，除了二叉树的基本特征之外，没有其他可以利用的特点。</li>
+  <li>若不限制使用的空间的复杂度，我们就可以通过遍历，把每一层最近一次被访问的结点记录下来，每次访问到同一层的下一个结点，就把记录的同层的结点的next指针指向当前结点，再把当前结点作为本层最近一次被访问的结点记录下来，这样遍历完之后next指针也就构建完毕了。</li>
+  <li>对于限制空间复杂度的条件，我们只能通过时间换空间的方式来解决。解决的方式是每一次遍历，目标仅针对特定某一层的结点，具体步骤如下：
+    <ol>
+      <li>假如根结点深度为0，叶结点最深的深度为h，在进行每一轮遍历之前，将辅助记录本层上一次访问的结点的指针置为NULL。</li>
+      <li>进行一轮遍历时，从根结点开始，若当前结点的深度与本次遍历的目标层的深度一致，则对应更新next指针与辅助指针，对于深度超过目标的结点不需要遍历。</li>
+      <li>每一轮遍历结束之后，若辅助指针不为NULL，说明需要继续下一轮遍历.</li>
+      <li>经过h轮遍历之后，next指针即构建完毕。</li>
+    </ol>
+  </li>
+  <li>假设二叉树高度为h，则处理过程对树遍历了h轮，设 0 &lt; i &lt;= h，则第i轮最多遍历 sum(2^0 + 2^1 + … + 2^(i-1)) 个结点，第i轮遍历的时间复杂度为O(2^i)，因此最终时间复杂度为O(h * 2^h)。</li>
+</ol>
+
+<h2 id="c代码">C++代码</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * Definition for binary tree with next pointer.
+ * struct TreeLinkNode {
+ *  int val;
+ *  TreeLinkNode *left, *right, *next;
+ *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    void travel(TreeLinkNode* node, int height, TreeLinkNode** lastNode, int level) {
+    	if (!node) {
+    		return;
+    	}
+    	if (height == level) {
+    		if (*lastNode) {
+    			(*lastNode)-&gt;next = node;
+    		}
+    		*lastNode = node;
+    		return;
+    	}
+    	travel(node-&gt;left, height + 1, lastNode, level);
+    	travel(node-&gt;right, height + 1, lastNode, level);
+    }
+    
+    void connect(TreeLinkNode *root) {
+    	TreeLinkNode* lastNode = NULL;
+    	int level = 0;
+    	do {
+    		lastNode = NULL;
+    		travel(root, 0, &amp;lastNode, level);
+            level++;
+    	} while (lastNode);
+    }
+};
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>LeetCode 108 [Convert Sorted Array to Binary Search Tree]</title>
+	  <link>//leetcode-convert-sorted-array-to-binary-search-tree</link>
+	  <author></author>
+	  <pubDate>2017-04-01T00:00:00+08:00</pubDate>
+	  <guid>//leetcode-convert-sorted-array-to-binary-search-tree</guid>
+	  <description><![CDATA[
+	     <h2 id="题目链接">题目链接</h2>
+<ul>
+  <li><a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/">https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/</a></li>
+</ul>
+
+<h2 id="题目描述">题目描述</h2>
+<ul>
+  <li>给定一个由小到大排好序的数组，要求将每个数组的值作为一个结点的值，将结点构建成一棵平衡的二叉排序树。</li>
+</ul>
+
+<h2 id="解题思路">解题思路</h2>
+<ol>
+  <li>如果二叉树是平衡的，则它的任意一个结点的左子树和右子树的高度差不超过1。</li>
+  <li>数组是由小到大有序的，可以考虑用二分法找到中间元素作为根结点的值，再把根结点的左右两边看成两个子数组，左子数组的元素都比根结点的值小，右子数组的元素都比根结点的值大。若原数组的元素个数是奇数，那么根结点的值刚好是位于中间的元素，左右子数组的元素个数相同；若原数组的元素个数是偶数，那么根结点的值则是中间偏左的元素或中间偏右的元素，左右子数组的元素个数差值为1。继续对左右子数组进行递归处理，直到不能再划分。</li>
+  <li>用这种方法，最后一层得到树必然是平衡的，根结点的父结点对应的树也是平衡的，进而可以推断出最终构建出来的二叉树是二叉平衡树。另外，在每次构建过程中都可以保证左子树的所有结点的值都比根结点小，右子树的所有结点的值都比根结点大，因此最终构建出来的二叉树是二叉排序树。</li>
+  <li>若原数组元素个数为n，则处理过程的时间复杂度为O(log n)。</li>
+</ol>
+
+<h2 id="c代码">C++代码</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* sortedArrayToBST(vector&lt;int&gt;&amp; nums) {
+        return convert(nums, 0, nums.size() - 1);
+    }
+    TreeNode* convert(vector&lt;int&gt;&amp; nums, int begin, int end) {
+        if (begin &gt; end) {
+            return NULL;
+        }
+        if (begin == end) {
+            return new TreeNode(nums[begin]);
+        }
+        int mid = ((begin + end) &gt;&gt; 1);
+        TreeNode* node = new TreeNode(nums[mid]);
+        node-&gt;left = convert(nums, begin, mid - 1);
+        node-&gt;right = convert(nums, mid + 1, end);
+        return node;
+    }
+};
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

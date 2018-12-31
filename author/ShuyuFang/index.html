@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>Void Programmer</title>
+    <title>Author</title>
     <meta name="description" content="ShuyuFang's Blog" />
 
     <!-- Mobile Meta -->
@@ -26,31 +26,31 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="http://localhost:4000//" />
+        <link rel="canonical" href="http://localhost:4000//author/ShuyuFang/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="Void Programmer" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Void Programmer" />
+    <meta property="og:title" content="Author" />
     <meta property="og:description" content="ShuyuFang's Blog" />
-    <meta property="og:url" content="http://localhost:4000//" />
-    <meta property="og:image" content="/assets/images/cover.jpg" />
+    <meta property="og:url" content="http://localhost:4000//author/ShuyuFang/" />
+    <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Void Programmer" />
+    <meta name="twitter:title" content="Author" />
     <meta name="twitter:description" content="ShuyuFang's Blog" />
-    <meta name="twitter:url" content="http://localhost:4000//" />
-    <meta name="twitter:image:src" content="/assets/images/cover.jpg" />
+    <meta name="twitter:url" content="http://localhost:4000//author/ShuyuFang/" />
+    <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "Void Programmer",
-    "name": "Void Programmer",
-    "url": "http://localhost:4000//",
-    "image": "/assets/images/cover.jpg",
+    "name": "Author",
+    "url": "http://localhost:4000//author/ShuyuFang/",
+    "image": "/assets/images/cover4.jpg",
     "description": "ShuyuFang's Blog"
 }
     </script>
@@ -60,7 +60,7 @@
 
 
 </head>
-<body class="home-template nav-closed">
+<body class="author-template nav-closed">
 
     <!-- The blog navigation links -->
     <div class="nav">
@@ -69,7 +69,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         <li class="nav-fables " role="presentation"><a href="/tag/fables">Fables</a></li>
         <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li>
@@ -84,31 +84,51 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover.jpg) ">
-    <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+<!-- The big featured header -->
+
+<!-- Everything inside the #author tags pulls data from the author -->
+<!-- #author  -->
+    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
+        <nav class="main-nav overlay clearfix">
+            <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+            
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
         
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+                
+                <figure class="author-image">
+                    <div class="img" style="background-image: url(/assets/images/favicon.ico)"><span class="hidden">ShuyuFang's Picture</span></div>
+                </figure>
+                
+                <h1 class="author-title">ShuyuFang</h1>
+                
+                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
+                        <h2 class="author-bio">Void programmer.</h2>
+                    </div>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location">Shenzhen, China</span>
+                    <span class="author-link icon-link"><a href="http://shuyufang.com">shuyufang.com</a></span>
+                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
+                    <span class="author-stats"><i class="icon-stats"></i>5 posts</span>
+                </div>
+            
         
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">Void Programmer</h1>
-            <h2 class="page-description">ShuyuFang's Blog</h2>
-        </div>
-    </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
+    </section>
+<!-- /author -->
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    <!-- The tag below includes the post loop - partials/loop.hbs  -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>shuyufang.com/</title>
+   
+   <link>http://localhost:4000</link>
+   <description>ShuyuFang's Blog</description>
+   <language>en-uk</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>常用哈希函数C语言实现</title>
+	  <link>//hash-functions-c</link>
+	  <author></author>
+	  <pubDate>2017-04-22T00:00:00+08:00</pubDate>
+	  <guid>//hash-functions-c</guid>
+	  <description><![CDATA[
+	     <h2 id="sdbm-hash">SDBM Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int SDBMHash(char *str)
+{
+    unsigned int hash = 0;
+ 
+    while (*str)
+    {
+        // equivalent to: hash = 65599*hash + (*str++);
+        hash = (*str++) + (hash &lt;&lt; 6) + (hash &lt;&lt; 16) - hash;
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+<h2 id="rs-hash">RS Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int RSHash(char *str)
+{
+    unsigned int b = 378551;
+    unsigned int a = 63689;
+    unsigned int hash = 0;
+ 
+    while (*str)
+    {
+        hash = hash * a + (*str++);
+        a *= b;
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+<h2 id="js-hash">JS Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int JSHash(char *str)
+{
+    unsigned int hash = 1315423911;
+ 
+    while (*str)
+    {
+        hash ^= ((hash &lt;&lt; 5) + (*str++) + (hash &gt;&gt; 2));
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+<h2 id="p-j-weinberger-hash">P. J. Weinberger Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int PJWHash(char *str)
+{
+    unsigned int BitsInUnignedInt = (unsigned int)(sizeof(unsigned int) * 8);
+    unsigned int ThreeQuarters    = (unsigned int)((BitsInUnignedInt  * 3) / 4);
+    unsigned int OneEighth = (unsigned int)(BitsInUnignedInt / 8);
+    unsigned int HighBits = (unsigned int)(0xFFFFFFFF) &lt;&lt; (BitsInUnignedInt 
+                                               - OneEighth);
+    unsigned int hash    = 0;
+    unsigned int test    = 0;
+ 
+    while (*str)
+    {
+        hash = (hash &lt;&lt; OneEighth) + (*str++);
+        if ((test = hash &amp; HighBits) != 0)
+        {
+            hash = ((hash ^ (test &gt;&gt; ThreeQuarters)) &amp; (~HighBits));
+        }
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+<h2 id="elf-hash">ELF Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int ELFHash(char *str)
+{
+    unsigned int hash = 0;
+    unsigned int x    = 0;
+ 
+    while (*str)
+    {
+        hash = (hash &lt;&lt; 4) + (*str++);
+        if ((x = hash &amp; 0xF0000000L) != 0)
+        {
+            hash ^= (x &gt;&gt; 24);
+            hash &amp;= ~x;
+        }
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+<h2 id="bkdr-hash">BKDR Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int BKDRHash(char *str)
+{
+    unsigned int seed = 131; // 31 131 1313 13131 131313 etc..
+    unsigned int hash = 0;
+ 
+    while (*str)
+    {
+        hash = hash * seed + (*str++);
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+<h2 id="djb-hash">DJB Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int DJBHash(char *str)
+{
+    unsigned int hash = 5381;
+ 
+    while (*str)
+    {
+        hash += (hash &lt;&lt; 5) + (*str++);
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+<h2 id="ap-hash">AP Hash</h2>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>unsigned int APHash(char *str)
+{
+    unsigned int hash = 0;
+    int i;
+ 
+    for (i=0; *str; i++)
+    {
+        if ((i &amp; 1) == 0)
+        {
+            hash ^= ((hash &lt;&lt; 7) ^ (*str++) ^ (hash &gt;&gt; 3));
+        }
+        else
+        {
+            hash ^= (~((hash &lt;&lt; 11) ^ (*str++) ^ (hash &gt;&gt; 5)));
+        }
+    }
+ 
+    return (hash &amp; 0x7FFFFFFF);
+}
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
