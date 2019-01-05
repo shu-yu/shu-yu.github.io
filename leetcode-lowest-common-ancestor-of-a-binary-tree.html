@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>LeetCode 95 [Unique Binary Search Trees II]</title>
+    <title>LeetCode 236 [Lowest Common Ancestor of a Binary Tree]</title>
     <meta name="description" content="唯刀百辟 唯心不易" />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+        <link rel="canonical" href="http://localhost:4000//leetcode-lowest-common-ancestor-of-a-binary-tree" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="Void Programmer" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="LeetCode 95 [Unique Binary Search Trees II]" />
+    <meta property="og:title" content="LeetCode 236 [Lowest Common Ancestor of a Binary Tree]" />
     <meta property="og:description" content="唯刀百辟 唯心不易" />
-    <meta property="og:url" content="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+    <meta property="og:url" content="http://localhost:4000//leetcode-lowest-common-ancestor-of-a-binary-tree" />
     <meta property="og:image" content="/assets/images/article_cover/leetcode.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LeetCode 95 [Unique Binary Search Trees II]" />
+    <meta name="twitter:title" content="LeetCode 236 [Lowest Common Ancestor of a Binary Tree]" />
     <meta name="twitter:description" content="唯刀百辟 唯心不易" />
-    <meta name="twitter:url" content="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+    <meta name="twitter:url" content="http://localhost:4000//leetcode-lowest-common-ancestor-of-a-binary-tree" />
     <meta name="twitter:image:src" content="/assets/images/article_cover/leetcode.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "Void Programmer",
-    "name": "LeetCode 95 [Unique Binary Search Trees II]",
-    "url": "http://localhost:4000//leetcode-unique-binary-search-trees-ii",
+    "name": "LeetCode 236 [Lowest Common Ancestor of a Binary Tree]",
+    "url": "http://localhost:4000//leetcode-lowest-common-ancestor-of-a-binary-tree",
     "image": "/assets/images/article_cover/leetcode.jpg",
     "description": "唯刀百辟 唯心不易"
 }
@@ -106,7 +106,7 @@
     <article class="post tag-test tag-content">
 
         <header class="post-header">
-            <h1 class="post-title">LeetCode 95 [Unique Binary Search Trees II]</h1>
+            <h1 class="post-title">LeetCode 236 [Lowest Common Ancestor of a Binary Tree]</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -115,7 +115,7 @@
                     <a href='/author/ShuyuFang'>ShuyuFang</a>
                 
             
-            <time class="post-date" datetime="2017-04-01">01 Apr 2017</time>
+            <time class="post-date" datetime="2017-03-13">13 Mar 2017</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
@@ -132,22 +132,48 @@
 
             <h2 id="题目链接">题目链接</h2>
 <ul>
-  <li><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/">https://leetcode.com/problems/unique-binary-search-trees-ii/</a></li>
+  <li><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/</a></li>
 </ul>
 
 <h2 id="题目描述">题目描述</h2>
 <ul>
-  <li>给定一个整数，要求返回所有由值为1-n的结点组成的二叉排序树。</li>
+  <li>给定一颗二叉树，查找两个结点的最近公共祖先。最近公共祖先的定义：二叉树里面同时拥有两个给定后代结点的高度最低的结点，一个结点可以作为它自己的祖先结点。</li>
 </ul>
 
 <h2 id="解题思路">解题思路</h2>
 <ol>
-  <li>首先需要考虑n的取值，若取值不大于0，则不会形成任何二叉树。</li>
-  <li>对于n&gt;0的情况，可以用分治的思想来处理，每个结点轮流作为根结点，那么它的左子树就是由所有比该结点的值小的其他结点构成的，它的右子树就是由所有比该结点大的值构成的。</li>
-  <li>对于左子树与右子树，又可以轮流以某个结点作为根结点，一直到无法再分为止。</li>
-  <li>由于左子树可能有a种形式，右子树也可能有b种形式，所以以某个结点为根的树的集合其实需要对左右子树的情况进行一一匹配，最终可以得出a*b种形式。</li>
-  <li>需要特别注意一种情况，子树为空或者仅有一个结点，这两种情况实质都包含了一种形式，需要同等考虑。</li>
-  <li>每次以某个结点为根进行计算，平均时间复杂度为O(log n)，对n个结点进行计算，时间复杂度即为O(n * log n)。</li>
+  <li>一开始的思路：
+    <ol>
+      <li>只要根结点不为NULL，那么它肯定是任意两个结点的公共祖先。从根结点出发到达两个给定结点，可以得到两条路径（类似链表），这两条路径的起始结点都是根结点，沿着路径逐个对比，它们最后一个公共结点就是待查找的最近公共祖先。实际处理的时候，不需要以链表的方式生成一条路径，我的想法是使用包含bool元素的vector记录每次向左还是向右走，这样也可以表示路径信息。</li>
+      <li>这种方法的问题在于需要使用额外的存储来记录路径信息，在计算资源足够的情况下，这种方式可以得到结果，但本题的一个测试用例包含约10000个结点，测试时直接报”Runtime Error”，因此这种思路不能作为本题的正确解法。</li>
+    </ol>
+  </li>
+  <li>参考别人的思路：
+    <ol>
+      <li>在Solutions里看到别人发表的非常简洁的递归解法，只有4行，真的非常精妙，并且不需要额外的变量存储空间。</li>
+      <li>这种解法的思路如下：
+        <ol>
+          <li>把根结点作为当前结点，查找以当前结点为根的树。查找结果可以分为四种：
+            <ol>
+              <li>两个给定结点都在当前的树里。</li>
+              <li>只有第一个结点在当前的树里。</li>
+              <li>只有第二个结点在当前的树里。</li>
+              <li>两个给定结点都不在当前的树里。</li>
+            </ol>
+          </li>
+          <li>如果当前结点为NULL，则表示查找结果为上述第四种，返回NULL；如果当前结点是给定的第一个结点，则表示查找结果为上述第二种，返回当前结点；如果当前结点是给定的第二个结点，则表示查找结果为上述第三种，返回当前结点；如果前面几种情况都不满足，那么就需要查找它的左右子树了，左右子树的查找规则跟本步骤一模一样，查找结果同样可以分为四种：
+            <ol>
+              <li>在左子树中找到了一个给定结点，左子树查找结果不为NULL；在右子树中也找到了一个给定结点，右子树查找结果不为NULL。这种情况说明最近公共祖先就是当前结点（左右子树的父结点），返回当前结点。</li>
+              <li>在左子树中找到了一个或两个给定结点，左子树查找结果不为NULL；在右子树中没有找到给定结点，右子树查找结果为NULL。这种情况说明最近公共祖先必然在当前结点上方，返回左子树查找结果。</li>
+              <li>在右子树中找到了一个或两个给定结点，右子树查找结果不为NULL；在左子树中没有找到给定结点，左子树查找结果为NULL。这种情况说明最近公共祖先必然在当前结点上方，返回右子树查找结果。</li>
+              <li>在左右子树中都没有找到给定结点，查找结果都为NULL。这种情况说明当前的树不包含任何指定结点，返回NULL。</li>
+            </ol>
+          </li>
+          <li>上一步骤的四种查找结果中，第2和第3种都需要返回子树的查找结果，而不是返回当前结点的处理结果，否则会导致最终找到的都是根结点。</li>
+        </ol>
+      </li>
+    </ol>
+  </li>
 </ol>
 
 <h2 id="c代码">C++代码</h2>
@@ -162,32 +188,11 @@
  */
 class Solution {
 public:
-    vector&lt;TreeNode*&gt; generateTrees(int n) {
-        vector&lt;TreeNode*&gt; result;
-        if (n &lt; 1) {
-            return result;
-        }
-        return generateTreesOfRange(1, n);
-    }
-    vector&lt;TreeNode*&gt; generateTreesOfRange(int beg, int end) {
-        vector&lt;TreeNode*&gt; result;
-        if (beg &gt; end) {
-            result.push_back(NULL);
-            return result;
-        }
-        for (int i = beg; i &lt;= end; ++i) {
-            vector&lt;TreeNode*&gt; leftTrees = generateTreesOfRange(beg, i - 1);
-            vector&lt;TreeNode*&gt; rightTrees = generateTreesOfRange(i + 1, end);
-            for (int j = 0; j &lt; leftTrees.size(); ++j) {
-                for (int k = 0; k &lt; rightTrees.size(); ++k) {
-                    TreeNode* root = new TreeNode(i);
-                    root-&gt;left = leftTrees[j];
-                    root-&gt;right = rightTrees[k];
-                    result.push_back(root);
-                }
-            }
-        }
-        return result;
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if (!root || root == p || root == q) return root;
+        TreeNode* left = lowestCommonAncestor(root-&gt;left, p, q);
+        TreeNode* right = lowestCommonAncestor(root-&gt;right, p, q);
+        return left &amp;&amp; right ? root : left ? left : right ? right : NULL;
     }
 };
 </code></pre></div></div>
@@ -223,15 +228,15 @@ public:
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=LeetCode 95 [Unique Binary Search Trees II]&amp;url=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=LeetCode 236 [Lowest Common Ancestor of a Binary Tree]&amp;url=http://localhost:4000leetcode-lowest-common-ancestor-of-a-binary-tree"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000leetcode-lowest-common-ancestor-of-a-binary-tree"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000leetcode-lowest-common-ancestor-of-a-binary-tree"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -252,9 +257,9 @@ public:
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/article_cover/hash-functions.jpg)" href="/hash-functions-c">
+        <a class="read-next-story " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-house-robber-iii">
             <section class="post">
-                <h2>常用哈希函数C语言实现</h2>
+                <h2>LeetCode 337 [House Robber III]</h2>
                 
             </section>
         </a>
@@ -262,9 +267,9 @@ public:
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-populating-next-right-pointers-in-each-node">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-delete-node-in-a-bst">
             <section class="post">
-                <h2>LeetCode 116 [Populating Next Right Pointers in Each Node]</h2>
+                <h2>LeetCode 450 [Delete Node in a BST]</h2>
                 
             </section>
         </a>

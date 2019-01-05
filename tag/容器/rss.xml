@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>shuyufang.com/</title>
+   
+   <link>http://localhost:4000</link>
+   <description>唯刀百辟 唯心不易</description>
+   <language>en-uk</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>使用Docker搭建Nginx+Php-fpm+Mysql</title>
+	  <link>//docker-nginx-phpfpm-mysql</link>
+	  <author></author>
+	  <pubDate>2018-03-31T00:00:00+08:00</pubDate>
+	  <guid>//docker-nginx-phpfpm-mysql</guid>
+	  <description><![CDATA[
+	     <h2 id="搭建mysql">搭建MySQL</h2>
+
+<h4 id="step1-启动新的mysql容器实例">step1: 启动新的MySQL容器实例</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container run \                      # 启动一个新的容器实例，若容器对应的镜像不存在则自动从配置的远程仓库拉取
+    -d \                                      # 指定容器实例在后台运行
+    --rm \                                    # 当容器实例停止时，自动清理资源并删除该实例
+    --name MyDockerMysql \                    # 指定容器实例的名称
+    -p 3307:3306 \                            # 绑定本地3307端口至容器实例的3306端口
+    --env MYSQL_ROOT_PASSWORD=123456 \        # 指定容器实例启动时的环境变量，MYSQL_ROOT_PASSWORD对应MySQL初始化的root密码
+    mysql:5.7                                 # 指定容器镜像的名称和标识，用于从本地或远程仓库中查找用于实例化的镜像
+</code></pre></div></div>
+
+<h4 id="step2-检查是否启动成功">step2: 检查是否启动成功</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container ls --all
+</code></pre></div></div>
+<ul>
+  <li>若启动成功，在执行完该命令后可以看到名称为”MyDockerMysql”的运行中的容器实例，同时还可以看到该实例的ID。若启动失败，则没有实例信息，此时可以把启动命令中的”-d”选项删去，重新执行以便查看错误情况。</li>
+</ul>
+
+<h4 id="step3-查看实例的虚拟ip">step3: 查看实例的虚拟IP</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container inspect MyDockerMysql | grep IPAddress
+</code></pre></div></div>
+<ul>
+  <li>一般该IP为172.17.0.xx，后面的php测试脚本需要MySQL的IP信息。</li>
+</ul>
+
+<h4 id="step4-在mysql中新建数据库">step4: 在MySQL中新建数据库</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; mysql -h127.0.0.1 -P3307 -uroot -p123456
+</code></pre></div></div>
+<ul>
+  <li>执行这一步时，需要在本地先安装mysql客户端，”-h”和”-P”选项用于指定MySQL的服务端IP和端口，由于启动实例时已指定了端口映射，因此指定”127.0.0.1:3307”与”172.17.0.xx:3306”都可以，”-u”和”-p”分别用于指定MySQL的用户名和密码。
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; create database MyDockerDb;
+</code></pre></div>    </div>
+  </li>
+  <li>新建名称为MyDockerDb的数据库。</li>
+</ul>
+
+<h2 id="搭建php-fpm">搭建Php-fpm</h2>
+
+<h4 id="step1-创建本地映射目录与测试脚本">step1: 创建本地映射目录与测试脚本</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; mkdir -p /data/MyDockerPhpfpm &amp;&amp; cd /data/MyDockerPhpfpm &amp;&amp; vim test.php
+</code></pre></div></div>
+<ul>
+  <li>测试脚本的名称为”test.php”，内容如下：
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?php
+$host = '172.17.0.4';        // 与上文中的MySQL容器实例的虚拟IP地址保持一致
+$port = 3306;
+$user = 'root';
+$password = '123456';
+$db = 'MyDockerDb';
+$mysqli = new mysqli($host, $port, $user, $password, $db);
+if ($mysqli-&gt;connect_error) {
+  die('Connect Db Error(' . $mysqli-&gt;connect_errno . ') ' . $mysqli-&gt;connect_error);
+}
+echo 'Success... ' . $mysqli-&gt;host_info . "\n" . PHP_EOL;
+$mysqli-&gt;close();
+?&gt;
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h4 id="step2-启动新的php-fpm实例">step2: 启动新的Php-fpm实例</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container run \                      # 启动一个新的容器实例，若容器对应的镜像不存在则自动从配置的远程仓库拉取
+    -d \                                      # 指定容器实例在后台运行
+    --rm \                                    # 当容器实例停止时，自动清理资源并删除该实例
+    --name MyDockerPhpfpm \                   # 指定容器实例的名称
+    -v "/data/MyDockerPhpfpm/":/data          # 指定目录映射，本地的/data/MyDocker映射至容器实例的/data目录
+    bitnami/php-fpm                           # 指定容器镜像的名称，用于从本地或远程仓库中查找用于实例化的镜像
+</code></pre></div></div>
+
+<h4 id="step3-检查是否启动成功">step3: 检查是否启动成功</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container ls --all
+</code></pre></div></div>
+<ul>
+  <li>若启动成功，在执行完该命令后可以看到名称为”MyDockerPhpfpm”的运行中的容器实例，同时还可以看到该实例的ID。若启动失败，则没有实例信息，此时可以把启动命令中的”-d”选项删去，重新执行以便查看错误情况。Php-fpm的默认监听端口为9000。</li>
+</ul>
+
+<h4 id="step4-查看实例的虚拟ip">step4: 查看实例的虚拟IP</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container inspect MyDockerPhpfpm | grep IPAddress
+</code></pre></div></div>
+<ul>
+  <li>一般该IP为172.17.0.xx，后面的nginx服务需要php-fpm的IP信息。</li>
+</ul>
+
+<h2 id="搭建nginx">搭建Nginx</h2>
+
+<h4 id="step1-创建用于映射的本地nginx配置文件">step1: 创建用于映射的本地nginx配置文件</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; mkdir /data/MyDockerNginx &amp;&amp; cd /data/MyDockerNginx &amp;&amp; vim nginx.conf
+</code></pre></div></div>
+<ul>
+  <li>“nginx.conf”是nginx默认配置文件的名称，该文件用于映射至容器实例的nginx配置文件，内容如下：
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_processes  1;
+pid        nginx.pid;
+events {
+  worker_connections  256;
+}
+http {
+  include       mime.types;
+  default_type  application/octet-stream;
+  log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                    '$status $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
+  sendfile        on;
+  keepalive_timeout  65;
+  port_in_redirect    off;
+  tcp_nopush     on;
+  server {
+      listen       80;                          # 监听80端口
+      server_name  localhost;
+      index index.php index.html index.htm;
+      root /data/MyDockerPhpfpm;                # 与Php-fpm容器实例中测试脚本所在目录保持一致
+      error_page  500 502 503 504 /50x.html;
+      location = /50x.html {
+          root html;
+      }
+      location ~ .*\.php$ {                     # 当访问的资源名称以php结尾时，将请求转发至fastcgi处理器
+          fastcgi_pass     172.17.0.2:9000;     # 与上文中的Php-fpm容器的虚拟IP地址保持一致
+          fastcgi_index    index.php;
+          fastcgi_param    SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+          fastcgi_param    SCRIPT_NAME    $fastcgi_script_name;
+          include          fastcgi_params;
+      }
+  }
+}
+</code></pre></div>    </div>
+  </li>
+  <li>配置文件主要指定nginx监听的端口、fastcgi处理方式等信息，若对此不熟悉可参考nginx官方文档。</li>
+</ul>
+
+<h4 id="step2-启动新的nginx实例">step2: 启动新的nginx实例</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container run \                      # 启动一个新的容器实例，若容器对应的镜像不存在则自动从配置的远程仓库拉取
+    -d \                                      # 指定容器实例在后台运行
+    --rm \                                    # 当容器实例停止时，自动清理资源并删除该实例
+    --name MyDockerNginx \                    # 指定容器实例的名称
+    -p 8080:80 \                              # 绑定本地8080端口至容器实例的80端口
+    -v "/data/MyDockerNginx/nginx.conf":/etc/nginx/nginx.conf   # 指定文件映射
+    nginx                                     # 指定容器镜像的名称，用于从本地或远程仓库中查找用于实例化的镜像
+</code></pre></div></div>
+<ul>
+  <li>/etc/nginx/nginx.conf是nginx容器实例中默认的nginx配置文件，启动的时候docker会把本地的文件自动映射至容器中。本地的8080端口映射容器的80端口，意味着后面我们访问本地的8080端口时，系统会自动将请求转发至nginx容器实例的80端口。</li>
+</ul>
+
+<h4 id="step3-检查是否启动成功-1">step3: 检查是否启动成功</h4>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; docker container ls --all
+</code></pre></div></div>
+<ul>
+  <li>若启动成功，在执行完该命令后可以看到名称为”MyDockerNginx”的运行中的容器实例，同时还可以看到该实例的ID。若启动失败，则没有实例信息，此时可以把启动命令中的”-d”选项删去，重新执行以便查看错误情况。</li>
+</ul>
+
+<h2 id="验证整体效果">验证整体效果</h2>
+<ul>
+  <li>打开本地浏览器，输入localhost:8080/test.php，若页面显示”Success…”说明上文的搭建已成功，否则需要排查问题，这里列举下搭建过程中可能遇到的问题及解决思路。</li>
+</ul>
+
+<h4 id="服务器连接失败">服务器连接失败</h4>
+<ul>
+  <li>这种错误说明请求未找到对应的服务器，可能是nginx实例未启动或不在运行状态，也可能是url中的域名与端口不正确。</li>
+</ul>
+
+<h4 id="nginx返回404">Nginx返回404</h4>
+<ul>
+  <li>这种错误说明nginx未找到请求的资源，需要检查Php-fpm容器实例是否正常运行，测试脚本名称是否正确，fastcgi相关配置是否正确，测试脚本是否真的位于Php-fpm容器实例的对应目录中。</li>
+</ul>
+
+<h4 id="nginx返回403">Nginx返回403</h4>
+<ul>
+  <li>这种错误说明客户端没有权限访问该资源，可能是fastcgi的root根目录选项未正确配置（未与Php-fpm容器实例中的测试目录保持一致），也可能是Php-fpm实例中的测试目录或测试脚本的权限未正确设置。</li>
+</ul>
+
+<h4 id="数据库相关错误">数据库相关错误</h4>
+<ul>
+  <li>这类错误说明连接数据库失败或选择指定的数据库失败，需要检查MySQL容器实例是否正常运行，数据库的相关信息（服务器地址、用户名、密码、数据库名称等）是否正确。</li>
+</ul>
+
+<h2 id="参考资料">参考资料</h2>
+<ul>
+  <li><a href="http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html">http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html</a></li>
+  <li><a href="http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html">http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

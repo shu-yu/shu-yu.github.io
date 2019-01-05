@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>LeetCode 95 [Unique Binary Search Trees II]</title>
+    <title>LeetCode 98 [Validate Binary Search Tree]</title>
     <meta name="description" content="唯刀百辟 唯心不易" />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+        <link rel="canonical" href="http://localhost:4000//leetcode-validate-binary-search-tree" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="Void Programmer" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="LeetCode 95 [Unique Binary Search Trees II]" />
+    <meta property="og:title" content="LeetCode 98 [Validate Binary Search Tree]" />
     <meta property="og:description" content="唯刀百辟 唯心不易" />
-    <meta property="og:url" content="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+    <meta property="og:url" content="http://localhost:4000//leetcode-validate-binary-search-tree" />
     <meta property="og:image" content="/assets/images/article_cover/leetcode.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LeetCode 95 [Unique Binary Search Trees II]" />
+    <meta name="twitter:title" content="LeetCode 98 [Validate Binary Search Tree]" />
     <meta name="twitter:description" content="唯刀百辟 唯心不易" />
-    <meta name="twitter:url" content="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+    <meta name="twitter:url" content="http://localhost:4000//leetcode-validate-binary-search-tree" />
     <meta name="twitter:image:src" content="/assets/images/article_cover/leetcode.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "Void Programmer",
-    "name": "LeetCode 95 [Unique Binary Search Trees II]",
-    "url": "http://localhost:4000//leetcode-unique-binary-search-trees-ii",
+    "name": "LeetCode 98 [Validate Binary Search Tree]",
+    "url": "http://localhost:4000//leetcode-validate-binary-search-tree",
     "image": "/assets/images/article_cover/leetcode.jpg",
     "description": "唯刀百辟 唯心不易"
 }
@@ -106,7 +106,7 @@
     <article class="post tag-test tag-content">
 
         <header class="post-header">
-            <h1 class="post-title">LeetCode 95 [Unique Binary Search Trees II]</h1>
+            <h1 class="post-title">LeetCode 98 [Validate Binary Search Tree]</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -115,7 +115,7 @@
                     <a href='/author/ShuyuFang'>ShuyuFang</a>
                 
             
-            <time class="post-date" datetime="2017-04-01">01 Apr 2017</time>
+            <time class="post-date" datetime="2017-03-19">19 Mar 2017</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
@@ -132,22 +132,25 @@
 
             <h2 id="题目链接">题目链接</h2>
 <ul>
-  <li><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/">https://leetcode.com/problems/unique-binary-search-trees-ii/</a></li>
+  <li><a href="https://leetcode.com/problems/validate-binary-search-tree/">https://leetcode.com/problems/validate-binary-search-tree/</a></li>
 </ul>
 
 <h2 id="题目描述">题目描述</h2>
 <ul>
-  <li>给定一个整数，要求返回所有由值为1-n的结点组成的二叉排序树。</li>
+  <li>判断给定的二叉树是不是二叉排序树，假定二叉排序树满足以下条件：
+    <ol>
+      <li>任意一个结点的左子树的所有结点的值都比该结点小。</li>
+      <li>任意一个结点的右子树的所有结点的值都比该结点大。</li>
+      <li>左子树和右子树都是二叉排序树（递归定义）。</li>
+    </ol>
+  </li>
 </ul>
 
 <h2 id="解题思路">解题思路</h2>
 <ol>
-  <li>首先需要考虑n的取值，若取值不大于0，则不会形成任何二叉树。</li>
-  <li>对于n&gt;0的情况，可以用分治的思想来处理，每个结点轮流作为根结点，那么它的左子树就是由所有比该结点的值小的其他结点构成的，它的右子树就是由所有比该结点大的值构成的。</li>
-  <li>对于左子树与右子树，又可以轮流以某个结点作为根结点，一直到无法再分为止。</li>
-  <li>由于左子树可能有a种形式，右子树也可能有b种形式，所以以某个结点为根的树的集合其实需要对左右子树的情况进行一一匹配，最终可以得出a*b种形式。</li>
-  <li>需要特别注意一种情况，子树为空或者仅有一个结点，这两种情况实质都包含了一种形式，需要同等考虑。</li>
-  <li>每次以某个结点为根进行计算，平均时间复杂度为O(log n)，对n个结点进行计算，时间复杂度即为O(n * log n)。</li>
+  <li>根据二叉排序树的定义，从根结点出发，验证以每一个结点为根的树是否满足条件。</li>
+  <li>对每一个被遍历的结点，若左子结点不为空，则查找左子树的所有结点的最大值，若该值不小于当前结点的值，则说明当前树不是二叉排序树，否则继续查找右子树的所有结点的最小值，若该值不大于当前结点的值，则同样说明当前树不是二叉排序树。</li>
+  <li>实际代码实现使用递归的方式，最大值被初始化为整型的最小值，最小值被初始化为整型的最大值，由上层调用时传入。</li>
 </ol>
 
 <h2 id="c代码">C++代码</h2>
@@ -162,32 +165,46 @@
  */
 class Solution {
 public:
-    vector&lt;TreeNode*&gt; generateTrees(int n) {
-        vector&lt;TreeNode*&gt; result;
-        if (n &lt; 1) {
-            return result;
+    bool isValidBST(TreeNode* root) {
+        if (!root) {
+            return true;
         }
-        return generateTreesOfRange(1, n);
+        int max = INT_MIN;
+        int min = INT_MAX;
+        return travel(root, max, min);
     }
-    vector&lt;TreeNode*&gt; generateTreesOfRange(int beg, int end) {
-        vector&lt;TreeNode*&gt; result;
-        if (beg &gt; end) {
-            result.push_back(NULL);
-            return result;
-        }
-        for (int i = beg; i &lt;= end; ++i) {
-            vector&lt;TreeNode*&gt; leftTrees = generateTreesOfRange(beg, i - 1);
-            vector&lt;TreeNode*&gt; rightTrees = generateTreesOfRange(i + 1, end);
-            for (int j = 0; j &lt; leftTrees.size(); ++j) {
-                for (int k = 0; k &lt; rightTrees.size(); ++k) {
-                    TreeNode* root = new TreeNode(i);
-                    root-&gt;left = leftTrees[j];
-                    root-&gt;right = rightTrees[k];
-                    result.push_back(root);
-                }
+    
+    bool travel(TreeNode* node, int&amp; max, int&amp; min) {
+        max = node-&gt;val &gt; max ? node-&gt;val : max;
+        min = node-&gt;val &lt; min ? node-&gt;val : min;
+        
+        int tmpmax, tmpmin;
+        
+        if (node-&gt;left) {
+            tmpmax = INT_MIN;
+            tmpmin = INT_MAX;
+            if (!travel(node-&gt;left, tmpmax, tmpmin)) {
+                return false;
+            } else if (tmpmax &gt;= node-&gt;val) {
+                return false;
             }
+            max = tmpmax &gt; max ? tmpmax : max;
+            min = tmpmin &lt; min ? tmpmin : min;
         }
-        return result;
+        
+        if (node-&gt;right) {
+            tmpmax = INT_MIN;
+            tmpmin = INT_MAX;
+            if (!travel(node-&gt;right, tmpmax, tmpmin)) {
+                return false;
+            } else if (tmpmin &lt;= node-&gt;val) {
+                return false;
+            }
+            max = tmpmax &gt; max ? tmpmax : max;
+            min = tmpmin &lt; min ? tmpmin : min;
+        }
+        
+        return true;
     }
 };
 </code></pre></div></div>
@@ -223,15 +240,15 @@ public:
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=LeetCode 95 [Unique Binary Search Trees II]&amp;url=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=LeetCode 98 [Validate Binary Search Tree]&amp;url=http://localhost:4000leetcode-validate-binary-search-tree"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000leetcode-validate-binary-search-tree"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000leetcode-validate-binary-search-tree"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -252,9 +269,9 @@ public:
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/article_cover/hash-functions.jpg)" href="/hash-functions-c">
+        <a class="read-next-story " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-count-complete-tree-nodes">
             <section class="post">
-                <h2>常用哈希函数C语言实现</h2>
+                <h2>LeetCode 222 [Count Complete Tree Nodes]</h2>
                 
             </section>
         </a>
@@ -262,9 +279,9 @@ public:
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-populating-next-right-pointers-in-each-node">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-sum-root-to-leaf-numbers">
             <section class="post">
-                <h2>LeetCode 116 [Populating Next Right Pointers in Each Node]</h2>
+                <h2>LeetCode 129 [Sum Root to Leaf Numbers]</h2>
                 
             </section>
         </a>

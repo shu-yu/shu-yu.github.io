@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>LeetCode 95 [Unique Binary Search Trees II]</title>
+    <title>LeetCode 222 [Count Complete Tree Nodes]</title>
     <meta name="description" content="唯刀百辟 唯心不易" />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+        <link rel="canonical" href="http://localhost:4000//leetcode-count-complete-tree-nodes" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="Void Programmer" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="LeetCode 95 [Unique Binary Search Trees II]" />
+    <meta property="og:title" content="LeetCode 222 [Count Complete Tree Nodes]" />
     <meta property="og:description" content="唯刀百辟 唯心不易" />
-    <meta property="og:url" content="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+    <meta property="og:url" content="http://localhost:4000//leetcode-count-complete-tree-nodes" />
     <meta property="og:image" content="/assets/images/article_cover/leetcode.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LeetCode 95 [Unique Binary Search Trees II]" />
+    <meta name="twitter:title" content="LeetCode 222 [Count Complete Tree Nodes]" />
     <meta name="twitter:description" content="唯刀百辟 唯心不易" />
-    <meta name="twitter:url" content="http://localhost:4000//leetcode-unique-binary-search-trees-ii" />
+    <meta name="twitter:url" content="http://localhost:4000//leetcode-count-complete-tree-nodes" />
     <meta name="twitter:image:src" content="/assets/images/article_cover/leetcode.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "Void Programmer",
-    "name": "LeetCode 95 [Unique Binary Search Trees II]",
-    "url": "http://localhost:4000//leetcode-unique-binary-search-trees-ii",
+    "name": "LeetCode 222 [Count Complete Tree Nodes]",
+    "url": "http://localhost:4000//leetcode-count-complete-tree-nodes",
     "image": "/assets/images/article_cover/leetcode.jpg",
     "description": "唯刀百辟 唯心不易"
 }
@@ -106,7 +106,7 @@
     <article class="post tag-test tag-content">
 
         <header class="post-header">
-            <h1 class="post-title">LeetCode 95 [Unique Binary Search Trees II]</h1>
+            <h1 class="post-title">LeetCode 222 [Count Complete Tree Nodes]</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -115,7 +115,7 @@
                     <a href='/author/ShuyuFang'>ShuyuFang</a>
                 
             
-            <time class="post-date" datetime="2017-04-01">01 Apr 2017</time>
+            <time class="post-date" datetime="2017-03-20">20 Mar 2017</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
@@ -132,22 +132,29 @@
 
             <h2 id="题目链接">题目链接</h2>
 <ul>
-  <li><a href="https://leetcode.com/problems/unique-binary-search-trees-ii/">https://leetcode.com/problems/unique-binary-search-trees-ii/</a></li>
+  <li><a href="https://leetcode.com/problems/count-complete-tree-nodes/">https://leetcode.com/problems/count-complete-tree-nodes/</a></li>
 </ul>
 
 <h2 id="题目描述">题目描述</h2>
 <ul>
-  <li>给定一个整数，要求返回所有由值为1-n的结点组成的二叉排序树。</li>
+  <li>给定一棵完全二叉树，要求计算它的总结点数。完全二叉树指的是除了最后一层之外，其他每一层都是完整的，最后一层可能不是完整的，但是这一层的结点全部聚集在左侧，因此完全二叉树的结点数落在(1，2^h)这个区间内。</li>
 </ul>
 
 <h2 id="解题思路">解题思路</h2>
 <ol>
-  <li>首先需要考虑n的取值，若取值不大于0，则不会形成任何二叉树。</li>
-  <li>对于n&gt;0的情况，可以用分治的思想来处理，每个结点轮流作为根结点，那么它的左子树就是由所有比该结点的值小的其他结点构成的，它的右子树就是由所有比该结点大的值构成的。</li>
-  <li>对于左子树与右子树，又可以轮流以某个结点作为根结点，一直到无法再分为止。</li>
-  <li>由于左子树可能有a种形式，右子树也可能有b种形式，所以以某个结点为根的树的集合其实需要对左右子树的情况进行一一匹配，最终可以得出a*b种形式。</li>
-  <li>需要特别注意一种情况，子树为空或者仅有一个结点，这两种情况实质都包含了一种形式，需要同等考虑。</li>
-  <li>每次以某个结点为根进行计算，平均时间复杂度为O(log n)，对n个结点进行计算，时间复杂度即为O(n * log n)。</li>
+  <li>一开始我使用最简单的方式来处理，完全二叉树是特殊的二叉树，只要把它的结点全部遍历一次就可以了。这种方法可以得到结果，但是时间复杂度为O(n)，直接超时了。</li>
+  <li>接着我改进了计算方式，从最右侧开始遍历，当发现最后一层某个位置有结点的时候就停止。这种方法在平均情况下只需要遍历一半的结点，但是时间复杂度还是O(n)，还是超时。</li>
+  <li>时间复杂度为O(n)行不通，只能考虑O(log n)的算法，而O(log n)的时间复杂度一般对应着二分法。对于这个题目，可以通过二分法查找最后一层的最后一个结点的位置，进而计算出总结点数，具体的算法如下：
+    <ol>
+      <li>首先计算树的高度，由根结点一直往左偏移，计算偏移次数即可，这一步的时间复杂度为O(log n)。</li>
+      <li>除了树为空或者仅有根结点的情况，完全二叉树的倒数第二层肯定是完整的，因此可以通过倒数第二层的结点来判断最后一层的结点的分布情况。</li>
+      <li>从根结点开始处理，以当前结点为中间线，将以当前结点为根的二叉树分成两部分，取倒数第二层中，左半部分最靠近中间线的结点，即之前描述的二分的方式。这个处于“二分位置偏左”的结点，称之为“二分结点”，必然是当前结点的左子树（不考虑原树最后一层）的最右边的结点。</li>
+      <li>如果“二分结点”有右子结点，说明上述的左半部分是完整的，继续考虑右半部分，将当前结点向它的右结点偏移。</li>
+      <li>如果“二分结点”没有右子结点，说明上述的左半部分不是完整的，右半部分最后一层的结点全部缺失，记录对应的缺失结点数之后，将当前结点向它的左结点偏移。</li>
+      <li>对新的当前结点进行处理，直到当前结点位于倒数第二层，这种情况下以当前结点为根的树（不考虑原树最后一层）仅有一个结点，无法拆分为左右两部分，因此直接根据它的左右子结点是否为空，对应记录缺失的结点数即可。</li>
+      <li>倒数第二层处理完之后，处理流程结束，计算相同高度的满二叉树的结点数，用它减去缺失的结点数，即为所求的完全二叉树的结点数。</li>
+    </ol>
+  </li>
 </ol>
 
 <h2 id="c代码">C++代码</h2>
@@ -160,34 +167,56 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+#include &lt;math&gt;
 class Solution {
 public:
-    vector&lt;TreeNode*&gt; generateTrees(int n) {
-        vector&lt;TreeNode*&gt; result;
-        if (n &lt; 1) {
-            return result;
+    int countNodes(TreeNode* root) {
+        // 计算树的高度
+        int height = 0;
+        TreeNode* tmp = root;
+        while (tmp) {
+            height++;
+            tmp = tmp-&gt;left;
         }
-        return generateTreesOfRange(1, n);
-    }
-    vector&lt;TreeNode*&gt; generateTreesOfRange(int beg, int end) {
-        vector&lt;TreeNode*&gt; result;
-        if (beg &gt; end) {
-            result.push_back(NULL);
-            return result;
-        }
-        for (int i = beg; i &lt;= end; ++i) {
-            vector&lt;TreeNode*&gt; leftTrees = generateTreesOfRange(beg, i - 1);
-            vector&lt;TreeNode*&gt; rightTrees = generateTreesOfRange(i + 1, end);
-            for (int j = 0; j &lt; leftTrees.size(); ++j) {
-                for (int k = 0; k &lt; rightTrees.size(); ++k) {
-                    TreeNode* root = new TreeNode(i);
-                    root-&gt;left = leftTrees[j];
-                    root-&gt;right = rightTrees[k];
-                    result.push_back(root);
-                }
+        
+        // 记录缺少的结点数
+        int numRightEmpty = 0;
+        
+        TreeNode* node = root;
+        TreeNode* curNode;
+        int level = 1;
+        int curLevel;
+        
+        // 从根结点开始遍历，直到当前结点为空，或者已遍历到最后一层
+        while (node &amp;&amp; level &lt; height) {
+            // 如果当前结点位于倒数第二层，则处理完它的子结点的情况之后即可结束
+            if (level == height - 1) {
+                numRightEmpty += node-&gt;right ? 0 : node-&gt;left ? 1 : 2;
+                break;
             }
+            
+            // 以当前结点位置为中间线，查找倒数第二层里面，中间线偏左的最后一个元素
+            // 查找方法为当前结点向左下方偏移，再一直向右下方偏移，直到倒数第二层为止
+            curNode = node-&gt;left;
+            curLevel = level + 1;
+            while (curLevel &lt; height - 1) {
+                curNode = curNode-&gt;right;
+                curLevel++;
+            }
+            
+            // 如果中间线偏左的最后一个元素有右子结点，则需要将当前结点重置为它的右子结点
+            // 如果中间线偏左的最后一个元素没有右子结点，那么说明当前结点缺少了右半边的叶子结点，对应处理之后，将当前结点重置为它的左子结点
+            if (curNode-&gt;right) {
+                node = node-&gt;right;
+            } else {
+                numRightEmpty += (int)pow(2.0, (double)(height - level - 1));
+                node = node-&gt;left;
+            }
+            level++;
         }
-        return result;
+        
+        // 总的结点数为（2^h - 1 - 缺少的结点数）
+        return (int)pow(2.0, (double)(height)) - 1 - numRightEmpty;
     }
 };
 </code></pre></div></div>
@@ -223,15 +252,15 @@ public:
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=LeetCode 95 [Unique Binary Search Trees II]&amp;url=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=LeetCode 222 [Count Complete Tree Nodes]&amp;url=http://localhost:4000leetcode-count-complete-tree-nodes"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000leetcode-count-complete-tree-nodes"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000leetcode-unique-binary-search-trees-ii"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=http://localhost:4000leetcode-count-complete-tree-nodes"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -252,9 +281,9 @@ public:
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/article_cover/hash-functions.jpg)" href="/hash-functions-c">
+        <a class="read-next-story " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-convert-bst-to-greater-tree">
             <section class="post">
-                <h2>常用哈希函数C语言实现</h2>
+                <h2>LeetCode 538 [Convert BST to Greater Tree]</h2>
                 
             </section>
         </a>
@@ -262,9 +291,9 @@ public:
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-populating-next-right-pointers-in-each-node">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/article_cover/leetcode.jpg)" href="/leetcode-validate-binary-search-tree">
             <section class="post">
-                <h2>LeetCode 116 [Populating Next Right Pointers in Each Node]</h2>
+                <h2>LeetCode 98 [Validate Binary Search Tree]</h2>
                 
             </section>
         </a>
