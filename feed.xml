@@ -23,6 +23,21 @@
     
       
       <item>
+        <title>命令行的艺术（转）</title>
+        
+          <description>&lt;p&gt;&lt;a href=&quot;https://gitter.im/jlevy/the-art-of-command-line?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/Join%20Chat.svg&quot; alt=&quot;Join the chat at https://gitter.im/jlevy/the-art-of-command-line&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 05 May 2017 00:00:00 +0800</pubDate>
+        <link>
+        http://localhost:4000/the-art-of-command-line</link>
+        <guid isPermaLink="true">http://localhost:4000/the-art-of-command-line</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>常用哈希函数C语言实现</title>
         
           <description>&lt;h2 id=&quot;sdbm-hash&quot;&gt;SDBM Hash&lt;/h2&gt;
